@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreateSubDegreesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,16 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('sub_degrees', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('degree_id');
             $table->string('name');
-            $table->string('email');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->string('mobile')->nullable();
-            $table->enum('gender', ['male', 'female']);
-            $table->date('dob')->nullable();
+            $table->integer('ordered')->default(1);
             $table->boolean('active')->default(1);
-
-            $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('degree_id')->references('id')->on('degrees')->cascadeOnDelete();
         });
     }
 
@@ -37,6 +33,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('sub_degrees');
     }
 }
