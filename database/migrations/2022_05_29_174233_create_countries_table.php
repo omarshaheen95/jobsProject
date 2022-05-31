@@ -15,7 +15,7 @@ class CreateCountriesTable extends Migration
     {
         Schema::create('countries', function (Blueprint $table) {
             $table->id();
-            $table->text('name');
+            $table->string('name');
             $table->string('iso3')->nullable();
             $table->string('iso2')->nullable();
             $table->string('phone_code')->nullable();
@@ -23,7 +23,7 @@ class CreateCountriesTable extends Migration
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->string('flag')->nullable();
-            $table->boolean('is_active')->default(1);
+            $table->boolean('active')->default(1);
             $table->timestamps();
             $table->softDeletes();
         });

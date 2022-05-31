@@ -26,7 +26,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string|null
      */
-    // protected $namespace = 'App\\Http\\Controllers';
+     protected $namespace = 'App\\Http\\Controllers';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -36,6 +36,8 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->configureRateLimiting();
+
+        $this->mapManagerRoutes();
 
         $this->routes(function () {
             Route::prefix('api')
@@ -58,6 +60,18 @@ class RouteServiceProvider extends ServiceProvider
     {
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
+        });
+    }
+
+    protected function mapManagerRoutes()
+    {
+        Route::group([
+            'middleware' => ['web', 'manager', 'auth:manager'],
+            'prefix' => 'manager',
+            'as' => 'manager.',
+            'namespace' => $this->namespace,
+        ], function ($router) {
+            require base_path('routes/manager.php');
         });
     }
 }
