@@ -10,7 +10,7 @@
 
     <meta charset="utf-8"/>
     <title>{{ isset($title) ? $title. " | ":''  }}لوحة التحكم </title>
-    <meta name="description" content="{{ t('Dashboard') }}">
+    <meta name="description" content="لوحة التحكم">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!--begin::Fonts -->
@@ -175,18 +175,32 @@
                                 <span class="kt-menu__link-text">الرئيسية</span>
                             </a>
                         </li>
-                        <li class="kt-menu__item  @if(Route::is('*') ) kt-menu__item--active @endif"
+                        <li class="kt-menu__item  @if(Route::is('manager.governorate.*') ) kt-menu__item--active @endif"
                             aria-haspopup="true">
-                            <a href="" class="kt-menu__link ">
+                            <a href="{{route('manager.governorate.index')}}" class="kt-menu__link ">
                                 <i class="kt-menu__link-icon flaticon2-sheet"></i>
                                 <span class="kt-menu__link-text">المحافظات</span>
+                            </a>
+                        </li>
+                        <li class="kt-menu__item  @if(Route::is('manager.degree.*') ) kt-menu__item--active @endif"
+                            aria-haspopup="true">
+                            <a href="{{route('manager.degree.index')}}" class="kt-menu__link ">
+                                <i class="kt-menu__link-icon flaticon2-sheet"></i>
+                                <span class="kt-menu__link-text">التخصصات</span>
+                            </a>
+                        </li>
+                        <li class="kt-menu__item  @if(Route::is('manager.sub_degree.*') ) kt-menu__item--active @endif"
+                            aria-haspopup="true">
+                            <a href="{{route('manager.sub_degree.index')}}" class="kt-menu__link ">
+                                <i class="kt-menu__link-icon flaticon2-sheet"></i>
+                                <span class="kt-menu__link-text">التخصصات الدقيقة</span>
                             </a>
                         </li>
                         <li class="kt-menu__item  @if(Route::is('*') ) kt-menu__item--active @endif"
                             aria-haspopup="true">
                             <a href="" class="kt-menu__link ">
                                 <i class="kt-menu__link-icon flaticon2-sheet"></i>
-                                <span class="kt-menu__link-text">الدرجات العلمية</span>
+                                <span class="kt-menu__link-text">التقديرات</span>
                             </a>
                         </li>
                         <li class="kt-menu__item  @if(Route::is('*') ) kt-menu__item--active @endif"
@@ -217,20 +231,7 @@
                                 <span class="kt-menu__link-text">الجامعات</span>
                             </a>
                         </li>
-                        <li class="kt-menu__item  @if(Route::is('*') ) kt-menu__item--active @endif"
-                            aria-haspopup="true">
-                            <a href="" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-sheet"></i>
-                                <span class="kt-menu__link-text">التخصصات</span>
-                            </a>
-                        </li>
-                        <li class="kt-menu__item  @if(Route::is('*') ) kt-menu__item--active @endif"
-                            aria-haspopup="true">
-                            <a href="" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-sheet"></i>
-                                <span class="kt-menu__link-text">التخصصات الدقيقة</span>
-                            </a>
-                        </li>
+
                         <li class="kt-menu__item  @if(Route::is('*') ) kt-menu__item--active @endif"
                             aria-haspopup="true">
                             <a href="" class="kt-menu__link ">

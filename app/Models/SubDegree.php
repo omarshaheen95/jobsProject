@@ -10,6 +10,16 @@ class SubDegree extends Model
 {
     use SoftDeletes;
     protected $fillable = [
-        'name', 'ordered', 'active'
+        'degree_id', 'name', 'ordered', 'active'
     ];
+
+    public function degree()
+    {
+        return $this->belongsTo(Degree::class);
+    }
+
+    public function getStatusAttribute()
+    {
+        return $this->active ? 'فعالة':'غير فعالة';
+    }
 }
