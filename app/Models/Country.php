@@ -12,4 +12,9 @@ class Country extends Model
     protected $fillable = [
         'name', 'iso3', 'iso2', 'phone_code', 'timezone', 'latitude', 'longitude', 'flag', 'active'
     ];
+
+    public function getStatusAttribute()
+    {
+        return $this->active ? 'فعالة':'غير فعالة';
+    }
 }

@@ -2,7 +2,7 @@
 @section('content')
     @push('breadcrumb')
         <li class="breadcrumb-item">
-            <a href="{{ route('manager.governorate.index') }}">المحافظات</a>
+            <a href="{{ route('manager.position.index') }}">المناصب الوظيفية</a>
         </li>
         <li class="breadcrumb-item">
             {{ isset($title) ? $title:'' }}
@@ -17,36 +17,36 @@
                     </div>
                 </div>
                 <form enctype="multipart/form-data" id="form_information" class="kt-form kt-form--label-right"
-                      action="{{ isset($governorate) ? route('manager.governorate.update', $governorate->id): route('manager.governorate.store') }}"
+                      action="{{ isset($position) ? route('manager.position.update', $position->id): route('manager.position.store') }}"
                       method="post">
                     {{ csrf_field() }}
-                    @if(isset($governorate))
+                    @if(isset($position))
                         <input type="hidden" name="_method" value="patch">
                     @endif
                     <div class="kt-portlet__body">
                         <div class="kt-section kt-section--first">
                             <div class="kt-section__body">
                                 <div class="form-group row">
-                                    <label class="col-xl-3 col-lg-3 col-form-label">اسم المحافظة</label>
+                                    <label class="col-xl-3 col-lg-3 col-form-label">اسم المنصب الوظيفي</label>
                                     <div class="col-lg-9 col-xl-6">
                                         <input class="form-control" name="name" type="text"
-                                               value="{{ isset($governorate) ? $governorate->name : old("name") }}">
+                                               value="{{ isset($position) ? $position->name : old("name") }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-xl-3 col-lg-3 col-form-label">ترتيب المحافظة</label>
+                                    <label class="col-xl-3 col-lg-3 col-form-label">ترتيب المنصب الوظيفي</label>
                                     <div class="col-lg-9 col-xl-6">
                                         <input class="form-control" name="ordered" type="number"
-                                               value="{{ isset($governorate) ? $governorate->ordered : 1 }}">
+                                               value="{{ isset($position) ? $position->ordered : 1 }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-xl-3 col-lg-3 col-form-label">تفعيل المحافظة</label>
+                                    <label class="col-xl-3 col-lg-3 col-form-label">تفعيل المنصب الوظيفي</label>
                                     <div class="col-lg-9 col-xl-6">
                                         <span class="kt-switch">
                                             <label>
                                                 <input type="checkbox" value="1"
-                                                       {{ isset($governorate) && $governorate->active ? 'checked' :'' }} name="active">
+                                                       {{ isset($position) && $position->active ? 'checked' :'' }} name="active">
                                                 <span></span>
                                             </label>
                                         </span>
@@ -60,7 +60,7 @@
                             <div class="row">
                                 <div class="col-lg-12 text-right">
                                     <button type="submit"
-                                            class="btn btn-danger">{{ isset($governorate) ? 'تعديل':'إنشاء' }}</button>&nbsp;
+                                            class="btn btn-danger">{{ isset($position) ? 'تعديل':'إنشاء' }}</button>&nbsp;
                                 </div>
                             </div>
                         </div>
@@ -73,5 +73,5 @@
 
 @section('script')
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-    {!! JsValidator::formRequest(\App\Http\Requests\Manager\GovernorateRequest::class, '#form_information') !!}
+    {!! JsValidator::formRequest(\App\Http\Requests\Manager\PositionRequest::class, '#form_information') !!}
 @endsection

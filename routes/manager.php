@@ -27,6 +27,17 @@ Route::group(['namespace' => 'Manager'], function () {
         'governorate' => 'GovernorateController',
         'degree' => 'DegreeController',
         'sub_degree' => 'SubDegreeController',
+        'disability' => 'DisabilityController',
+        'ministry' => 'MinistryController',
+        'university' => 'UniversityController',
+        'appreciation' => 'AppreciationController',
+        'country' => 'CountryController',
+        'language' => 'LanguageController',
+        'position' => 'PositionController',
+        'news' => 'NewsController',
+        'user' => 'UserController',
     ]);
+
+    Route::get('page', 'PageController@index')->name('page.index');
 
 });

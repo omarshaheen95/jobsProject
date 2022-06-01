@@ -12,4 +12,9 @@ class Language extends Model
     protected $fillable = [
         'name', 'ordered', 'active'
     ];
+
+    public function getStatusAttribute()
+    {
+        return $this->active ? 'فعالة':'غير فعالة';
+    }
 }

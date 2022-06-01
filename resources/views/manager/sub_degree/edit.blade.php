@@ -5,7 +5,7 @@
             <a href="{{ route('manager.sub_degree.index') }}">التخصصات الدقيقة</a>
         </li>
         <li class="breadcrumb-item">
-            {{ isset($sub_degree) ? 'تعديل التخصص الدقيق' : 'إضافة تخصص دقيق' }}
+            {{ isset($title) ? $title:'' }}
         </li>
     @endpush
     <div class="row">
@@ -13,7 +13,7 @@
             <div class="kt-portlet">
                 <div class="kt-portlet__head">
                     <div class="kt-portlet__head-label">
-                        <h3 class="kt-portlet__head-title">            {{ isset($sub_degree) ? 'تعديل التخصص الدقيق' : 'إضافة تخصص دقيق' }}
+                        <h3 class="kt-portlet__head-title">            {{ isset($title) ? $title:'' }}
                         </h3>
                     </div>
                 </div>

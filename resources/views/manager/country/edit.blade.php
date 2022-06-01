@@ -2,7 +2,7 @@
 @section('content')
     @push('breadcrumb')
         <li class="breadcrumb-item">
-            <a href="{{ route('manager.governorate.index') }}">المحافظات</a>
+            <a href="{{ route('manager.country.index') }}">الدول</a>
         </li>
         <li class="breadcrumb-item">
             {{ isset($title) ? $title:'' }}
@@ -17,36 +17,29 @@
                     </div>
                 </div>
                 <form enctype="multipart/form-data" id="form_information" class="kt-form kt-form--label-right"
-                      action="{{ isset($governorate) ? route('manager.governorate.update', $governorate->id): route('manager.governorate.store') }}"
+                      action="{{ isset($country) ? route('manager.country.update', $country->id): route('manager.country.store') }}"
                       method="post">
                     {{ csrf_field() }}
-                    @if(isset($governorate))
+                    @if(isset($country))
                         <input type="hidden" name="_method" value="patch">
                     @endif
                     <div class="kt-portlet__body">
                         <div class="kt-section kt-section--first">
                             <div class="kt-section__body">
                                 <div class="form-group row">
-                                    <label class="col-xl-3 col-lg-3 col-form-label">اسم المحافظة</label>
+                                    <label class="col-xl-3 col-lg-3 col-form-label">اسم الدولة</label>
                                     <div class="col-lg-9 col-xl-6">
                                         <input class="form-control" name="name" type="text"
-                                               value="{{ isset($governorate) ? $governorate->name : old("name") }}">
+                                               value="{{ isset($country) ? $country->name : old("name") }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-xl-3 col-lg-3 col-form-label">ترتيب المحافظة</label>
-                                    <div class="col-lg-9 col-xl-6">
-                                        <input class="form-control" name="ordered" type="number"
-                                               value="{{ isset($governorate) ? $governorate->ordered : 1 }}">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-xl-3 col-lg-3 col-form-label">تفعيل المحافظة</label>
+                                    <label class="col-xl-3 col-lg-3 col-form-label">تفعيل الدولة</label>
                                     <div class="col-lg-9 col-xl-6">
                                         <span class="kt-switch">
                                             <label>
                                                 <input type="checkbox" value="1"
-                                                       {{ isset($governorate) && $governorate->active ? 'checked' :'' }} name="active">
+                                                       {{ isset($country) && $country->active ? 'checked' :'' }} name="active">
                                                 <span></span>
                                             </label>
                                         </span>
@@ -60,7 +53,7 @@
                             <div class="row">
                                 <div class="col-lg-12 text-right">
                                     <button type="submit"
-                                            class="btn btn-danger">{{ isset($governorate) ? 'تعديل':'إنشاء' }}</button>&nbsp;
+                                            class="btn btn-danger">{{ isset($country) ? 'تعديل':'إنشاء' }}</button>&nbsp;
                                 </div>
                             </div>
                         </div>
@@ -73,5 +66,5 @@
 
 @section('script')
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-    {!! JsValidator::formRequest(\App\Http\Requests\Manager\GovernorateRequest::class, '#form_information') !!}
+    {!! JsValidator::formRequest(\App\Http\Requests\Manager\CountryRequest::class, '#form_information') !!}
 @endsection
