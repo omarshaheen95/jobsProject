@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Manager;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Manager\MinistryRequest;
 use App\Models\Ministry;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -14,7 +15,12 @@ class MinistryController extends Controller
     {
         if ($request->ajax())
         {
-            $rows = Ministry::query()->latest();
+            $search = $request->get('search', false);
+            $rows = Ministry::query()
+                ->when($search, function(Builder $query) use($search){
+                    $query->where('name', 'like', '%'.$search.'%');
+                })
+                ->latest();
             return DataTables::make($rows)
                 ->escapeColumns([])
                 ->addColumn('status', function ($row){

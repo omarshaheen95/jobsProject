@@ -36,8 +36,11 @@ Route::group(['namespace' => 'Manager'], function () {
         'position' => 'PositionController',
         'news' => 'NewsController',
         'user' => 'UserController',
+        'manager' => 'ManagerController',
     ]);
 
     Route::get('page', 'PageController@index')->name('page.index');
+    Route::get('page/{id}', 'PageController@edit')->name('page.edit');
+    Route::patch('page/{id}', 'PageController@update')->name('page.update');
 
 });

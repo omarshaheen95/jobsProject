@@ -13,7 +13,7 @@ class PageRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class PageRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'required',
+            'sub_title' => 'nullable',
+            'content' => 'nullable',
         ];
     }
 }

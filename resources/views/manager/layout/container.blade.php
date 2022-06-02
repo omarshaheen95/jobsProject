@@ -274,9 +274,9 @@
                                 <span class="kt-menu__link-text">الصفحات</span>
                             </a>
                         </li>
-                        <li class="kt-menu__item  @if(Route::is('manager.page.*') ) kt-menu__item--active @endif"
+                        <li class="kt-menu__item  @if(Route::is('manager.manager.*') ) kt-menu__item--active @endif"
                             aria-haspopup="true">
-                            <a href="{{route('manager.page.index')}}" class="kt-menu__link ">
+                            <a href="{{route('manager.manager.index')}}" class="kt-menu__link ">
                                 <i class="kt-menu__link-icon flaticon2-sheet"></i>
                                 <span class="kt-menu__link-text">المسؤلين</span>
                             </a>
