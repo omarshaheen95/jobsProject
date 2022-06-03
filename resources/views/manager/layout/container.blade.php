@@ -224,13 +224,13 @@
                                 <span class="kt-menu__link-text">المناصب الوظيفية</span>
                             </a>
                         </li>
-                        <li class="kt-menu__item  @if(Route::is('manager.university.*') ) kt-menu__item--active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('manager.university.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-sheet"></i>
-                                <span class="kt-menu__link-text">الجامعات</span>
-                            </a>
-                        </li>
+{{--                        <li class="kt-menu__item  @if(Route::is('manager.university.*') ) kt-menu__item--active @endif"--}}
+{{--                            aria-haspopup="true">--}}
+{{--                            <a href="{{route('manager.university.index')}}" class="kt-menu__link ">--}}
+{{--                                <i class="kt-menu__link-icon flaticon2-sheet"></i>--}}
+{{--                                <span class="kt-menu__link-text">الجامعات</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
 
                         <li class="kt-menu__item  @if(Route::is('manager.language.*') ) kt-menu__item--active @endif"
                             aria-haspopup="true">
@@ -281,20 +281,14 @@
                                 <span class="kt-menu__link-text">المسؤلين</span>
                             </a>
                         </li>
-                        <li class="kt-menu__item  @if(Route::is('manager.page.*') ) kt-menu__item--active @endif"
+                        <li class="kt-menu__item  @if(Route::is('manager.role.*') ) kt-menu__item--active @endif"
                             aria-haspopup="true">
-                            <a href="{{route('manager.page.index')}}" class="kt-menu__link ">
+                            <a href="{{route('manager.role.index')}}" class="kt-menu__link ">
                                 <i class="kt-menu__link-icon flaticon2-sheet"></i>
                                 <span class="kt-menu__link-text">الصلاحيات</span>
                             </a>
                         </li>
-                        <li class="kt-menu__item  @if(Route::is('manager.page.*') ) kt-menu__item--active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('manager.page.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-sheet"></i>
-                                <span class="kt-menu__link-text">الاعدادات العامة</span>
-                            </a>
-                        </li>
+
 
                     </ul>
                 </div>
@@ -324,13 +318,19 @@
                             {{--                                </a>--}}
                             {{--                            </li>--}}
 
-                                <li class="kt-menu__item"
+                                <li class="kt-menu__item @if(Route::is('manager.contact_us.*')) kt-menu__item--active @endif"
                                     aria-haspopup="true">
-                                    <a href=""
-                                       class="kt-menu__link @if(Request::is('manager/contact_us*')) kt-menu__item--active @endif">
+                                    <a href="{{route('manager.contact_us.index')}}"
+                                       class="kt-menu__link ">
                                         <span class="kt-menu__link-text">اتصل بنا</span>
                                     </a>
                                 </li>
+                            <li class="kt-menu__item  @if(Route::is('manager.page.*') ) kt-menu__item--active @endif"
+                                aria-haspopup="true">
+                                <a href="{{route('manager.page.index')}}" class="kt-menu__link ">
+                                    <span class="kt-menu__link-text">الاعدادات العامة</span>
+                                </a>
+                            </li>
                         </ul>
 
                     </div>

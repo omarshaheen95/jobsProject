@@ -37,10 +37,16 @@ Route::group(['namespace' => 'Manager'], function () {
         'news' => 'NewsController',
         'user' => 'UserController',
         'manager' => 'ManagerController',
+        'role' => 'RoleController',
     ]);
 
+    //Page
     Route::get('page', 'PageController@index')->name('page.index');
     Route::get('page/{id}', 'PageController@edit')->name('page.edit');
     Route::patch('page/{id}', 'PageController@update')->name('page.update');
+    //Contact Us
+    Route::get('contact_us', 'ContactUsController@index')->name('contact_us.index');
+    Route::get('contact_us/{id}/show', 'ContactUsController@show')->name('contact_us.show');
+    Route::delete('contact_us/{id}', 'ContactUsController@destroy')->name('contact_us.destroy');
 
 });

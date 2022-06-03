@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Manager;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Route;
 
 class NewsRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class NewsRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +24,23 @@ class NewsRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-        ];
+       if (in_array(Route::currentRouteName(), ['manager.news.store', 'manager.news.create']))
+       {
+           return [
+               'title' => 'required',
+               'sub_title' => 'nullable',
+               'content' => 'required',
+               'tags' => 'nullable',
+               'image' => 'required|image',
+           ];
+       }else{
+           return [
+               'title' => 'required',
+               'sub_title' => 'nullable',
+               'content' => 'required',
+               'tags' => 'nullable',
+               'image' => 'nullable|image',
+           ];
+       }
     }
 }

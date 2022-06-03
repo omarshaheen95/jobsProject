@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Ministry extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, CascadeSoftDeletes;
     protected $fillable = [
         'name', 'ordered', 'active'
     ];
@@ -16,5 +17,10 @@ class Ministry extends Model
     public function getStatusAttribute()
     {
         return $this->active ? 'فعالة':'غير فعالة';
+    }
+
+    public function job_ministries()
+    {
+        return $this->hasMany(JobMinistry::class);
     }
 }

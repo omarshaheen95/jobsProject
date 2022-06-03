@@ -13,8 +13,22 @@ class Degree extends Model
         'name', 'ordered', 'active'
     ];
 
+    protected $cascadeDeletes = [
+        'job_offers', 'sub_degrees'
+    ];
+
     public function getStatusAttribute()
     {
         return $this->active ? 'فعالة':'غير فعالة';
+    }
+
+    public function job_offers()
+    {
+        return $this->hasMany(JobOffer::class);
+    }
+
+    public function sub_degrees()
+    {
+        return $this->hasMany(SubDegree::class);
     }
 }

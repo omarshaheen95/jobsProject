@@ -23,6 +23,9 @@ class CreateContactUsTable extends Migration
             $table->boolean('seen')->default(0);
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('governorate_id')->references('id')->on('governorates')->cascadeOnDelete();
+
         });
     }
 
