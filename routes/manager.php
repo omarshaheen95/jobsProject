@@ -38,6 +38,8 @@ Route::group(['namespace' => 'Manager'], function () {
         'user' => 'UserController',
         'manager' => 'ManagerController',
         'role' => 'RoleController',
+        'job_offer' => 'JobOfferController',
+        'qualification' => 'QualificationController',
     ]);
 
     //Page

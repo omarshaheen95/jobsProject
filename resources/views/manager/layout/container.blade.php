@@ -28,7 +28,7 @@
 
     <!--end::Fonts -->
 
-
+    <link href="{{asset('assets/vendors/general/bootstrap-select/dist/css/bootstrap-select.rtl.css')}}" rel="stylesheet"/>
     <!--begin::Global Theme Styles(used by all pages) -->
     <link href="{{ asset('assets/css/demo1/style.bundle.rtl.css') }}" rel="stylesheet" type="text/css"/>
     <!--end::Global Theme Styles -->
@@ -62,7 +62,7 @@
     <link href="{{asset('assets/css/demo1/skins/header/menu/light.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('assets/css/demo1/skins/brand/light.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('assets/css/demo1/skins/aside/light.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{asset('css/bootstrap-select.css')}}" rel="stylesheet"/>
+
     @if(app()->getLocale() == 'ar')
         <style>
             .bootstrap-select .dropdown-toggle .filter-option {
@@ -196,6 +196,13 @@
                                 <span class="kt-menu__link-text">التخصصات الدقيقة</span>
                             </a>
                         </li>
+                        <li class="kt-menu__item  @if(Route::is('manager.qualification.*') ) kt-menu__item--active @endif"
+                            aria-haspopup="true">
+                            <a href="{{route('manager.qualification.index')}}" class="kt-menu__link ">
+                                <i class="kt-menu__link-icon flaticon2-sheet"></i>
+                                <span class="kt-menu__link-text">المؤهلات</span>
+                            </a>
+                        </li>
                         <li class="kt-menu__item  @if(Route::is('manager.appreciation.*') ) kt-menu__item--active @endif"
                             aria-haspopup="true">
                             <a href="{{route('manager.appreciation.index')}}" class="kt-menu__link ">
@@ -253,9 +260,9 @@
                                 <span class="kt-menu__link-text">الاخبار</span>
                             </a>
                         </li>
-                        <li class="kt-menu__item  @if(Route::is('manager.user.*') ) kt-menu__item--active @endif"
+                        <li class="kt-menu__item  @if(Route::is('manager.job_offer.*') ) kt-menu__item--active @endif"
                             aria-haspopup="true">
-                            <a href="{{route('manager.user.index')}}" class="kt-menu__link ">
+                            <a href="{{route('manager.job_offer.index')}}" class="kt-menu__link ">
                                 <i class="kt-menu__link-icon flaticon2-sheet"></i>
                                 <span class="kt-menu__link-text">التعيينات</span>
                             </a>
@@ -514,7 +521,7 @@
 <script src="{{ asset("assets/vendors/general/toastr/build/toastr.min.js") }}" type="text/javascript"></script>
 
 <!--end:: Global Optional Vendors -->
-<script src="{{asset('js/bootstrap-select.min.js')}}"></script>
+<script src="{{asset('assets/vendors/general/bootstrap-select/dist/js/bootstrap-select.js')}}"></script>
 
 <!--begin::Global Theme Bundle(used by all pages) -->
 <script src="{{ asset("assets/js/demo1/scripts.bundle.js") }}" type="text/javascript"></script>
@@ -530,6 +537,49 @@
 <!--end::Page Scripts -->
 @yield('script')
 <script type="text/javascript">
+    function showToastify(text_msg, status, route = null){
+        var color = "#203359";
+        if(status == "success"){
+            color = "#61C3BB";
+        } else if(status == "error"){
+            color = "#E37281";
+        } else if(status == "warning"){
+            color = "#E7AF4B";
+        } else if(status == "info"){
+            color = "#0F9DC2";
+        } else {
+            color = "#203359";
+        }
+
+        swal.fire({
+            confirmButtonText: 'موافق',
+            "title": "",
+            "text": text_msg,
+            "type": status,
+            "confirmButtonClass": "btn btn-secondary"
+        }).then(function (result) {
+            if (result.value && route != null) {
+                window.location.replace(route);
+            }
+        });
+
+
+    }
+    function sweetToast(title, subTitle = null, icon, route = null, cancelBtn = false) {
+        Swal.fire({
+            title: title,
+            text: subTitle,
+            icon: icon,
+            showCancelButton: cancelBtn,
+            confirmButtonText: OK_WORD,
+            // confirmButtonText: "Yes, delete it!"
+        }).then(function (result) {
+            if (result.value && route != null) {
+                window.location.replace(route);
+            }
+        });
+    }
+
     toastr.options = {
         "closeButton": true,
         "debug": false,
@@ -551,10 +601,10 @@
     toastr.{{Session::get('m-class') ? Session::get('m-class'):'success'}}("{{Session::get('message')}}");
     @endif
 
-    $('select').selectpicker({
+    $('.select2L').selectpicker({
         liveSearch: true,
-        noneSelectedText: 'غير محدد',
     });
+
 </script>
 
 </body>

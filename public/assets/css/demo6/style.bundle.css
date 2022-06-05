@@ -22784,7 +22784,7 @@ strong {
   box-shadow: none; }
 
 .bootstrap-select.is-invalid .btn.dropdown-toggle {
-  border-color: #31ab3f; }
+  border-color: #ff0000; }
 
 .bootstrap-select.is-valid .btn.dropdown-toggle {
   border-color: #1dc9b7; }

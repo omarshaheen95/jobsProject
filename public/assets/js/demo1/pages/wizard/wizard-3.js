@@ -7,12 +7,13 @@ var KTWizard3 = function () {
 	var formEl;
 	var validator;
 	var wizard;
-	
+
 	// Private functions
 	var initWizard = function () {
 		// Initialize form wizard
 		wizard = new KTWizard('kt_wizard_v3', {
 			startStep: 1,
+            clickableSteps: false,
 		});
 
 		// Validation before going to next page
@@ -24,7 +25,7 @@ var KTWizard3 = function () {
 
 		// Change event
 		wizard.on('change', function(wizard) {
-			KTUtil.scrollTop();	
+			KTUtil.scrollTop();
 		});
 	}
 
@@ -36,75 +37,48 @@ var KTWizard3 = function () {
 			// Validation rules
 			rules: {
 				//= Step 1
-				address1: {
-					required: true 
+                name: {
+					required: true
 				},
-				postcode: {
+				job_uuid: {
 					required: true
-				},	   
-				city: {
+				},
+                position_id: {
 					required: true
-				},	 
-				state: {
+				},
+				start_at: {
 					required: true
-				},	 
-				country: {
+				},
+				end_at: {
 					required: true
-				},	 
+				},
+				publish_at: {
+					required: true
+				},
 
-				//= Step 2
-				package: {
+				degree_id: {
 					required: true
 				},
-				weight: {
-					required: true
-				},	
-				width: {
-					required: true
-				},
-				height: {
-					required: true
-				},	
-				length: {
-					required: true
-				},			   
 
-				//= Step 3
-				delivery: {
-					required: true
-				},
-				packaging: {
-					required: true
-				},	
-				preferreddelivery: {
-					required: true
-				},	
-
-				//= Step 4
-				locaddress1: {
-					required: true 
-				},
-				locpostcode: {
-					required: true
-				},	   
-				loccity: {
-					required: true
-				},	 
-				locstate: {
-					required: true
-				},	 
-				loccountry: {
-					required: true
-				},
 			},
-			
-			// Display error  
-			invalidHandler: function(event, validator) {	 
+            messages: {
+                name: "يرجى تحديد اسم العرض الوظيفي",
+                job_uuid: "يرجى تحديد رقم العرض الوظيفي",
+                position_id: "يرجى تحديد المسمى الوظيفي",
+                start_at: "يرجى تحديد تاريخ بدء التقديم",
+                end_at: "يرجى تحديد تاريخ انتهاء التقديم",
+                publish_at: "يرجى تحديد تاريخ نشر العرض الوظيفي",
+                degree_id: "يرجى تحديدالتخصص المطلوب",
+            },
+
+			// Display error
+			invalidHandler: function(event, validator) {
 				KTUtil.scrollTop();
 
 				swal.fire({
-					"title": "", 
-					"text": "There are some errors in your submission. Please correct them.", 
+                    confirmButtonText: 'موافق',
+					"title": "",
+					"text": "هناك بعض الأخطاء في تقديمك. يرجى تصحيحها.",
 					"type": "error",
 					"confirmButtonClass": "btn btn-secondary"
 				});
@@ -112,9 +86,9 @@ var KTWizard3 = function () {
 
 			// Submit valid form
 			submitHandler: function (form) {
-				
+
 			}
-		});   
+		});
 	}
 
 	var initSubmit = function() {
@@ -128,20 +102,35 @@ var KTWizard3 = function () {
 				KTApp.progress(btn);
 				//KTApp.block(formEl);
 
-				// See: http://malsup.com/jquery/form/#ajaxSubmit
-				formEl.ajaxSubmit({
-					success: function() {
-						KTApp.unprogress(btn);
-						//KTApp.unblock(formEl);
+                var form = $('#kt_form');
+                $.ajax({
+                    type: "post",
+                    // dataType: "html",
+                    url: form.attr("action"),
+                    data: form.serialize(),
+                    success: function(res){
+                        console.log(res);
+                        if(res.success){
+                            showToastify(res.message, 'success', res.data.route);
+                        } else {
+                            showToastify(res.message, 'error');
+                        }
 
-						swal.fire({
-							"title": "", 
-							"text": "The application has been successfully submitted!", 
-							"type": "success",
-							"confirmButtonClass": "btn btn-secondary"
-						});
-					}
-				});
+                        KTApp.unprogress(btn);
+                    },
+                    error: function(response) {
+                        KTApp.unprogress(btn);
+                        var messages = Object.values(response.responseJSON.errors);
+                        console.log(messages)
+                        if (messages.length > 0)
+                        {
+                            showToastify(messages[0],  'error');
+                        }else{
+                            showToastify(response.responseJSON.message,  'error');
+                        }
+
+                    }
+                });
 			}
 		});
 	}
@@ -152,13 +141,13 @@ var KTWizard3 = function () {
 			wizardEl = KTUtil.get('kt_wizard_v3');
 			formEl = $('#kt_form');
 
-			initWizard(); 
+			initWizard();
 			initValidation();
 			initSubmit();
 		}
 	};
 }();
 
-jQuery(document).ready(function() {	
+jQuery(document).ready(function() {
 	KTWizard3.init();
 });

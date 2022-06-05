@@ -48,7 +48,7 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $exception)
     {
-        if (request()->is('admin/*') && $request->ajax()) {
+        if (request()->is('manager/*') && $request->ajax()) {
             if ($exception instanceof AuthorizationException) {
                 return $this->setStatusCode(403)->respondWithError([t($exception->getMessage())]);
             }

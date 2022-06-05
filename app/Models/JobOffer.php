@@ -6,10 +6,13 @@ use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class JobOffer extends Model
 {
-    use SoftDeletes, CascadeSoftDeletes;
+    use SoftDeletes, CascadeSoftDeletes, HasSlug, InteractsWithMedia;
 
     //gender : 'male', 'female'
     protected $fillable = [
@@ -33,31 +36,39 @@ class JobOffer extends Model
 
     public function languages()
     {
-        return $this->hasMany(JobLanguage::class);
+        return $this->belongsToMany(Language::class, JobLanguage::class);
     }
 
     public function governorates()
     {
-        return $this->hasMany(JobGovernorate::class);
+        return $this->belongsToMany(Governorate::class,JobGovernorate::class);
     }
 
     public function disabilities()
     {
-        return $this->hasMany(JobDisability::class);
+        return $this->belongsToMany(Disability::class,JobDisability::class);
     }
 
     public function qualifications()
     {
-        return $this->hasMany(Qualification::class);
+        return $this->belongsToMany(Qualification::class,JobQualification::class);
     }
 
     public function sub_degrees()
     {
-        return $this->hasMany(JobSubDegree::class);
+        return $this->belongsToMany(SubDegree::class,JobSubDegree::class);
     }
 
     public function ministries()
     {
-        return $this->hasMany(JobMinistry::class);
+        return $this->belongsToMany(Ministry::class,JobMinistry::class);
+    }
+
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug')
+            ->usingLanguage('ar');
     }
 }

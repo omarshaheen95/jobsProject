@@ -1,7 +1,7 @@
 @extends('manager.layout.container')
 @section('style')
     <link href="{{ asset('assets/vendors/general/summernote/dist/summernote.rtl.css') }}" rel="stylesheet"/>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css"
+    <link href="{{asset('assets/vendors/general/bootstrap-tagsinput/dist/bootstrap-tagsinput.css')}}"
           rel="stylesheet" />
     <style>
         .bootstrap-tagsinput .tag {
@@ -104,7 +104,7 @@
     <script src="{{ asset('assets/vendors/general/summernote/dist/summernote.min.js') }}"
             type="text/javascript"></script>
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js"></script>
+    <script src="{{asset('assets/vendors/general/bootstrap-tagsinput/dist/bootstrap-tagsinput.js')}}"></script>
     {!! JsValidator::formRequest(\App\Http\Requests\Manager\NewsRequest::class, '#form_information') !!}
     <script>
         $(document).ready(function () {
