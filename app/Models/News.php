@@ -15,7 +15,7 @@ class News extends Model implements HasMedia
 {
     use SoftDeletes, HasSlug, InteractsWithMedia;
     protected $fillable = [
-        'slug', 'title', 'sub_title', 'content', 'tags', 'views'
+        'slug', 'title', 'sub_title', 'content', 'tags', 'views', 'special',
     ];
 
     public function registerMediaCollections(): void

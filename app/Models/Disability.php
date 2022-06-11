@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Scopes\ActiveScope;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,6 +18,14 @@ class Disability extends Model
     protected $cascadeDeletes = [
         'job_disabilities', 'user_disabilities'
     ];
+
+    protected static function booted()
+    {
+        if (!\Route::is('manager*'))
+        {
+            static::addGlobalScope(new ActiveScope());
+        }
+    }
 
     public function getStatusAttribute()
     {

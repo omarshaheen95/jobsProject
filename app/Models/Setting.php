@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Setting extends Model
 {
     use SoftDeletes;
-    //type 'text', 'bool
+    //type 'text', 'bool', 'textarea'
     protected $fillable = [
         'name', 'key', 'value', 'type'
     ];

@@ -17,8 +17,8 @@ class CreateSettingsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('key');
-            $table->string('value')->nullable();
-            $table->enum('type', ['text', 'bool'])->default('text');
+            $table->text('value')->nullable();
+            $table->enum('type', ['text', 'bool', 'textarea'])->default('text');
             $table->timestamps();
             $table->softDeletes();
         });

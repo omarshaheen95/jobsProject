@@ -47,6 +47,7 @@ class NewsController extends Controller
     {
         $data = $request->validated();
 
+        $data['special'] = $request->get('special', false);
         $news = News::query()->create($data);
 
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
@@ -70,6 +71,7 @@ class NewsController extends Controller
     {
         $data = $request->validated();
         $news = News::query()->findOrFail($id);
+        $data['special'] = $request->get('special', false);
         $news->update($data);
 
         if ($request->hasFile('image') && $request->file('image')->isValid()) {

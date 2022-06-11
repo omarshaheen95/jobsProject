@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="23.821" height="56.166" viewBox="0 0 23.821 56.166">
+  <g id="Group_1272" data-name="Group 1272" transform="translate(-11632 3232)">
+    <g id="Group_1271" data-name="Group 1271" transform="translate(11632 -3232)">
+      <g id="Icons_Arrows_scroll" data-name="Icons/Arrows/scroll" transform="translate(1.701 44.239)">
+        <path id="scroll" d="M15,14.42a1.7,1.7,0,0,0,2.416,0l8.507-8.507A1.708,1.708,0,0,0,23.511,3.5l-7.3,7.316L8.912,3.5A1.708,1.708,0,0,0,6.5,5.912Z" transform="translate(-5.996 -2.996)" fill="#f3f2f1" fill-rule="evenodd"/>
+      </g>
+      <g id="Icons_Devices_mouse-alt" data-name="Icons/Devices/mouse-alt">
+        <path id="mouse-alt" d="M16.91,8.806a1.7,1.7,0,0,0-1.7,1.7v3.4a1.7,1.7,0,1,0,3.4,0v-3.4A1.7,1.7,0,0,0,16.91,8.806ZM16.91,2A11.91,11.91,0,0,0,5,13.91V24.119a11.91,11.91,0,1,0,23.821,0V13.91A11.91,11.91,0,0,0,16.91,2Zm8.507,22.119a8.507,8.507,0,0,1-17.015,0V13.91a8.507,8.507,0,1,1,17.015,0Z" transform="translate(-5 -2)" fill="#f3f2f1" fill-rule="evenodd"/>
+      </g>
+    </g>
+  </g>
+</svg>

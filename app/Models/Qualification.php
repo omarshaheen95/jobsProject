@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Scopes\ActiveScope;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -18,6 +19,14 @@ class Qualification extends Model
         'user_qualifications', 'job_qualifications'
     ];
 
+    protected static function booted()
+    {
+        if (!\Route::is('manager*'))
+        {
+            static::addGlobalScope(new ActiveScope());
+        }
+    }
+
     public function getStatusAttribute()
     {
         return $this->active ? 'فعالة':'غير فعالة';
@@ -31,5 +40,10 @@ class Qualification extends Model
     public function job_qualifications()
     {
         return $this->hasMany(JobQualification::class);
+    }
+
+    public function jobOffers()
+    {
+        return $this->belongsToMany(JobOffer::class, JobQualification::class);
     }
 }

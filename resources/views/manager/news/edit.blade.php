@@ -75,10 +75,22 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-xl-3 col-lg-3 col-form-label">محتوى الصفحة</label>
+                                    <label class="col-xl-3 col-lg-3 col-form-label">محتوى الخبر</label>
                                     <div class="col-lg-9 col-xl-9">
                                         <textarea name="content" id="" cols="30" rows="10"
                                                   class="summernote">{{ isset($news) ? $news->content : old("content") }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label">تمييز الخبر</label>
+                                    <div class="col-lg-9 col-xl-6">
+                                        <span class="kt-switch">
+                                            <label>
+                                                <input type="checkbox" value="1"
+                                                       {{ isset($news) && $news->special ? 'checked' :'' }} name="special">
+                                                <span></span>
+                                            </label>
+                                        </span>
                                     </div>
                                 </div>
                             </div>

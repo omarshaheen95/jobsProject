@@ -641,21 +641,21 @@ function getOnly($only, $array)
 }
 
 
-function cached($index = 'settings', $col = false)
-{
-
-    //Cache::forget('cities');
-    $cache['settings'] = Cache::remember('settings', 60 * 48, function () {
-        return \App\Models\Setting::first();
-    });
-
-    if (!isset($cache[$index]))
-        return $index;
-    if (!$col)
-        return $cache[$index];
-    return $cache[$index]->{$col};
-
-}
+//function cached($index = 'settings', $col = false)
+//{
+//
+//    //Cache::forget('cities');
+//    $cache['settings'] = Cache::remember('settings', 60 * 48, function () {
+//        return \App\Models\Setting::first();
+//    });
+//
+//    if (!isset($cache[$index]))
+//        return $index;
+//    if (!$col)
+//        return $cache[$index];
+//    return $cache[$index]->{$col};
+//
+//}
 
 function destroyFile($file)
 {

@@ -41,8 +41,8 @@ class CreateJobOffersTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-//            $table->foreign('position_id')->references('id')->on('positions')->cascadeOnDelete();
-//            $table->foreign('degree_id')->references('id')->on('degrees')->cascadeOnDelete();
+            $table->foreign('position_id')->references('id')->on('positions')->cascadeOnDelete();
+            $table->foreign('degree_id')->references('id')->on('degrees')->cascadeOnDelete();
         });
     }
 

@@ -27,16 +27,16 @@ class NewsRequest extends FormRequest
        if (in_array(Route::currentRouteName(), ['manager.news.store', 'manager.news.create']))
        {
            return [
-               'title' => 'required',
-               'sub_title' => 'nullable',
+               'title' => 'required|max:200',
+               'sub_title' => 'nullable|max:200',
                'content' => 'required',
                'tags' => 'nullable',
                'image' => 'required|image',
            ];
        }else{
            return [
-               'title' => 'required',
-               'sub_title' => 'nullable',
+               'title' => 'required|max:200',
+               'sub_title' => 'nullable|max:200',
                'content' => 'required',
                'tags' => 'nullable',
                'image' => 'nullable|image',

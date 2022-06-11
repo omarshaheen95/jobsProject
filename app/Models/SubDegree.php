@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Scopes\ActiveScope;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,6 +18,14 @@ class SubDegree extends Model
     protected $cascadeDeletes = [
         'user_qualifications', 'job_sub_degrees'
     ];
+
+    protected static function booted()
+    {
+        if (!\Route::is('manager*'))
+        {
+            static::addGlobalScope(new ActiveScope());
+        }
+    }
 
     public function degree()
     {

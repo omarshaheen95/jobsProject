@@ -224,7 +224,7 @@
                                         </div>
                                             <div class="form-group">
                                                 <label>وصف قصير</label>
-                                                <textarea class="form-control editor-custom" name="content">{{isset($job_offer) ? $job_offer->content:old('content')}}</textarea>
+                                                <textarea class="form-control" name="content">{{isset($job_offer) ? $job_offer->content:old('content')}}</textarea>
                                             </div>
                                     </div>
 

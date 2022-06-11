@@ -13,9 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', 'Front\MainController@welcome')->name('welcome');
+Route::get('news', 'Front\MainController@allNews')->name('news.all');
+Route::get('news/{slug}', 'Front\MainController@showNews')->name('news.show');
+Route::get('job_offers', 'Front\JobOfferController@allJobOffers')->name('job_offers.all');
+Route::get('job_offers/{slug}', 'Front\JobOfferController@showJobOffer')->name('job_offers.show');
+Route::get('page/{key}', 'Front\MainController@showPage')->name('page.show');
+Route::get('contact_us', 'Front\MainController@contactUs')->name('contact_us.show');
+Route::post('contact_us', 'Front\MainController@contactUsMessage')->name('contact_us.message');
+
 
 Route::group(['prefix' => 'manager'], function () {
   Route::get('/login', 'ManagerAuth\LoginController@showLoginForm')->name('login');
