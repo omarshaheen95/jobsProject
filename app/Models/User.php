@@ -25,7 +25,7 @@ class User extends Authenticatable
     ];
 
     protected $cascadeDeletes = [
-        'user_qualifications', 'user_disabilities', 'user_experiences', 'user_languages', 'user_skills'
+        'userQualifications', 'userDisabilities', 'userExperiences', 'userLanguages', 'userSkills', 'userInfo'
     ];
 
     /**
@@ -47,28 +47,33 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function user_qualifications()
+    public function userQualifications()
     {
         return $this->belongsTo(UserQualification::class);
     }
 
-    public function user_disabilities()
+    public function userDisabilities()
     {
         return $this->belongsTo(UserDisability::class);
     }
 
-    public function user_experiences()
+    public function userExperiences()
     {
         return $this->belongsTo(UserExperience::class);
     }
 
-    public function user_languages()
+    public function userLanguages()
     {
         return $this->belongsTo(UserLanguage::class);
     }
 
-    public function user_skills()
+    public function userSkills()
     {
         return $this->belongsTo(UserSkill::class);
+    }
+
+    public function userInfo()
+    {
+        return $this->hasOne(UserInfo::class);
     }
 }
