@@ -40,4 +40,4 @@ Route::group(['prefix' => 'manager'], function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', 'Front\MainController@welcome')->name('home');

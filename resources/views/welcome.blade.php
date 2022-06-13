@@ -32,7 +32,7 @@
                     <p class="description">
                         {{$news->sub_title}}
                     </p>
-                    <a href="#!" class="btn btn-theme">أكتشف المزيد</a>
+                    <a href="{{route('news.show', $news->slug)}}" class="btn btn-theme">أكتشف المزيد</a>
                 </div>
             </div>
             @endforeach

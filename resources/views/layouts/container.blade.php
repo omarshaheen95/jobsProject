@@ -56,13 +56,13 @@
                     when user loging to website just remove d-none class
                 -->
                 @auth
-                <div class="dropdown d-none">
+                <div class="dropdown">
                     <a class="dropdown-toggle btn-user" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="icon">
-                                    <span>AS</span>
+                                    <span class="text-uppercase">{{substr(Auth::user()->name, 0, 2)}}</span>
                                     <!-- <img src="front/img/user.png" alt=""> -->
                                 </span>
-                        <span class="user-name ms-2"> علاء سمير </span>
+                        <span class="user-name ms-2 text-uppercase">{{Auth::user()->name}}</span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="triggerId">
                         <a class="dropdown-item" href="#">الملف الشخصي</a>
