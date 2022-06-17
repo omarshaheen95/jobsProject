@@ -8,6 +8,7 @@ use App\Models\Degree;
 use App\Models\Governorate;
 use App\Models\News;
 use App\Models\Page;
+use App\Models\SubDegree;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -69,5 +70,15 @@ class MainController extends Controller
         ]);
         ContactUs::query()->create($data);
         return $this->sendResponse(null, 'تم الارسال بنجاح');
+    }
+
+    public function subDegreesByDegree(Request $request, $id)
+    {
+        $rows = SubDegree::query()->where('degree_id', $id)->get();
+        $html = '<option selected disabled value="">اختر التخصص</option>';
+        foreach ($rows as $row) {
+            $html .= '<option value="' . $row->id . '">' . $row->name . '</option>';
+        }
+        return response()->json(['html' => $html]);
     }
 }

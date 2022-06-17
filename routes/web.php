@@ -42,8 +42,20 @@ Auth::routes();
 
 Route::get('/home', 'Front\MainController@welcome')->name('home');
 Route::group(['middleware' => 'auth', 'namespace' => 'Front'], function (){
+
+    Route::get('subDegreesByDegree/{id}', 'MainController@subDegreesByDegree')->name('subDegreesByDegree');
+
     Route::get('profile-step/{step}', 'ProfileController@profile')->name('profile.step');
-    Route::post('update-profile-step/{step}', 'ProfileController@profile')->name('profile.update_step');
+    Route::post('update-profile', 'ProfileController@updateProfile')->name('profile.update');
     Route::get('interviews', 'ProfileController@home')->name('interviews');
     Route::get('application_archive', 'ProfileController@home')->name('application_archive');
+    //User Qualifications
+    Route::post('user_qualification', 'ProfileController@userQualification')->name('user_qualification.store');
+    Route::delete('user_qualification/{id}', 'ProfileController@userQualificationDelete')->name('user_qualification.delete');
+    //User Experiences
+    Route::post('user_experience', 'ProfileController@userExperience')->name('user_experience.store');
+    Route::delete('user_experience/{id}', 'ProfileController@userExperienceDelete')->name('user_experience.delete');
+    //User Skill
+    Route::post('user_skill', 'ProfileController@userSkill')->name('user_skill.store');
+    Route::delete('user_skill/{id}', 'ProfileController@userSkillDelete')->name('user_skill.delete');
 });

@@ -13,7 +13,7 @@
                 <div class="profile-sidebar">
                     <div class="profile-head">
                         <div class="pic">
-                            <img src="{{asset('front/img/profile-user.png')}}" alt="">
+                            <img src="{{optional($user->userInfo)->getFirstMediaUrl('users','minImage') ?? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHfHdfcQ1cDWzgVLJr32Z3mVYq20D6pir7fKupEKB6fhvQWGZ5xVx76ydUx9nQJiJlKL0&usqp=CAU'}}" alt="">
                         </div>
                         <div class="content">
                             <h2 class="username"> {{auth()->user()->name}} </h2>
@@ -73,17 +73,17 @@
                         <div class="col-lg-12">
                             <ul class="nav nav-step-card">
                                 <li class="nav-item">
-                                    <a href="{{route('profile.step', 1)}}" class="nav-link {{isset($step) && $step == 1 ? 'active':''}}">
+                                    <a href="{{route('profile.step', 1)}}" class="nav-link {{isset($step) && $step == 1 ? 'active':''}} {{$user->userInfo ? 'done':''}}">
                                         <span>البيانات الشخصية</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('profile.step', 2)}}" class="nav-link {{isset($step) && $step == 2 ? 'active':''}}">
+                                    <a href="{{route('profile.step', 2)}}" class="nav-link {{isset($step) && $step == 2 ? 'active':''}} {{$user->userQualifications()->count() ? 'done':''}}">
                                         <span>المؤهلات</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('profile.step', 3)}}" class="nav-link {{isset($step) && $step == 3 ? 'active':''}}">
+                                    <a href="{{route('profile.step', 3)}}" class="nav-link {{isset($step) && $step == 3 ? 'active':''}} {{$user->userSkills()->count() ? 'done':''}}">
                                         <span>الخبرات</span>
                                     </a>
                                 </li>
