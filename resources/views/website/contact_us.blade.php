@@ -17,7 +17,7 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-6">
                                 <div class="form">
-                                    <form action="{{route('contact_us.message')}}" method="post" class="needs-validation" novalidate>
+                                    <form action="{{route('contact_us.message')}}" id="contact_us" method="post" class="" novalidate>
                                         {{csrf_field()}}
                                         <div class="row">
                                             <div class="col-sm-6">
@@ -115,23 +115,33 @@
             e.preventDefault();
             var _form = $(this);
             _form.find(".btn-submit .spinner-border").toggleClass("d-none");
-            _form.addClass("disabled");
+            _form.find(".btn-submit .spinner-border").addClass("disabled");
 
             $.ajax({
                 type: "post",
                 url: _form.attr("action"),
                 data: _form.serialize(),
                 success: function(res){
-                    console.log(res);
                     showToastify(res.message, 'success');
                     _form.find(".btn-submit .spinner-border").toggleClass("d-none");
                     _form.removeClass("disabled was-validated");
                     _form[0].reset();
                 },
-                error: function() {
+                error: function(data) {
                     _form.find(".btn-submit .spinner-border").toggleClass("d-none");
-                    _form.removeClass("disabled was-validated");
-                    showToastify( "حدث خطأ غير متوقع ، يرجى المحاولة مرة اخرى", 'error');
+                    _form.find(".btn-submit .spinner-border").removeClass("disabled was-validated");
+                    // showToastify( "حدث خطأ غير متوقع ، يرجى المحاولة مرة اخرى", 'error');
+                    if (data.responseJSON.errors) {
+                        $.each(data.responseJSON.errors, function (key, value) {
+                            var input = '#contact_us [name=' + key + ']';
+                            $(input).next('.invalid-feedback').text(value);
+                            $(input).addClass('has-error');
+                            $(input).addClass('is-invalid');
+                            $(input).removeClass('is-valid');
+                        });
+                    } else {
+                        showToastify(data.responseJSON.message.toString(), 'error');
+                    }
                 }
             });
         });

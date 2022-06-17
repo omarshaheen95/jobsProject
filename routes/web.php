@@ -41,3 +41,9 @@ Route::group(['prefix' => 'manager'], function () {
 Auth::routes();
 
 Route::get('/home', 'Front\MainController@welcome')->name('home');
+Route::group(['middleware' => 'auth', 'namespace' => 'Front'], function (){
+    Route::get('profile-step/{step}', 'ProfileController@profile')->name('profile.step');
+    Route::post('update-profile-step/{step}', 'ProfileController@profile')->name('profile.update_step');
+    Route::get('interviews', 'ProfileController@home')->name('interviews');
+    Route::get('application_archive', 'ProfileController@home')->name('application_archive');
+});

@@ -64,7 +64,7 @@ class MainController extends Controller
             'governorate_id' => 'required',
             'name' => 'required',
             'mobile' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:contact_us,email',
             'message' => 'required',
         ]);
         ContactUs::query()->create($data);

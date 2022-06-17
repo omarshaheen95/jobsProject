@@ -6,9 +6,11 @@
 @endsection
 @section('style')
     <link href="{{ asset('assets/vendors/general/summernote/dist/summernote.rtl.css') }}" rel="stylesheet"/>
-    <link href="{{asset('assets/vendors/general/bootstrap-tagsinput/dist/bootstrap-tagsinput.css')}}" rel="stylesheet" />
-    <link href="{{asset('assets/vendors/general/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/vendors/general/bootstrap-datetime-picker/css/bootstrap-datetimepicker.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('assets/vendors/general/bootstrap-tagsinput/dist/bootstrap-tagsinput.css')}}" rel="stylesheet"/>
+    <link href="{{asset('assets/vendors/general/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css')}}"
+          rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets/vendors/general/bootstrap-datetime-picker/css/bootstrap-datetimepicker.css') }}"
+          rel="stylesheet" type="text/css"/>
 
     <style>
         .bootstrap-tagsinput .tag {
@@ -18,6 +20,7 @@
             padding: 3px 7px;
             border-radius: 3px;
         }
+
         .bootstrap-tagsinput {
             width: 100%;
         }
@@ -97,7 +100,9 @@
                             <div class="kt-grid__item kt-grid__item--fluid kt-wizard-v3__wrapper">
 
                                 <!--begin: Form Wizard Form-->
-                                <form class="kt-form" method="post" action="{{isset($job_offer) ? route('manager.job_offer.update', $job_offer->id):route('manager.job_offer.store')}}" id="kt_form">
+                                <form class="kt-form" method="post"
+                                      action="{{isset($job_offer) ? route('manager.job_offer.update', $job_offer->id):route('manager.job_offer.store')}}"
+                                      id="kt_form">
                                     {{ csrf_field() }}
                                     @if(isset($job_offer))
                                         <input type="hidden" name="_method" value="patch">
@@ -110,14 +115,16 @@
                                                 <div class="form-group">
                                                     <label>اسم/عنوان العرض الوظيفي</label>
                                                     <input type="text" class="form-control" name="name"
-                                                           placeholder="اسم/عنوان العرض الوظيفي" value="{{isset($job_offer) ? $job_offer->name:old('name')}}">
+                                                           placeholder="اسم/عنوان العرض الوظيفي"
+                                                           value="{{isset($job_offer) ? $job_offer->name:old('name')}}">
                                                 </div>
                                             </div>
                                             <div class="col-xl-2">
                                                 <div class="form-group">
                                                     <label>رقم الإعلان الوظيفي</label>
                                                     <input type="text" class="form-control" name="job_uuid"
-                                                           placeholder="رقم الإعلان" value="{{isset($job_offer) ? $job_offer->job_uuid:old('job_uuid')}}">
+                                                           placeholder="رقم الإعلان"
+                                                           value="{{isset($job_offer) ? $job_offer->job_uuid:old('job_uuid')}}">
                                                 </div>
                                             </div>
                                         </div>
@@ -125,9 +132,11 @@
                                             <div class="col-xl-6">
                                                 <div class="form-group">
                                                     <label>المسمى الوظيفي</label>
-                                                    <select class="form-control select2L"  title="اختر مسمى وظيفي"  name="position_id">
+                                                    <select class="form-control select2L" title="اختر مسمى وظيفي"
+                                                            name="position_id">
                                                         @foreach($positions as $position)
-                                                            <option {{isset($job_offer) && $job_offer->position_id == $position->id ? 'selected':''}} value="{{$position->id}}" >{{$position->name}}</option>
+                                                            <option
+                                                                {{isset($job_offer) && $job_offer->position_id == $position->id ? 'selected':''}} value="{{$position->id}}">{{$position->name}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -140,15 +149,21 @@
                                                     <label>الجنس</label>
                                                     <div class="kt-radio-inline">
                                                         <label class="kt-radio kt-radio--success">
-                                                            <input type="radio" {{isset($job_offer) && is_null($job_offer->gender) ? 'checked':''}} checked value="0" name="gender"> الكل
+                                                            <input type="radio"
+                                                                   {{isset($job_offer) && is_null($job_offer->gender) ? 'checked':''}} checked
+                                                                   value="0" name="gender"> الكل
                                                             <span></span>
                                                         </label>
                                                         <label class="kt-radio kt-radio--success">
-                                                            <input type="radio" {{isset($job_offer) && $job_offer->gender == 'male' ? 'checked':''}} value="male" name="gender"> الذكور
+                                                            <input type="radio"
+                                                                   {{isset($job_offer) && $job_offer->gender == 'male' ? 'checked':''}} value="male"
+                                                                   name="gender"> الذكور
                                                             <span></span>
                                                         </label>
                                                         <label class="kt-radio kt-radio--success">
-                                                            <input type="radio" {{isset($job_offer) && $job_offer->gender == 'female' ? 'checked':''}} value="female" name="gender"> الإناث
+                                                            <input type="radio"
+                                                                   {{isset($job_offer) && $job_offer->gender == 'female' ? 'checked':''}} value="female"
+                                                                   name="gender"> الإناث
                                                             <span></span>
                                                         </label>
                                                     </div>
@@ -159,17 +174,23 @@
                                                     <label>ذوي الأسرى</label>
                                                     <div class="kt-radio-inline">
                                                         <label class="kt-radio kt-radio--success">
-                                                            <input type="radio" {{isset($job_offer) && $job_offer->family_of_prisoners == '0' ? 'checked':''}} checked value="0"
+                                                            <input type="radio"
+                                                                   {{isset($job_offer) && $job_offer->family_of_prisoners == '0' ? 'checked':''}} checked
+                                                                   value="0"
                                                                    name="family_of_prisoners"> الكل
                                                             <span></span>
                                                         </label>
                                                         <label class="kt-radio kt-radio--success">
-                                                            <input type="radio" {{isset($job_offer) && $job_offer->family_of_prisoners == '1' ? 'checked':''}} value="1" name="family_of_prisoners">
+                                                            <input type="radio"
+                                                                   {{isset($job_offer) && $job_offer->family_of_prisoners == '1' ? 'checked':''}} value="1"
+                                                                   name="family_of_prisoners">
                                                             ذوي الأسرى
                                                             <span></span>
                                                         </label>
                                                         <label class="kt-radio kt-radio--success">
-                                                            <input type="radio" {{isset($job_offer) && $job_offer->family_of_prisoners == '2' ? 'checked':''}} value="2" name="family_of_prisoners">
+                                                            <input type="radio"
+                                                                   {{isset($job_offer) && $job_offer->family_of_prisoners == '2' ? 'checked':''}} value="2"
+                                                                   name="family_of_prisoners">
                                                             العاديين
                                                             <span></span>
                                                         </label>
@@ -181,17 +202,23 @@
                                                     <label>ذوي الجرحى</label>
                                                     <div class="kt-radio-inline">
                                                         <label class="kt-radio kt-radio--success">
-                                                            <input type="radio" {{isset($job_offer) && $job_offer->injured_people == '0' ? 'checked':''}} checked value="0" name="injured_people">
+                                                            <input type="radio"
+                                                                   {{isset($job_offer) && $job_offer->injured_people == '0' ? 'checked':''}} checked
+                                                                   value="0" name="injured_people">
                                                             الكل
                                                             <span></span>
                                                         </label>
                                                         <label class="kt-radio kt-radio--success">
-                                                            <input type="radio" {{isset($job_offer) && $job_offer->injured_people == '1' ? 'checked':''}} value="1" name="injured_people"> ذوي
+                                                            <input type="radio"
+                                                                   {{isset($job_offer) && $job_offer->injured_people == '1' ? 'checked':''}} value="1"
+                                                                   name="injured_people"> ذوي
                                                             الجرحى
                                                             <span></span>
                                                         </label>
                                                         <label class="kt-radio kt-radio--success">
-                                                            <input type="radio" {{isset($job_offer) && $job_offer->injured_people == '2' ? 'checked':''}} value="2" name="injured_people">
+                                                            <input type="radio"
+                                                                   {{isset($job_offer) && $job_offer->injured_people == '2' ? 'checked':''}} value="2"
+                                                                   name="injured_people">
                                                             العاديين
                                                             <span></span>
                                                         </label>
@@ -203,17 +230,23 @@
                                                     <label>ذوي الشهداء</label>
                                                     <div class="kt-radio-inline">
                                                         <label class="kt-radio kt-radio--success">
-                                                            <input type="radio" {{isset($job_offer) && $job_offer->family_of_martyrs == '0' ? 'checked':''}} checked value="0"
+                                                            <input type="radio"
+                                                                   {{isset($job_offer) && $job_offer->family_of_martyrs == '0' ? 'checked':''}} checked
+                                                                   value="0"
                                                                    name="family_of_martyrs"> الكل
                                                             <span></span>
                                                         </label>
                                                         <label class="kt-radio kt-radio--success">
-                                                            <input type="radio" {{isset($job_offer) && $job_offer->family_of_martyrs == '1' ? 'checked':''}} value="1" name="family_of_martyrs"> ذوي
+                                                            <input type="radio"
+                                                                   {{isset($job_offer) && $job_offer->family_of_martyrs == '1' ? 'checked':''}} value="1"
+                                                                   name="family_of_martyrs"> ذوي
                                                             الشهداء
                                                             <span></span>
                                                         </label>
                                                         <label class="kt-radio kt-radio--success">
-                                                            <input type="radio" {{isset($job_offer) && $job_offer->family_of_martyrs == '2' ? 'checked':''}} value="2" name="family_of_martyrs">
+                                                            <input type="radio"
+                                                                   {{isset($job_offer) && $job_offer->family_of_martyrs == '2' ? 'checked':''}} value="2"
+                                                                   name="family_of_martyrs">
                                                             العاديين
                                                             <span></span>
                                                         </label>
@@ -222,10 +255,11 @@
                                             </div>
 
                                         </div>
-                                            <div class="form-group">
-                                                <label>وصف قصير</label>
-                                                <textarea class="form-control" name="content">{{isset($job_offer) ? $job_offer->content:old('content')}}</textarea>
-                                            </div>
+                                        <div class="form-group">
+                                            <label>وصف قصير</label>
+                                            <textarea class="form-control"
+                                                      name="content">{{isset($job_offer) ? $job_offer->content:old('content')}}</textarea>
+                                        </div>
                                     </div>
 
                                     <!--end: Form Wizard Step 1-->
@@ -236,9 +270,11 @@
                                             <div class="col-xl-4">
                                                 <div class="form-group">
                                                     <label>المؤهلات</label>
-                                                    <select class="form-control select2L" title="الكل"  multiple name="qualifications[]">
+                                                    <select class="form-control select2L" title="الكل" multiple
+                                                            name="qualifications[]">
                                                         @foreach($qualifications as $qualification)
-                                                            <option value="{{$qualification->id}}" {{isset($job_offer) && in_array($qualification->id, $job_qualifications) ? 'selected':''}}>{{$qualification->name}}</option>
+                                                            <option
+                                                                value="{{$qualification->id}}" {{isset($job_offer) && in_array($qualification->id, $job_qualifications) ? 'selected':''}}>{{$qualification->name}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -246,9 +282,11 @@
                                             <div class="col-xl-4">
                                                 <div class="form-group">
                                                     <label>التخصص</label>
-                                                    <select class="form-control select2L" title="اختر تحصص" name="degree_id">
+                                                    <select class="form-control select2L" title="اختر تحصص"
+                                                            name="degree_id">
                                                         @foreach($degrees as $degree)
-                                                            <option {{isset($job_offer) && $job_offer->degree_id == $degree->id ? 'selected':''}}
+                                                            <option
+                                                                {{isset($job_offer) && $job_offer->degree_id == $degree->id ? 'selected':''}}
                                                                 value="{{$degree->id}}">{{$degree->name}}</option>
                                                         @endforeach
                                                     </select>
@@ -273,7 +311,8 @@
                                             <div class="col-xl-4">
                                                 <div class="form-group">
                                                     <label>اللغات</label>
-                                                    <select class="form-control select2L" title="الكل" multiple name="languages[]">
+                                                    <select class="form-control select2L" title="الكل" multiple
+                                                            name="languages[]">
                                                         @foreach($languages as $language)
                                                             <option
                                                                 value="{{$language->id}}" {{isset($job_offer) && in_array($language->id, $job_languages) ? 'selected':''}}>{{$language->name}}</option>
@@ -326,7 +365,8 @@
                                     <div class="kt-wizard-v3__content" data-ktwizard-type="step-content">
                                         <div class="form-group">
                                             <label>وصف الشروط الوظيفية</label>
-                                            <textarea class="form-control editor" name="functional_terms">{{isset($job_offer) ? $job_offer->functional_terms:old('functional_terms')}}</textarea>
+                                            <textarea class="form-control editor"
+                                                      name="functional_terms">{{isset($job_offer) ? $job_offer->functional_terms:old('functional_terms')}}</textarea>
                                         </div>
                                     </div>
 
@@ -336,7 +376,8 @@
                                     <div class="kt-wizard-v3__content" data-ktwizard-type="step-content">
                                         <div class="form-group">
                                             <label>وصف المهام الوظيفية</label>
-                                            <textarea class="form-control editor" name="functional_tasks">{{isset($job_offer) ? $job_offer->functional_tasks:old('functional_tasks')}}</textarea>
+                                            <textarea class="form-control editor"
+                                                      name="functional_tasks">{{isset($job_offer) ? $job_offer->functional_tasks:old('functional_tasks')}}</textarea>
                                         </div>
                                     </div>
 
@@ -348,25 +389,31 @@
                                             <div class="col-xl-4">
                                                 <div class="form-group">
                                                     <label>تاريخ بدء التقديم</label>
-                                                    <input type="text" readonly name="start_at" value="{{isset($job_offer) ? $job_offer->start_at:old('start_at')}}" class="form-control date">
+                                                    <input type="text" readonly name="start_at"
+                                                           value="{{isset($job_offer) ? $job_offer->start_at:old('start_at')}}"
+                                                           class="form-control date">
                                                 </div>
                                             </div>
                                             <div class="col-xl-4">
                                                 <div class="form-group">
                                                     <label>تاريخ انتهاء التقديم</label>
-                                                    <input type="text" readonly name="end_at" value="{{isset($job_offer) ? $job_offer->end_at:old('end_at')}}" class="form-control date">
+                                                    <input type="text" readonly name="end_at"
+                                                           value="{{isset($job_offer) ? $job_offer->end_at:old('end_at')}}"
+                                                           class="form-control date">
                                                 </div>
                                             </div>
                                             <div class="col-xl-4">
                                                 <div class="form-group">
                                                     <label>تاريخ نشر العرض الوطيفي</label>
-                                                    <input type="text" readonly name="publish_at" value="{{isset($job_offer) ? $job_offer->publish_at:old('publish_at')}}" class="form-control dateTime">
+                                                    <input type="text" readonly name="publish_at"
+                                                           value="{{isset($job_offer) ? $job_offer->publish_at:old('publish_at')}}"
+                                                           class="form-control dateTime">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <lable>كلمات مفتاحية</lable>
-                                            <input class="form-control" data-role="tagsinput"  name="tags" type="text"
+                                            <input class="form-control" data-role="tagsinput" name="tags" type="text"
                                                    value="{{isset($job_offer) ? $job_offer->tags:old('tags')}}">
                                         </div>
                                     </div>
@@ -418,8 +465,10 @@
 
     <script src="{{asset('assets/vendors/general/bootstrap-tagsinput/dist/bootstrap-tagsinput.js')}}"></script>
 
-    <script src="{{ asset('assets/vendors/general/bootstrap-datetime-picker/js/bootstrap-datetimepicker.js') }}" type="text/javascript"></script>
-    <script src="{{asset('assets/vendors/general/bootstrap-datepicker/dist/js/bootstrap-datepicker.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('assets/vendors/general/bootstrap-datetime-picker/js/bootstrap-datetimepicker.js') }}"
+            type="text/javascript"></script>
+    <script src="{{asset('assets/vendors/general/bootstrap-datepicker/dist/js/bootstrap-datepicker.js')}}"
+            type="text/javascript"></script>
     <script>
         var clickableSteps = false;
 

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.rtl.min.css">
     <link rel="stylesheet" href="{{asset('front/css/custom.css')}}">
     <link rel="stylesheet" href="{{asset('front/css/resposive.css')}}">
-
+    @yield('style')
 </head>
 <body>
 <!-- Start Navbar -->
@@ -65,8 +65,7 @@
                         <span class="user-name ms-2 text-uppercase">{{Auth::user()->name}}</span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="triggerId">
-                        <a class="dropdown-item" href="#">الملف الشخصي</a>
-                        <a class="dropdown-item" href="#">الاعدادت</a>
+                        <a class="dropdown-item" href="{{route('profile.step',1)}}">الملف الشخصي</a>
                         <a class="dropdown-item" href="#">تغيير كلمة السر</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}"
