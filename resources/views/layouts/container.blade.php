@@ -65,7 +65,7 @@
                         <span class="user-name ms-2 text-uppercase">{{Auth::user()->name}}</span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="triggerId">
-                        <a class="dropdown-item" href="{{route('profile.step',1)}}">الملف الشخصي</a>
+                        <a class="dropdown-item" href="{{route('profile.step','general')}}">الملف الشخصي</a>
                         <a class="dropdown-item" href="#">تغيير كلمة السر</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}"

@@ -131,10 +131,10 @@
     </div>
 
     <div class="d-flex align-items-center justify-content-between gap-4">
-        <a href="{{route('profile.step', 2)}}" class="btn btn-secondary border px-5">
+        <a href="{{route('profile.step', 'qualifications')}}" class="btn btn-secondary border px-5">
             رجوع
         </a>
-        <a href="{{route('profile.step', 4)}}" class="btn btn-theme px-5">
+        <a href="{{route('profile.step', 'courses')}}" class="btn btn-theme px-5">
             التالي
         </a>
     </div>

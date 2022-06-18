@@ -193,10 +193,10 @@
     </div>
 
     <div class="d-flex align-items-center justify-content-between gap-4">
-        <a href="{{route('profile.step', 1)}}" class="btn btn-secondary border px-5">
+        <a href="{{route('profile.step', 'general')}}" class="btn btn-secondary border px-5">
             رجوع
         </a>
-        <a href="{{route('profile.step', 3)}}" class="btn btn-theme px-5">
+        <a href="{{route('profile.step', 'skills')}}" class="btn btn-theme px-5">
             التالي
         </a>
     </div>

@@ -31,15 +31,7 @@
                     <div class="profile-list d-xl-block collapse" id="profile-list">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a href="index.html" class="nav-link ">
-                                                <span class="icon">
-                                                    <i class="bi bi-house"></i>
-                                                </span>
-                                    <span class="text"> الرئيسية </span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{route('profile.step', 1)}}" class="nav-link active">
+                                <a href="{{route('profile.step', 'general')}}" class="nav-link @if(Route::is('profile.step') ) active @endif">
                                                 <span class="icon">
                                                     <i class="bi bi-person"></i>
                                                 </span>
@@ -73,37 +65,37 @@
                         <div class="col-lg-12">
                             <ul class="nav nav-step-card">
                                 <li class="nav-item">
-                                    <a href="{{route('profile.step', 1)}}" class="nav-link {{isset($step) && $step == 1 ? 'active':''}} {{$user->userInfo ? 'done':''}}">
+                                    <a href="{{route('profile.step', 'general')}}" class="nav-link {{isset($step) && $step == 'general' ? 'active':''}} {{$user->userInfo  && $step != 'general' ? 'done':''}}">
                                         <span>البيانات الشخصية</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('profile.step', 2)}}" class="nav-link {{isset($step) && $step == 2 ? 'active':''}} {{$user->userQualifications()->count() ? 'done':''}}">
+                                    <a href="{{route('profile.step', 'qualifications')}}" class="nav-link {{isset($step) && $step == 'qualifications' ? 'active':''}} {{$user->userQualifications()->count() && $step != 'qualifications' ? 'done':''}}">
                                         <span>المؤهلات</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('profile.step', 3)}}" class="nav-link {{isset($step) && $step == 3 ? 'active':''}} {{$user->userSkills()->count() ? 'done':''}}">
+                                    <a href="{{route('profile.step', 'skills')}}" class="nav-link {{isset($step) && $step == 'skills' ? 'active':''}} {{$user->userSkills()->count() && $step != 'skills' ? 'done':''}}">
                                         <span>الخبرات</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('profile.step', 4)}}" class="nav-link {{isset($step) && $step == 4 ? 'active':''}}">
+                                    <a href="{{route('profile.step', 'courses')}}" class="nav-link {{isset($step) && $step == 'courses' ? 'active':''}} {{$user->userCourses()->count() && $step != 'courses' ? 'done':''}}">
                                         <span>الدورات</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('profile.step', 5)}}" class="nav-link {{isset($step) && $step == 5 ? 'active':''}}">
+                                    <a href="{{route('profile.step', 'experiences')}}" class="nav-link {{isset($step) && $step == 'experiences' ? 'active':''}} {{$user->userExperiences()->count() && $step != 'experiences' ? 'done':''}}">
                                         <span>المهارات</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('profile.step', 6)}}" class="nav-link {{isset($step) && $step == 6 ? 'active':''}}">
+                                    <a href="{{route('profile.step', 'languages')}}" class="nav-link {{isset($step) && $step == 'languages' ? 'active':''}} {{$user->userLanguages()->count() && $step != 'languages' ? 'done':''}}">
                                         <span>اللغات</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('profile.step', 7)}}" class="nav-link {{isset($step) && $step == 7 ? 'active':''}}">
+                                    <a href="{{route('profile.step', 'disabilities')}}" class="nav-link {{isset($step) && $step == 'disabilities' ? 'active':''}} {{$user->userDisabilities()->count() && $step != 'disabilities' ? 'done':''}}">
                                         <span>الوضع الصحي</span>
                                     </a>
                                 </li>

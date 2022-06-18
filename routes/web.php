@@ -58,4 +58,13 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Front'], function (){
     //User Skill
     Route::post('user_skill', 'ProfileController@userSkill')->name('user_skill.store');
     Route::delete('user_skill/{id}', 'ProfileController@userSkillDelete')->name('user_skill.delete');
+    //User Course
+    Route::post('user_course', 'ProfileController@userCourse')->name('user_course.store');
+    Route::delete('user_course/{id}', 'ProfileController@userCourseDelete')->name('user_course.delete');
+    //User Language
+    Route::post('user_language', 'ProfileController@userLanguage')->name('user_language.store');
+    Route::delete('user_language/{id}', 'ProfileController@userLanguageDelete')->name('user_language.delete');
+    //User Disability
+    Route::post('user_disability', 'ProfileController@userDisability')->name('user_disability.store');
+    Route::delete('user_disability/{id}', 'ProfileController@userDisabilityDelete')->name('user_disability.delete');
 });

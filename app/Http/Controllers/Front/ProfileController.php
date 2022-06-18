@@ -3,16 +3,24 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserCourseRequest;
+use App\Http\Requests\UserDisabilityRequest;
 use App\Http\Requests\UserExperienceRequest;
 use App\Http\Requests\UserInfoRequest;
+use App\Http\Requests\UserLanguageRequest;
 use App\Http\Requests\UserQualificationRequest;
 use App\Http\Requests\UserSkillRequest;
 use App\Models\Appreciation;
 use App\Models\Country;
 use App\Models\Degree;
+use App\Models\Disability;
 use App\Models\Governorate;
+use App\Models\Language;
 use App\Models\Qualification;
+use App\Models\UserCourse;
+use App\Models\UserDisability;
 use App\Models\UserExperience;
+use App\Models\UserLanguage;
 use App\Models\UserQualification;
 use App\Models\UserSkill;
 use Illuminate\Http\Request;
@@ -24,11 +32,11 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         switch ($step) {
-            case 1:
+            case 'general':
                 $governorates = Governorate::query()->get();
                 $profile_title = 'البيانات الشخصية';
-                return view('website.profile.step_' . $step, compact('profile_title', 'step', 'governorates', 'user'));
-            case 2:
+                return view('website.profile.step_1', compact('profile_title', 'step', 'governorates', 'user'));
+            case 'qualifications':
                 $profile_title = 'الموهلات';
 
                 $countries = Country::query()->get();
@@ -43,29 +51,40 @@ class ProfileController extends Controller
                     ->has('country')
                     ->with(['qualification', 'degree', 'sub_degree', 'country', 'appreciation'])->latest()->get();
 
-                return view('website.profile.step_' . $step, compact('profile_title', 'step', 'user', 'countries', 'qualifications', 'degrees', 'appreciations',
+                return view('website.profile.step_2', compact('profile_title', 'step', 'user', 'countries', 'qualifications', 'degrees', 'appreciations',
                     'user_qualifications'));
-            case 3:
+            case 'skills':
                 $profile_title = 'الخبرات';
                 $user_skills = UserSkill::query()
                     ->where('user_id', Auth::guard('web')->id())
                     ->get();
-                return view('website.profile.step_' . $step, compact('profile_title', 'step', 'user', 'user_skills'));
-            case 4:
+                return view('website.profile.step_3', compact('profile_title', 'step', 'user', 'user_skills'));
+            case 'courses':
                 $profile_title = 'الدورات';
-                return view('website.profile.step_' . $step, compact('profile_title', 'step', 'user'));
-            case 5:
+                $user_courses = UserCourse::query()
+                    ->where('user_id', Auth::guard('web')->id())
+                    ->get();
+                return view('website.profile.step_4', compact('profile_title', 'step', 'user', 'user_courses'));
+            case 'experiences':
                 $profile_title = 'المهارات';
                 $user_experiences = UserExperience::query()
                     ->where('user_id', Auth::guard('web')->id())
                     ->get();
-                return view('website.profile.step_' . $step, compact('profile_title', 'step', 'user', 'user_experiences'));
-            case 6:
+                return view('website.profile.step_5', compact('profile_title', 'step', 'user', 'user_experiences'));
+            case 'languages':
                 $profile_title = 'اللغات';
-                return view('website.profile.step_' . $step, compact('profile_title', 'step', 'user'));
-            case 7:
+                $user_languages = UserLanguage::query()->with('language')
+                    ->where('user_id', Auth::guard('web')->id())
+                    ->get();
+                $languages = Language::query()->get();
+                return view('website.profile.step_6', compact('profile_title', 'step', 'user', 'user_languages', 'languages'));
+            case 'disabilities':
                 $profile_title = 'الوضع الصحي';
-                return view('website.profile.step_' . $step, compact('profile_title', 'step', 'user'));
+                $user_disabilities = UserDisability::query()->with('disability')
+                    ->where('user_id', Auth::guard('web')->id())
+                    ->get();
+                $disabilities = Disability::query()->get();
+                return view('website.profile.step_7', compact('profile_title', 'step', 'user', 'user_disabilities', 'disabilities'));
             default:
                 $profile_title = '';
                 return view('website.profile.step_1', compact('profile_title'));
@@ -155,5 +174,80 @@ class ProfileController extends Controller
         $user = Auth::guard('web')->user();
         UserSkill::query()->where('user_id', $user->id)->where('id', $id)->delete();
         return $this->sendResponse(null, 'تم حذف الخبرة بنجاح');
+    }
+
+    public function userCourse(UserCourseRequest $request)
+    {
+        $data = $request->validated();
+        $user = Auth::guard('web')->user();
+
+        if ($request->get('id', false))
+        {
+            $u_c = UserCourse::query()->where('user_id',$user->id)->findOrFail($request->get('id'));
+            $u_c->update($data);
+            $u_c->fresh();
+        }else{
+            $data['user_id'] = $user->id;
+            $u_c = UserCourse::query()->create($data);
+        }
+        $row = view('website.profile.rows.user_course', compact('u_c'))->render();
+        return $this->sendResponse(['row' => $row], 'تم تسجيل الدورة بنجاح');
+    }
+
+    public function userCourseDelete($id)
+    {
+        $user = Auth::guard('web')->user();
+        UserCourse::query()->where('user_id', $user->id)->where('id', $id)->delete();
+        return $this->sendResponse(null, 'تم حذف الدورة بنجاح');
+    }
+
+    public function userLanguage(UserLanguageRequest $request)
+    {
+        $data = $request->validated();
+        $user = Auth::guard('web')->user();
+
+        if ($request->get('id', false))
+        {
+            $u_l = UserLanguage::query()->where('user_id',$user->id)->findOrFail($request->get('id'));
+            $u_l->update($data);
+            $u_l->fresh();
+        }else{
+            $data['user_id'] = $user->id;
+            $u_l = UserLanguage::query()->create($data);
+        }
+        $row = view('website.profile.rows.user_language', compact('u_l'))->render();
+        return $this->sendResponse(['row' => $row], 'تم تسجيل اللغة بنجاح');
+    }
+
+    public function userLanguageDelete($id)
+    {
+        $user = Auth::guard('web')->user();
+        UserLanguage::query()->where('user_id', $user->id)->where('id', $id)->delete();
+        return $this->sendResponse(null, 'تم حذف اللغة بنجاح');
+    }
+
+    public function userDisability(UserDisabilityRequest $request)
+    {
+        $data = $request->validated();
+        $user = Auth::guard('web')->user();
+
+        if ($request->get('id', false))
+        {
+            $u_d = UserDisability::query()->where('user_id',$user->id)->findOrFail($request->get('id'));
+            $u_d->update($data);
+            $u_d->fresh();
+        }else{
+            $data['user_id'] = $user->id;
+            $u_d = UserDisability::query()->create($data);
+        }
+        $row = view('website.profile.rows.user_disability', compact('u_d'))->render();
+        return $this->sendResponse(['row' => $row], 'تم تسجيل الوضع الصحي بنجاح');
+    }
+
+    public function userDisabilityDelete($id)
+    {
+        $user = Auth::guard('web')->user();
+        UserDisability::query()->where('user_id', $user->id)->where('id', $id)->delete();
+        return $this->sendResponse(null, 'تم حذف الوضع الصحي بنجاح');
     }
 }

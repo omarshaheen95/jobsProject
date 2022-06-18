@@ -229,7 +229,7 @@
             <div class="row justify-content-end">
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="text-end">
-                        <button type="submit" data-next-url="{{route('profile.step', 2)}}" class="btn btn-theme btn-submit w-100">
+                        <button type="submit" data-next-url="{{route('profile.step', 'qualifications')}}" class="btn btn-theme btn-submit w-100">
                             <span class="spinner-border spinner-border-sm me-2 d-none" role="status" aria-hidden="true"></span>
                             التالي
                         </button>

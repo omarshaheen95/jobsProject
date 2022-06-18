@@ -49,27 +49,32 @@ class User extends Authenticatable
 
     public function userQualifications()
     {
-        return $this->belongsTo(UserQualification::class);
+        return $this->hasMany(UserQualification::class);
     }
 
     public function userDisabilities()
     {
-        return $this->belongsTo(UserDisability::class);
+        return $this->hasMany(UserDisability::class);
     }
 
     public function userExperiences()
     {
-        return $this->belongsTo(UserExperience::class);
+        return $this->hasMany(UserExperience::class);
     }
 
     public function userLanguages()
     {
-        return $this->belongsTo(UserLanguage::class);
+        return $this->hasMany(UserLanguage::class);
     }
 
     public function userSkills()
     {
-        return $this->belongsTo(UserSkill::class);
+        return $this->hasMany(UserSkill::class);
+    }
+
+    public function userCourses()
+    {
+        return $this->hasMany(UserCourse::class);
     }
 
     public function userInfo()
