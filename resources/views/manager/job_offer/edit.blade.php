@@ -29,7 +29,7 @@
 @section('content')
     @push('breadcrumb')
         <li class="breadcrumb-item">
-            <a href="{{ route('manager.country.index') }}">العروض الوظيفية</a>
+            <a href="{{ route('manager.job_offer.index') }}">العروض الوظيفية</a>
         </li>
         <li class="breadcrumb-item">
             {{ isset($title) ? $title:'' }}

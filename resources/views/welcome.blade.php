@@ -54,7 +54,7 @@
                 <div class="col-lg-12">
                     <div class="owl-career owl-carousel owl-theme" id="owl-career">
                         @foreach($degrees as $degree)
-                        <a href="career-view.html" class="career-box">
+                        <a href="{{route('job_offers.all', ['degree[]' => $degree->id])}}" class="career-box">
                             <div class="content">
                                 <h3 class="title">{{$degree->name}}</h3>
 {{--                                <p class="info"> ينما يستثمر الناس في ترقية أنماط الحياة , نستثمر </p>--}}

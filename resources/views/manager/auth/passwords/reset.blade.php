@@ -41,9 +41,7 @@
 
     <!--begin::Layout Skins(used by all pages) -->
     <!--end::Layout Skins -->
-    @if(isset(cached()->logo_min))
-        <link rel="shortcut icon" href="{{ asset(cached()->logo_min) }}"/>
-    @endif
+        <link rel="shortcut icon" href="{{ asset('front/img/main-logo.png') }}"/>
 </head>
 
 <!-- end::Head -->
@@ -61,11 +59,8 @@
                         <div class="kt-login__body">
                             <div class="kt-login__logo">
                                 <a href="{{ url('/') }}">
-                                    @if(isset(cached()->logo))
-                                        <img src="{{ asset(cached()->logo) }}" width="35%" alt="logo" class="img-fluid"/>
-                                    @else
-                                        <h3>App Logo</h3>
-                                    @endif
+                                        <img src="{{ asset('front/img/main-logo.png') }}" width="35%" alt="logo" class="img-fluid"/>
+
                                 </a>
                             </div>
                             @if (session('status'))
@@ -88,7 +83,7 @@
                                         {{ csrf_field() }}
                                         <input type="hidden" name="token" value="{{ $token }}">
                                         <div class="form-group">
-                                            <input id="email" placeholder="{{t('Email')}}" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
+                                            <input id="email" placeholder="البريد الإلكتروني" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
 
                                             @error('email')
                                                 <span class="invalid-feedback" role="alert">
@@ -98,7 +93,7 @@
 
                                         </div>
                                         <div class="form-group">
-                                            <input id="password" placeholder="{{t('Password')}}" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                            <input id="password" placeholder="كلمة المرور" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                             @error('password')
                                                 <span class="invalid-feedback" role="alert">
@@ -108,12 +103,12 @@
 
                                         </div>
                                         <div class="form-group">
-                                            <input id="password-confirm" placeholder="{{t('Password Confirmation')}}" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                            <input id="password-confirm" placeholder="تأكيد كلمة المرور" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
 
 
                                         </div>
                                         <div class="kt-login__actions">
-                                            <input type="submit" class="btn btn-danger btn-pill btn-elevate" value="{{ t('Reset Password') }}">
+                                            <input type="submit" class="btn btn-danger btn-pill btn-elevate" value="استعادة كلمة المرور">
                                         </div>
                                     </form>
                                 </div>
@@ -127,7 +122,7 @@
                         <span class="kt-login__account-msg">
 
 
-                                    </span>&nbsp;&nbsp; <a href="/manager/login" class="kt-login__account-link">{{t('Login')}}</a>
+                                    </span>&nbsp;&nbsp; <a href="/manager/login" class="kt-login__account-link">تسجيل الدخول</a>
                     </div>
                 </div>
             </div>
@@ -139,9 +134,9 @@
                             {{--                                <img src="{{ asset('assets/media/logos/white_logo.svg') }}" width="40%" alt="logo" class="img-fluid"/>--}}
                         </div>
 
-                        <h3 class="kt-login__title" style="font-size: 2.2rem">{{ t('Control Panel for System Management') }}</h3>
+                        <h3 class="kt-login__title" style="font-size: 2.2rem">إدارة النظام</h3>
                         <h4 class="kt-login__desc " style="font-size: 28px">
-                            {{ t('Welcome') }}.
+                            مرحبا.
                         </h4>
                     </div>
                 </div>

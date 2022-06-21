@@ -14,28 +14,17 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="form">
-                        <form action="#!" method="get" class="needs-validation" novalidate>
-                            <div class="main-fillter-box ">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="عنوان الوظيفة">
-                                </div>
-                                <div class="form-group">
-                                    <select class="form-control form-select">
-                                        <option value="" disabled selected> قسم الوظيفة </option>
-                                        <option value="1"> قسم 1</option>
-                                        <option value="2"> قسم 2</option>
-                                        <option value="3"> قسم 3</option>
-                                        <option value="4"> قسم 4</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-theme btn-submit w-100">
-                                        <span class="spinner-border spinner-border-sm me-2 d-none" role="status" aria-hidden="true"></span>
-                                        ابحث عن وظيفة
-                                    </button>
-                                </div>
+                        <div class="main-fillter-box row">
+                            <div class="form-group w-75">
+                                <input type="text" name="name" class="form-control" placeholder="عنوان الوظيفة">
                             </div>
-                        </form>
+                            <div class="form-group w-25">
+                                <button type="button" onclick="jobSearch()" data-url="{{route('job_offers.all')}}" id="searchJobs" class="btn btn-theme btn-submit w-100">
+                                    <span class="spinner-border spinner-border-sm me-2 d-none" role="status" aria-hidden="true"></span>
+                                    ابحث عن وظيفة
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     <div class="grid-career">
                         @foreach($job_offers as $job_offer)
@@ -86,8 +75,8 @@
                                     <div class="option-box">
                                         @foreach($ministries as $ministry)
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="ministry[]" id="option-1-1">
-                                            <label class="form-check-label" for="option-1-1">
+                                            <input class="form-check-input" onchange="jobSearch()" type="checkbox" value="{{$ministry->id}}" name="ministry[]" id="option-1-{{$ministry->id}}">
+                                            <label class="form-check-label" for="option-1-{{$ministry->id}}">
                                                 <span> {{$ministry->name}} </span>
                                                 <span> ( {{$ministry->job_offers_count}} )</span>
                                             </label>
@@ -108,8 +97,8 @@
                                     <div class="option-box">
                                         @foreach($qualifications as $qualification)
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="qualification[]" id="option-2-1">
-                                            <label class="form-check-label" for="option-2-1">
+                                            <input class="form-check-input" onchange="jobSearch()" type="checkbox" value="{{$qualification->id}}" name="qualification[]" id="option-2-{{$qualification->id}}">
+                                            <label class="form-check-label" for="option-2-{{$qualification->id}}">
                                                 <span> {{$qualification->name}}  </span>
                                                 <span> ( {{$qualification->job_offers_count}} )</span>
                                             </label>
@@ -130,8 +119,8 @@
                                     <div class="option-box">
                                         @foreach($degrees as $degree)
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="degree[]" id="option-3-1">
-                                            <label class="form-check-label" for="option-3-1">
+                                            <input class="form-check-input" onchange="jobSearch()" type="checkbox" {{in_array($degree->id, request()->get('degree', [])) ? 'checked':''}} value="{{$degree->id}}" name="degree[]" id="option-3-{{$degree->id}}">
+                                            <label class="form-check-label" for="option-3-{{$degree->id}}">
                                                 <span> {{$degree->name}}  </span>
                                                 <span> ( {{$degree->job_offers_count}} )</span>
                                             </label>
@@ -152,8 +141,8 @@
                                     <div class="option-box">
                                         @foreach($positions as $position)
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="position[]" id="option-4-1">
-                                            <label class="form-check-label" for="option-4-1">
+                                            <input class="form-check-input" onchange="jobSearch()" type="checkbox" value="{{$position->id}}" name="position[]" id="option-4-{{$position->id}}">
+                                            <label class="form-check-label" for="option-4-{{$position->id}}">
                                                 <span> {{$position->name}} </span>
                                                 <span> ( {{$position->job_offers_count}} )</span>
                                             </label>

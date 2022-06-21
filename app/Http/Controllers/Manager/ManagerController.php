@@ -8,7 +8,10 @@ use App\Models\Manager;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Proengsoft\JsValidation\Facades\JsValidatorFacade as JsValidator;
 use Spatie\Permission\Models\Role;
 use Yajra\DataTables\DataTables;
 
@@ -113,5 +116,57 @@ class ManagerController extends Controller
     {
         $manager->delete();
         return $this->redirectWith(true, null, 'تم الحذف بنجاح');
+    }
+
+    public function view_profile()
+    {
+        $title = 'عرض الملف الشخصي';
+        $this->validationRules = [
+            'name' => 'required',
+            'password' => 'nullable',
+            'email' => 'required|email|unique:managers,email',
+        ];
+        $validator = JsValidator::make($this->validationRules);
+        return view('manager.manager.profile', compact('title', 'validator'));
+    }
+
+    public function profile(Request $request)
+    {
+        $user = Auth::guard('manager')->user();
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:managers,email,'. $user->id,
+        ]);
+        $data = $request->all();
+        $user->update($data);
+        return redirect()->route('manager.home')->with('message', 'تم التحديث بنجاح')->with('m-class', 'success');
+    }
+
+    public function view_password()
+    {
+        $title = 'تغيير كلمة المرور';
+        $this->validationRules = [
+            'current_password' => 'required',
+            'password' => 'required|min:6|confirmed'
+        ];
+        $validator = JsValidator::make($this->validationRules);
+        return view('manager.manager.password', compact('title', 'validator'));
+    }
+
+    public function password(Request $request)
+    {
+        $user = Auth::guard('manager')->user();
+        $request->validate([
+            'current_password' => 'required',
+            'password' => 'required|min:6|confirmed'
+        ]);
+        if(Hash::check($request->get('current_password'), $user->password)) {
+            $data['password'] = bcrypt($request->get('password'));
+            $user->update($data);
+        }else{
+            return $this->redirectWith(true, null, 'Current Password Invalid', 'error');
+        }
+
+        return redirect()->route('manager.home')->with('message', 'تم التحديث بنجاح')->with('m-class', 'success');
     }
 }

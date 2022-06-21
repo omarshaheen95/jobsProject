@@ -29,9 +29,6 @@ Route::group(['prefix' => 'manager'], function () {
   Route::post('/login', 'ManagerAuth\LoginController@login');
   Route::post('/logout', 'ManagerAuth\LoginController@logout')->name('logout');
 
-  Route::get('/register', 'ManagerAuth\RegisterController@showRegistrationForm')->name('register');
-  Route::post('/register', 'ManagerAuth\RegisterController@register');
-
   Route::post('/password/email', 'ManagerAuth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');
   Route::post('/password/reset', 'ManagerAuth\ResetPasswordController@reset')->name('password.email');
   Route::get('/password/reset', 'ManagerAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');

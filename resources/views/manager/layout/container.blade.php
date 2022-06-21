@@ -334,7 +334,7 @@
                                 </li>
                             <li class="kt-menu__item  @if(Route::is('manager.page.*') ) kt-menu__item--active @endif"
                                 aria-haspopup="true">
-                                <a href="{{route('manager.page.index')}}" class="kt-menu__link ">
+                                <a href="{{route('manager.settings.show')}}" class="kt-menu__link ">
                                     <span class="kt-menu__link-text">الاعدادات العامة</span>
                                 </a>
                             </li>
@@ -378,7 +378,7 @@
                             <!--end: Head -->
                             <!--begin: Navigation -->
                             <div class="kt-notification">
-                                <a href="" class="kt-notification__item">
+                                <a href="{{route('manager.profile.update')}}" class="kt-notification__item">
                                     <div class="kt-notification__item-icon">
                                         <i class="flaticon2-calendar-3 kt-font-success"></i>
                                     </div>
@@ -391,7 +391,7 @@
                                         </div>
                                     </div>
                                 </a>
-                                <a href="" class="kt-notification__item">
+                                <a href="{{route('manager.password.update')}}" class="kt-notification__item">
                                     <div class="kt-notification__item-icon">
                                         <i class="flaticon2-calendar-3 kt-font-success"></i>
                                     </div>

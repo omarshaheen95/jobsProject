@@ -184,12 +184,34 @@ $(".get-more-career").on("click", function () {
     var btn = $(this) ;
     btn.addClass("disabled");
     btn.find(".spinner-border").removeClass("d-none");
+    var positions_ids = [];
+    $('input[name="position[]"]:checked').each(function(i, e) {
+        positions_ids.push($(this).val());
+    });
+    var degrees_ids = [];
+    $('input[name="degree[]"]:checked').each(function(i, e) {
+        degrees_ids.push($(this).val());
+    });
+    var ministries_ids = [];
+    $('input[name="ministry[]"]:checked').each(function(i, e) {
+        ministries_ids.push($(this).val());
+    });
+    var qualifications_ids = [];
+    $('input[name="qualification[]"]:checked').each(function(i, e) {
+        qualifications_ids.push($(this).val());
+    });
+
     $.ajax({
         type: "get",
         dataType: "html",
         url: $(this).data("url"),
         data: {
-            "page" : jobPage + 1,
+            "page": jobPage + 1,
+            "name": $('input[name="name"]').val(),
+            "ministry[]":ministries_ids,
+            "qualification[]": qualifications_ids,
+            "degree[]": degrees_ids,
+            "position[]": positions_ids,
         },
         success: function(res){
             var res = JSON.parse(res);
@@ -252,6 +274,72 @@ $(".get-more-topic").on("click", function () {
         }
     });
 });
+
+function jobSearch(){
+    var btn = $('#searchJobs') ;
+    var getMore = $('.get-more-career') ;
+    btn.addClass("disabled");
+    btn.find(".spinner-border").removeClass("d-none");
+    getMore.addClass("disabled");
+    getMore.find(".spinner-border").removeClass("d-none");
+
+    var positions_ids = [];
+    $('input[name="position[]"]:checked').each(function(i, e) {
+        positions_ids.push($(this).val());
+    });
+    var degrees_ids = [];
+    $('input[name="degree[]"]:checked').each(function(i, e) {
+        degrees_ids.push($(this).val());
+    });
+    var ministries_ids = [];
+    $('input[name="ministry[]"]:checked').each(function(i, e) {
+        ministries_ids.push($(this).val());
+    });
+    var qualifications_ids = [];
+    $('input[name="qualification[]"]:checked').each(function(i, e) {
+        qualifications_ids.push($(this).val());
+    });
+
+    $.ajax({
+        type: "get",
+        dataType: "html",
+        url: $('#searchJobs').data("url"),
+        data: {
+            "page": 1,
+            "name": $('input[name="name"]').val(),
+            "ministry[]":ministries_ids,
+            "qualification[]": qualifications_ids,
+            "degree[]": degrees_ids,
+            "position[]": positions_ids,
+        },
+        success: function(res){
+            $(".grid-career").empty();
+            var res = JSON.parse(res);
+            if(res.data.html.length > 0)
+            {
+                $(".grid-career").append(res.data.html);
+            }
+
+            btn.removeClass("disabled");
+            btn.find(".spinner-border").addClass("d-none");
+            getMore.removeClass("disabled");
+            getMore.find(".spinner-border").addClass("d-none");
+            if(res.data.paginate.next_page_url != null)
+            {
+                jobPage ++;
+                getMore.show();
+            }else{
+                getMore.hide();
+            }
+        },
+        error: function(){
+            showToastify(res.res, "error");
+
+            btn.removeClass("disabled");
+            btn.find(".spinner-border").addClass("d-none");
+        }
+    });
+}
 
 
 

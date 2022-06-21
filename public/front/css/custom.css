@@ -960,10 +960,10 @@
 
     .main-fillter-box{
         display: flex;
-        gap: 24px;
+        /*gap: 24px;*/
     }
     .main-fillter-box .form-group{
-        width: calc(100% / 3);
+        /*width: calc(100% / 3);*/
     }
     .main-fillter-box .form-control{
         background-color: #fff;

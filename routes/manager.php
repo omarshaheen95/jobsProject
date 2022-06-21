@@ -22,6 +22,14 @@ Route::group(['namespace' => 'Manager'], function () {
 
         return view('manager.home');
     })->name('home');
+    //Settings
+    Route::get('settings', 'SettingController@viewSettings')->name('settings.show');
+    Route::post('settings', 'SettingController@settings')->name('settings.update');
+    Route::get('profile', 'ManagerController@view_profile')->name('profile.show');
+    Route::post('profile', 'ManagerController@profile')->name('profile.update');
+    Route::get('password', 'ManagerController@view_password')->name('password.show');
+    Route::post('password', 'ManagerController@password')->name('password.update');
+
     //Route Resources
     Route::resources([
         'governorate' => 'GovernorateController',

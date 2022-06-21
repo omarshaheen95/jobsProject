@@ -51,7 +51,7 @@
                         <div class="kt-login__body">
                             <div class="kt-login__logo">
                                 <a href="{{ url('/') }}">
-                                        <img src="" width="35%" alt="logo" class="img-fluid"/>
+                                        <img src="{{asset('front/img/main-logo.png')}}" width="35%" alt="logo" class="img-fluid"/>
                                 </a>
                             </div>
                             <div class="kt-login__signin">
