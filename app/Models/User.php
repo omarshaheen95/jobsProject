@@ -21,11 +21,11 @@ class User extends Authenticatable
      */
     //gender 'male', 'female'
     protected $fillable = [
-        'name', 'email', 'password', 'mobile', 'gender', 'dob', 'active', 'family_of_prisoners', 'injured_people', 'family_of_martyrs'
+        'name', 'email', 'password', 'active',
     ];
 
     protected $cascadeDeletes = [
-        'userQualifications', 'userDisabilities', 'userExperiences', 'userLanguages', 'userSkills', 'userInfo'
+        'userQualifications', 'userDisabilities', 'userExperiences', 'userLanguages', 'userSkills', 'userInfo', 'jobOffers'
     ];
 
     /**
@@ -55,6 +55,11 @@ class User extends Authenticatable
     public function userDisabilities()
     {
         return $this->hasMany(UserDisability::class);
+    }
+
+    public function jobOffers()
+    {
+        return $this->belongsToMany(JobOffer::class, UserJobOffer::class);
     }
 
     public function userExperiences()

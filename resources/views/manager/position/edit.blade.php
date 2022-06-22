@@ -34,6 +34,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label">درجة المنصب الوظيفي</label>
+                                    <div class="col-lg-9 col-xl-6">
+                                        <input class="form-control" name="job_grade" type="text"
+                                               value="{{ isset($position) ? $position->job_grade : old("job_grade") }}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label">ترتيب المنصب الوظيفي</label>
                                     <div class="col-lg-9 col-xl-6">
                                         <input class="form-control" name="ordered" type="number"

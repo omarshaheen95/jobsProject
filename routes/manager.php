@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Manager\UserController;
 
 Route::get('/home', function () {
     $users[] = Auth::user();
@@ -49,6 +50,14 @@ Route::group(['namespace' => 'Manager'], function () {
         'job_offer' => 'JobOfferController',
         'qualification' => 'QualificationController',
     ]);
+
+    Route::get('user-excel-export', [UserController::class, 'exportUserExcel'])->name('exportUserExcel');
+    Route::get('user-qualifications/{id}', [UserController::class, 'userQualifications'])->name('userQualifications');
+    Route::get('user-skills/{id}', [UserController::class, 'userSkills'])->name('userSkills');
+    Route::get('user-courses/{id}', [UserController::class, 'userCourses'])->name('userCourses');
+    Route::get('user-experiences/{id}', [UserController::class, 'userExperiences'])->name('userExperiences');
+    Route::get('user-languages/{id}', [UserController::class, 'userLanguages'])->name('userLanguages');
+    Route::get('user-disabilities/{id}', [UserController::class, 'userDisabilities'])->name('userDisabilities');
 
     //Page
     Route::get('page', 'PageController@index')->name('page.index');

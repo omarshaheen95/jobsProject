@@ -18,6 +18,10 @@ class UserInfo extends Model implements HasMedia
         'registered_unemployed_ministry', 'family_of_prisoners', 'injured_people', 'family_of_martyrs',
     ];
 
+    protected $appends = [
+        'gender_name', 'marital_status_name'
+    ];
+
     public function registerMediaCollections(): void
     {
         $this
@@ -31,6 +35,22 @@ class UserInfo extends Model implements HasMedia
             ->width(100)
             ->height(100)
             ->sharpen(10);
+    }
+
+    public function getGenderNameAttribute()
+    {
+        return $this->gender == 'male' ? 'ذكر':'أنثى';
+    }
+
+    public function getMaritalStatusNameAttribute()
+    {
+        switch ($this->marital_status)
+        {
+            case 1: return 'أعزب';
+            case 2: return 'متزوج/ة';
+            case 3: return 'مطلق/ة';
+            case 4: return 'أرمل/ة';
+        }
     }
 
     public function user()

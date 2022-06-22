@@ -65,6 +65,11 @@ class JobOffer extends Model implements HasMedia
         return $this->belongsToMany(Ministry::class,JobMinistry::class);
     }
 
+    public function users()
+    {
+        return $this->belongsToMany(User::class,UserJobOffer::class);
+    }
+
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()
@@ -72,4 +77,5 @@ class JobOffer extends Model implements HasMedia
             ->saveSlugsTo('slug')
             ->usingLanguage('ar');
     }
+
 }

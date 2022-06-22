@@ -70,7 +70,7 @@ class JobOfferController extends Controller
 
     public function edit($id)
     {
-        $title = 'تعديل المحافظة';
+        $title = 'تعديل عرض وظيفي';
         $job_offer = JobOffer::query()->with(['languages', 'governorates', 'disabilities', 'qualifications', 'sub_degrees', 'ministries'])->findOrFail($id);
         $job_languages = $job_offer->languages->pluck('id')->values()->all();
         $job_qualifications = $job_offer->qualifications->pluck('id')->values()->all();

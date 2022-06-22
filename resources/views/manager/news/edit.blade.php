@@ -120,8 +120,14 @@
     {!! JsValidator::formRequest(\App\Http\Requests\Manager\NewsRequest::class, '#form_information') !!}
     <script>
         $(document).ready(function () {
+            var gArrayFonts = ['book','bold','Arial', 'Arial Black', 'Comic Sans MS', 'Courier New',
+                'Helvetica Neue', 'Helvetica', 'Impact', 'Lucida Grande',
+                'Tahoma', 'Times New Roman', 'Verdana'];
+
             $('.summernote').summernote({
                 height: '800px',
+                fontNames: gArrayFonts,
+                fontNamesIgnoreCheck: gArrayFonts,
             });
         });
     </script>

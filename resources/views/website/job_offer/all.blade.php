@@ -34,7 +34,7 @@
                             </div>
                             <div class="content">
                                 <h2 class="title">{{$job_offer->name}} </h2>
-                                <h3 class="company-name"> #{{$job_offer->job_uuid}}</h3>
+                                <h3 class="company-name">رقم الإعلان :  #{{$job_offer->job_uuid}}</h3>
                                 <p class="description">
                                     {{$job_offer->content}}
                                 </p>

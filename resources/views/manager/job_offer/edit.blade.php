@@ -480,9 +480,16 @@
 
             $('.editor-custom').summernote({
                 height: '150px',
+
             });
+            var gArrayFonts = ['book','bold','Arial', 'Arial Black', 'Comic Sans MS', 'Courier New',
+                'Helvetica Neue', 'Helvetica', 'Impact', 'Lucida Grande',
+                'Tahoma', 'Times New Roman', 'Verdana'];
+
             $('.editor').summernote({
                 height: '300px',
+                fontNames: gArrayFonts,
+                fontNamesIgnoreCheck: gArrayFonts,
             });
             $('.dateTime').datetimepicker({
                 todayHighlight: true,

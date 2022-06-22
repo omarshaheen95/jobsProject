@@ -80,4 +80,17 @@ class JobOfferController extends Controller
 
         return view('website.job_offer.all', compact('job_offers', 'title', 'ministries', 'degrees', 'positions', 'qualifications'));
     }
+
+    public function showJobOffer($slug)
+    {
+
+        $job_offer = JobOffer::query()
+            ->with(['languages', 'governorates', 'disabilities', 'qualifications', 'sub_degrees', 'ministries'])
+            ->where('slug', $slug)
+            ->firstOrFail();
+        $title = $job_offer->name;
+        $last_job_offer = JobOffer::query()->with(['media'])->whereNotIn('id', [$job_offer->id])->inRandomOrder()->latest()->limit(3)->get();
+
+        return view('website.job_offer.show', compact('title', 'job_offer', 'last_job_offer'));
+    }
 }

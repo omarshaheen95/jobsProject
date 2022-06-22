@@ -12,7 +12,7 @@ class Position extends Model
 {
     use SoftDeletes, CascadeSoftDeletes;
     protected $fillable = [
-        'name', 'ordered', 'active'
+        'name', 'ordered', 'active', 'job_grade'
     ];
 
     protected $cascadeDeletes = [

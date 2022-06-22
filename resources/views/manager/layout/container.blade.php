@@ -120,7 +120,7 @@
             <div class="kt-aside__brand kt-grid__item " id="kt_aside_brand">
                 <div class="kt-aside__brand-logo w-100">
                     <a href="{{ url("/manager/home") }}" class="w-100 text-center">
-                            <img src="" width="20%"/>
+                            <img src="{{asset('front/img/logo.svg')}}" width="100%"/>
                     </a>
                 </div>
                 <div class="kt-aside__brand-tools">
@@ -175,82 +175,11 @@
                                 <span class="kt-menu__link-text">الرئيسية</span>
                             </a>
                         </li>
-                        <li class="kt-menu__item  @if(Route::is('manager.governorate.*') ) kt-menu__item--active @endif"
+                        <li class="kt-menu__item  @if(Route::is('manager.user.*') ) kt-menu__item--active @endif"
                             aria-haspopup="true">
-                            <a href="{{route('manager.governorate.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-sheet"></i>
-                                <span class="kt-menu__link-text">المحافظات</span>
-                            </a>
-                        </li>
-                        <li class="kt-menu__item  @if(Route::is('manager.degree.*') ) kt-menu__item--active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('manager.degree.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-sheet"></i>
-                                <span class="kt-menu__link-text">التخصصات</span>
-                            </a>
-                        </li>
-                        <li class="kt-menu__item  @if(Route::is('manager.sub_degree.*') ) kt-menu__item--active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('manager.sub_degree.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-sheet"></i>
-                                <span class="kt-menu__link-text">التخصصات الدقيقة</span>
-                            </a>
-                        </li>
-                        <li class="kt-menu__item  @if(Route::is('manager.qualification.*') ) kt-menu__item--active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('manager.qualification.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-sheet"></i>
-                                <span class="kt-menu__link-text">المؤهلات</span>
-                            </a>
-                        </li>
-                        <li class="kt-menu__item  @if(Route::is('manager.appreciation.*') ) kt-menu__item--active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('manager.appreciation.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-sheet"></i>
-                                <span class="kt-menu__link-text">التقديرات</span>
-                            </a>
-                        </li>
-                        <li class="kt-menu__item  @if(Route::is('manager.disability.*') ) kt-menu__item--active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('manager.disability.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-sheet"></i>
-                                <span class="kt-menu__link-text">الاعاقات</span>
-                            </a>
-                        </li>
-                        <li class="kt-menu__item  @if(Route::is('manager.ministry.*') ) kt-menu__item--active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('manager.ministry.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-sheet"></i>
-                                <span class="kt-menu__link-text">الوزارات</span>
-                            </a>
-                        </li>
-                        <li class="kt-menu__item  @if(Route::is('manager.position.*') ) kt-menu__item--active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('manager.position.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-sheet"></i>
-                                <span class="kt-menu__link-text">المناصب الوظيفية</span>
-                            </a>
-                        </li>
-{{--                        <li class="kt-menu__item  @if(Route::is('manager.university.*') ) kt-menu__item--active @endif"--}}
-{{--                            aria-haspopup="true">--}}
-{{--                            <a href="{{route('manager.university.index')}}" class="kt-menu__link ">--}}
-{{--                                <i class="kt-menu__link-icon flaticon2-sheet"></i>--}}
-{{--                                <span class="kt-menu__link-text">الجامعات</span>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-
-                        <li class="kt-menu__item  @if(Route::is('manager.language.*') ) kt-menu__item--active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('manager.language.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-sheet"></i>
-                                <span class="kt-menu__link-text">اللغات</span>
-                            </a>
-                        </li>
-                        <li class="kt-menu__item  @if(Route::is('manager.country.*') ) kt-menu__item--active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('manager.country.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-sheet"></i>
-                                <span class="kt-menu__link-text">الدول</span>
+                            <a href="{{route('manager.user.index')}}" class="kt-menu__link ">
+                                <i class="kt-menu__link-icon flaticon2-user-outline-symbol"></i>
+                                <span class="kt-menu__link-text">المستخدمين</span>
                             </a>
                         </li>
                         <li class="kt-menu__item  @if(Route::is('manager.news.*') ) kt-menu__item--active @endif"
@@ -263,38 +192,83 @@
                         <li class="kt-menu__item  @if(Route::is('manager.job_offer.*') ) kt-menu__item--active @endif"
                             aria-haspopup="true">
                             <a href="{{route('manager.job_offer.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-sheet"></i>
+                                <i class="kt-menu__link-icon flaticon2-note"></i>
                                 <span class="kt-menu__link-text">التعيينات</span>
                             </a>
                         </li>
-                        <li class="kt-menu__item  @if(Route::is('manager.user.*') ) kt-menu__item--active @endif"
+
+                        <li class="kt-menu__item  @if(Route::is('manager.governorate.*') ) kt-menu__item--active @endif"
                             aria-haspopup="true">
-                            <a href="{{route('manager.user.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-sheet"></i>
-                                <span class="kt-menu__link-text">المتقدمين</span>
+                            <a href="{{route('manager.governorate.index')}}" class="kt-menu__link ">
+                                <i class="kt-menu__link-icon flaticon2-soft-icons"></i>
+                                <span class="kt-menu__link-text">المحافظات</span>
                             </a>
                         </li>
-                        <li class="kt-menu__item  @if(Route::is('manager.page.*') ) kt-menu__item--active @endif"
+                        <li class="kt-menu__item  @if(Route::is('manager.degree.*') ) kt-menu__item--active @endif"
                             aria-haspopup="true">
-                            <a href="{{route('manager.page.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-sheet"></i>
-                                <span class="kt-menu__link-text">الصفحات</span>
+                            <a href="{{route('manager.degree.index')}}" class="kt-menu__link ">
+                                <i class="kt-menu__link-icon flaticon2-soft-icons"></i>
+                                <span class="kt-menu__link-text">التخصصات</span>
                             </a>
                         </li>
-                        <li class="kt-menu__item  @if(Route::is('manager.manager.*') ) kt-menu__item--active @endif"
+                        <li class="kt-menu__item  @if(Route::is('manager.sub_degree.*') ) kt-menu__item--active @endif"
                             aria-haspopup="true">
-                            <a href="{{route('manager.manager.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-sheet"></i>
-                                <span class="kt-menu__link-text">المسؤلين</span>
+                            <a href="{{route('manager.sub_degree.index')}}" class="kt-menu__link ">
+                                <i class="kt-menu__link-icon flaticon2-soft-icons"></i>
+                                <span class="kt-menu__link-text">التخصصات الدقيقة</span>
                             </a>
                         </li>
-                        <li class="kt-menu__item  @if(Route::is('manager.role.*') ) kt-menu__item--active @endif"
+                        <li class="kt-menu__item  @if(Route::is('manager.qualification.*') ) kt-menu__item--active @endif"
                             aria-haspopup="true">
-                            <a href="{{route('manager.role.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-sheet"></i>
-                                <span class="kt-menu__link-text">الصلاحيات</span>
+                            <a href="{{route('manager.qualification.index')}}" class="kt-menu__link ">
+                                <i class="kt-menu__link-icon flaticon2-soft-icons"></i>
+                                <span class="kt-menu__link-text">المؤهلات</span>
                             </a>
                         </li>
+                        <li class="kt-menu__item  @if(Route::is('manager.appreciation.*') ) kt-menu__item--active @endif"
+                            aria-haspopup="true">
+                            <a href="{{route('manager.appreciation.index')}}" class="kt-menu__link ">
+                                <i class="kt-menu__link-icon flaticon2-soft-icons"></i>
+                                <span class="kt-menu__link-text">التقديرات</span>
+                            </a>
+                        </li>
+                        <li class="kt-menu__item  @if(Route::is('manager.disability.*') ) kt-menu__item--active @endif"
+                            aria-haspopup="true">
+                            <a href="{{route('manager.disability.index')}}" class="kt-menu__link ">
+                                <i class="kt-menu__link-icon flaticon2-soft-icons"></i>
+                                <span class="kt-menu__link-text">الاعاقات</span>
+                            </a>
+                        </li>
+                        <li class="kt-menu__item  @if(Route::is('manager.ministry.*') ) kt-menu__item--active @endif"
+                            aria-haspopup="true">
+                            <a href="{{route('manager.ministry.index')}}" class="kt-menu__link ">
+                                <i class="kt-menu__link-icon flaticon2-soft-icons"></i>
+                                <span class="kt-menu__link-text">الوزارات</span>
+                            </a>
+                        </li>
+                        <li class="kt-menu__item  @if(Route::is('manager.position.*') ) kt-menu__item--active @endif"
+                            aria-haspopup="true">
+                            <a href="{{route('manager.position.index')}}" class="kt-menu__link ">
+                                <i class="kt-menu__link-icon flaticon2-soft-icons"></i>
+                                <span class="kt-menu__link-text">المناصب الوظيفية</span>
+                            </a>
+                        </li>
+                        <li class="kt-menu__item  @if(Route::is('manager.language.*') ) kt-menu__item--active @endif"
+                            aria-haspopup="true">
+                            <a href="{{route('manager.language.index')}}" class="kt-menu__link ">
+                                <i class="kt-menu__link-icon flaticon2-soft-icons"></i>
+                                <span class="kt-menu__link-text">اللغات</span>
+                            </a>
+                        </li>
+                        <li class="kt-menu__item  @if(Route::is('manager.country.*') ) kt-menu__item--active @endif"
+                            aria-haspopup="true">
+                            <a href="{{route('manager.country.index')}}" class="kt-menu__link ">
+                                <i class="kt-menu__link-icon flaticon2-soft-icons"></i>
+                                <span class="kt-menu__link-text">الدول</span>
+                            </a>
+                        </li>
+
+
 
 
                     </ul>
@@ -336,6 +310,24 @@
                                 aria-haspopup="true">
                                 <a href="{{route('manager.settings.show')}}" class="kt-menu__link ">
                                     <span class="kt-menu__link-text">الاعدادات العامة</span>
+                                </a>
+                            </li>
+                            <li class="kt-menu__item  @if(Route::is('manager.page.*') ) kt-menu__item--active @endif"
+                                aria-haspopup="true">
+                                <a href="{{route('manager.page.index')}}" class="kt-menu__link ">
+                                    <span class="kt-menu__link-text">الصفحات</span>
+                                </a>
+                            </li>
+                            <li class="kt-menu__item  @if(Route::is('manager.manager.*') ) kt-menu__item--active @endif"
+                                aria-haspopup="true">
+                                <a href="{{route('manager.manager.index')}}" class="kt-menu__link ">
+                                    <span class="kt-menu__link-text">المسؤلين</span>
+                                </a>
+                            </li>
+                            <li class="kt-menu__item  @if(Route::is('manager.role.*') ) kt-menu__item--active @endif"
+                                aria-haspopup="true">
+                                <a href="{{route('manager.role.index')}}" class="kt-menu__link ">
+                                    <span class="kt-menu__link-text">الصلاحيات</span>
                                 </a>
                             </li>
                         </ul>

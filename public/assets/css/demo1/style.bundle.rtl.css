@@ -11,6 +11,15 @@
     src: url("Bahij_TheSansArabic-Bold.ttf");
 url("Bahij_TheSansArabic-Bold.ttf") format("ttf"),
 }
+@font-face {
+    font-family: "book";
+    src:url("FF-Shamel-Family-Sans-One-Book.ttf") format("truetype");
+}
+@font-face {
+    font-family: "bold";
+    src:url("FF-Shamel-Family-Sans-One-Bold.ttf") format("truetype");
+}
+
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
