@@ -76,7 +76,7 @@ class JobOfferController extends Controller
         }])->orderByDesc('job_offers_count')->get();
 
 
-//        dd($ministries);
+//        dd($job_offers);
 
         return view('website.job_offer.all', compact('job_offers', 'title', 'ministries', 'degrees', 'positions', 'qualifications'));
     }

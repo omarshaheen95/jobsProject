@@ -41,10 +41,10 @@
                                 <div class="action">
                                     <ul class="nav nav-tags">
                                         <li class="nav-item">
-                                            <a href="#!" class="nav-link">{{$job_offer->degree->name}}</a>
+                                            <a href="#!" class="nav-link">{{optional($job_offer->degree)->name}}</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#!" class="nav-link">المسمى الوظيفي : {{$job_offer->position->name}}</a>
+                                            <a href="#!" class="nav-link">المسمى الوظيفي : {{optional($job_offer->position)->name}}</a>
                                         </li>
                                     </ul>
                                     <a href="{{route('job_offers.show', $job_offer->slug)}}" class="btn btn-outline-theme btn-order">  عرض الوظيفة </a>

@@ -21,10 +21,7 @@ class Language extends Model
 
     protected static function booted()
     {
-        if (!\Route::is('manager*'))
-        {
-            static::addGlobalScope(new ActiveScope());
-        }
+
     }
 
     public function getStatusAttribute()
