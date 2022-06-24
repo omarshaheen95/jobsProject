@@ -15,7 +15,7 @@
                         <a href="#!" class="nav-link">{{$job_offer->degree->name}}</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#!" class="nav-link">المسمى الوظيفي : {{$job_offer->position->name}}</a>
+                        <a href="#!" class="nav-link">العنوان الوظيفي : {{$job_offer->position->name}}</a>
                     </li>
                 </ul>
                 <a href="{{route('job_offers.show', $job_offer->slug)}}" class="btn btn-outline-theme btn-order">  عرض الوظيفة </a>

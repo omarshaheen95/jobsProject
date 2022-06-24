@@ -82,7 +82,7 @@ class JobOfferController extends Controller
         $qualifications = Qualification::query()->get();
         $positions = Position::query()->get();
         $degrees = Degree::query()->get();
-        $sub_degrees = SubDegree::query()->get();
+        $sub_degrees = SubDegree::query()->where('degree_id', $job_offer->degree_id)->get();
         $languages = Language::query()->get();
         $disabilities = Disability::query()->get();
         $ministries = Ministry::query()->get();

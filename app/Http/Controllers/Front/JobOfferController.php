@@ -8,8 +8,10 @@ use App\Models\JobOffer;
 use App\Models\Ministry;
 use App\Models\Position;
 use App\Models\Qualification;
+use App\Models\UserJobOffer;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class JobOfferController extends Controller
@@ -47,7 +49,7 @@ class JobOfferController extends Controller
                     $q->whereIn('id', $positions);
                 } );
             })
-            ->latest()->paginate(2);
+            ->latest()->paginate(10);
 
 
         if ($request->ajax()) {
@@ -83,14 +85,42 @@ class JobOfferController extends Controller
 
     public function showJobOffer($slug)
     {
-
+        $user = Auth::guard('web')->user();
+//        $user->jobOffers()->where('job_offer_id', $id)->first();
         $job_offer = JobOffer::query()
-            ->with(['languages', 'governorates', 'disabilities', 'qualifications', 'sub_degrees', 'ministries'])
+            ->with(['media', 'position', 'degree' ,'languages', 'governorates', 'disabilities', 'qualifications', 'sub_degrees', 'ministries'])
             ->where('slug', $slug)
             ->firstOrFail();
         $title = $job_offer->name;
-        $last_job_offer = JobOffer::query()->with(['media'])->whereNotIn('id', [$job_offer->id])->inRandomOrder()->latest()->limit(3)->get();
 
-        return view('website.job_offer.show', compact('title', 'job_offer', 'last_job_offer'));
+        return view('website.job_offer.show', compact('title', 'job_offer',));
+    }
+
+    public function applyJobOffer(Request $request, $id)
+    {
+        $user = Auth::guard('web')->user();
+        $job_offer = JobOffer::query()->findOrFail($id);
+
+        if($user->jobOffers()->where('job_offer_id', $id)->first())
+        {
+            return redirect()->back()->with('message', 'تم التقديم على هذا الطلب مسبقا')->with('m-class', 'error');
+        }
+
+        UserJobOffer::query()->create([
+            'user_id' => $user->id,
+            'status' => 'pending',
+            'job_offer_id' => $job_offer->id,
+        ]);
+
+
+        return redirect()->back()->with('message', 'تم القديم على الطلب بنجاح')->with('m-class', 'success');
+    }
+
+    public function archiveJobOffers()
+    {
+        $title = 'طلبات التوظيف';
+        $user = Auth::guard('web')->user();
+        $job_offers = $user->jobOffers()->orderBy('user_job_offers.created_at', 'desc')->get();
+        return view('website.profile.archive', compact('user', 'job_offers', 'title'));
     }
 }

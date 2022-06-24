@@ -210,7 +210,7 @@
                         <div class="tab-pane " id="skills" role="tabpanel">
                             <table class="table text-center" id="skills-table">
                                 <thead>
-                                <td>المسمى الوظيفي</td>
+                                <td>العنوان الوظيفي</td>
                                 <td>مكان العمل</td>
                                 <td>تاريخ البداية</td>
                                 <td>تاريخ النهاية</td>

@@ -148,7 +148,7 @@
                             <a href="{{route('page.show', 'about_us')}}" class="nav-link">عن النظام</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('contact_us.show')}}l" class="nav-link">تواصل معنـا</a>
+                            <a href="{{route('contact_us.show')}}" class="nav-link">تواصل معنـا</a>
                         </li>
                     </ul>
                 </div>
@@ -193,5 +193,10 @@
 <script src="{{asset('front/js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('front/js/custom.js')}}"></script>
 @yield('script')
+<script>
+    @if(Session::has('message'))
+    showToastify("{{Session::get('message')}}", "{{Session::get('m-class')}}");
+    @endif
+</script>
 </body>
 </html>

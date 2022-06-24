@@ -15,6 +15,10 @@ class UserJobOffer extends Model
         'user_id', 'job_offer_id', 'status', 'manager_id', 'note'
     ];
 
+    protected $appends = [
+        'status_name'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -29,4 +33,5 @@ class UserJobOffer extends Model
     {
         return $this->belongsTo(JobOffer::class);
     }
+
 }

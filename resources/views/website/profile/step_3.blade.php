@@ -17,8 +17,8 @@
                 <div class="row">
                     <div class="col-lg-4 col-sm-6">
                         <div class="form-group">
-                            <label for="position" class="form-label">المسمى الوظيفي</label>
-                            <input type="text" id="position" name="position" class="form-control" placeholder=" اكتب المسمى الوظيفي" required>
+                            <label for="position" class="form-label">العنوان الوظيفي</label>
+                            <input type="text" id="position" name="position" class="form-control" placeholder=" اكتب العنوان الوظيفي" required>
                             <div class="invalid-feedback"></div>
                         </div>
                     </div>
@@ -80,7 +80,7 @@
             <table class="table" id="table_content">
                 <thead>
                 <tr>
-                    <th>المسمى الوظيفي</th>
+                    <th>العنوان الوظيفي</th>
                     <th>مكان العمل</th>
                     <th>تاريخ البداية</th>
                     <th>تاريخ النهاية</th>

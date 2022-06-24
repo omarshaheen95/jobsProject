@@ -107,8 +107,8 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-group">
-                        <label for="number_of_employees" class="form-label">عدد الموظفين</label>
-                        <input type="number" id="number_of_employees" name="number_of_employees" value="{{optional($user->userInfo)->number_of_employees}}" class="form-control" size="10" placeholder="عدد الموظفين" required>
+                        <label for="number_of_employees" class="form-label">عدد الموظفين في العائلة</label>
+                        <input type="number" id="number_of_employees" name="number_of_employees" value="{{optional($user->userInfo)->number_of_employees}}" class="form-control" size="10" placeholder="عدد الموظفين في العائلة" required>
                         <div class="invalid-feedback"></div>
                     </div>
                 </div>

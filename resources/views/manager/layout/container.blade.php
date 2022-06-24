@@ -321,7 +321,7 @@
                             <li class="kt-menu__item  @if(Route::is('manager.manager.*') ) kt-menu__item--active @endif"
                                 aria-haspopup="true">
                                 <a href="{{route('manager.manager.index')}}" class="kt-menu__link ">
-                                    <span class="kt-menu__link-text">المسؤلين</span>
+                                    <span class="kt-menu__link-text">المسؤولین</span>
                                 </a>
                             </li>
                             <li class="kt-menu__item  @if(Route::is('manager.role.*') ) kt-menu__item--active @endif"

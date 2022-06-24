@@ -47,7 +47,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('application_archive')}}" class="nav-link">
+                                <a href="{{route('archiveJobOffers')}}" class="nav-link">
                                                 <span class="icon">
                                                     <i class="bi bi-journals"></i>
                                                 </span>

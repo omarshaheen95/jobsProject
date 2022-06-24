@@ -32,7 +32,7 @@
                     <table class="table text-center" id="users-table">
                         <thead>
                         <th>الاسم</th>
-                        <th>المسمى الوظيفي</th>
+                        <th>العنوان الوظيفي</th>
                         <th>الإجراءات</th>
                         </thead>
                     </table>

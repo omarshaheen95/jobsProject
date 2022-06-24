@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Front\JobOfferController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,4 +65,7 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Front'], function (){
     //User Disability
     Route::post('user_disability', 'ProfileController@userDisability')->name('user_disability.store');
     Route::delete('user_disability/{id}', 'ProfileController@userDisabilityDelete')->name('user_disability.delete');
+
+    Route::post('apply-job-offer/{id}', [JobOfferController::class, 'applyJobOffer'])->name('applyJobOffer');
+    Route::get('job-offers-archive', [JobOfferController::class, 'archiveJobOffers'])->name('archiveJobOffers');
 });

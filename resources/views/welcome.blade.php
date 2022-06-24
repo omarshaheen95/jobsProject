@@ -46,7 +46,7 @@
                 <div class="col-lg-6">
                     <div class="section-title text-center">
                         <h2 class="title">ابحث عن وظيفتك المناسبة</h2>
-                        <p class="info">ينما يستثمر الناس في ترقية أنماط الحياة , نستثمر نحن في المقدرة على تحقيقها</p>
+                        <p class="info">بينما يستثمر الناس في ترقية أنماط الحياة , نستثمر نحن في المقدرة على تحقيقها</p>
                     </div>
                 </div>
             </div>
@@ -57,7 +57,7 @@
                         <a href="{{route('job_offers.all', ['degree[]' => $degree->id])}}" class="career-box">
                             <div class="content">
                                 <h3 class="title">{{$degree->name}}</h3>
-{{--                                <p class="info"> ينما يستثمر الناس في ترقية أنماط الحياة , نستثمر </p>--}}
+{{--                                <p class="info"> بينما يستثمر الناس في ترقية أنماط الحياة , نستثمر </p>--}}
                             </div>
                         </a>
                         @endforeach
@@ -92,8 +92,8 @@
             <div class="row justify-content-center">
                 <div class="col-xl-5 col-lg-6">
                     <div class="section-title text-center">
-                        <h2 class="title">احدث الاخبار</h2>
-                        <p class="info">ينما يستثمر الناس في ترقية أنماط الحياة , نستثمر نحن في المقدرة على تحقيقها</p>
+                        <h2 class="title">أحدث الاخبار</h2>
+                        <p class="info">بينما يستثمر الناس في ترقية أنماط الحياة , نستثمر نحن في المقدرة على تحقيقها</p>
                     </div>
                 </div>
             </div>

@@ -23,7 +23,7 @@ class NewsController extends Controller
             return DataTables::make($rows)
                 ->escapeColumns([])
                 ->addColumn('created_at', function ($row) {
-                    return $row->created_at->format('Ym-m-d H:i:s');
+                    return $row->created_at->format('Y-m-d H:i:s');
                 })
                 ->addColumn('status', function ($row) {
                     return $row->status;

@@ -7,7 +7,7 @@
                 <div class="col-lg-6">
                     <div class="section-title">
                         <h2 class="title">أحدث الوظائف</h2>
-                        <p class="info">ينما يستثمر الناس في ترقية أنماط الحياة , نستثمر نحن في المقدرة على تحقيقها</p>
+                        <p class="info">بينما يستثمر الناس في ترقية أنماط الحياة , نستثمر نحن في المقدرة على تحقيقها</p>
                     </div>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                                             <a href="#!" class="nav-link">{{optional($job_offer->degree)->name}}</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#!" class="nav-link">المسمى الوظيفي : {{optional($job_offer->position)->name}}</a>
+                                            <a href="#!" class="nav-link">العنوان الوظيفي : {{optional($job_offer->position)->name}}</a>
                                         </li>
                                     </ul>
                                     <a href="{{route('job_offers.show', $job_offer->slug)}}" class="btn btn-outline-theme btn-order">  عرض الوظيفة </a>
@@ -66,11 +66,11 @@
                     <div class="accordion accordion-fillter" id="accordionExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#fillter-1" aria-expanded="true" aria-controls="collapseOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fillter-1" aria-expanded="true" aria-controls="collapseOne">
                                     الوزارة او الجهة
                                 </button>
                             </h2>
-                            <div id="fillter-1" class="accordion-collapse collapse show show">
+                            <div id="fillter-1" class="accordion-collapse collapse ">
                                 <div class="accordion-body">
                                     <div class="option-box">
                                         @foreach($ministries as $ministry)
@@ -92,7 +92,7 @@
                                     المؤهل
                                 </button>
                             </h2>
-                            <div id="fillter-2" class="accordion-collapse collapse show">
+                            <div id="fillter-2" class="accordion-collapse collapse ">
                                 <div class="accordion-body">
                                     <div class="option-box">
                                         @foreach($qualifications as $qualification)
@@ -114,7 +114,7 @@
                                     الاختصاص
                                 </button>
                             </h2>
-                            <div id="fillter-3" class="accordion-collapse collapse show">
+                            <div id="fillter-3" class="accordion-collapse collapse ">
                                 <div class="accordion-body">
                                     <div class="option-box">
                                         @foreach($degrees as $degree)
@@ -133,10 +133,10 @@
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingThree">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fillter-4" aria-expanded="false" aria-controls="fillter-4">
-                                    الدرجة الوظيفية
+                                    العنوان الوظيفي
                                 </button>
                             </h2>
-                            <div id="fillter-4" class="accordion-collapse collapse show">
+                            <div id="fillter-4" class="accordion-collapse collapse ">
                                 <div class="accordion-body">
                                     <div class="option-box">
                                         @foreach($positions as $position)

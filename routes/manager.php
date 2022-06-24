@@ -13,6 +13,9 @@ Route::get('/home', function () {
     return view('manager.home');
 })->name('home');
 
+Route::get('subDegreesByDegree/{id}', 'Front\MainController@subDegreesByDegree')->name('subDegreesByDegree');
+
+
 Route::group(['namespace' => 'Manager'], function () {
     Route::get('/home', function () {
         $users[] = Auth::user();
@@ -30,6 +33,8 @@ Route::group(['namespace' => 'Manager'], function () {
     Route::post('profile', 'ManagerController@profile')->name('profile.update');
     Route::get('password', 'ManagerController@view_password')->name('password.show');
     Route::post('password', 'ManagerController@password')->name('password.update');
+
+
 
     //Route Resources
     Route::resources([

@@ -6,8 +6,8 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="section-title">
-                        <h2 class="title">احدث الاخبار</h2>
-                        <p class="info">ينما يستثمر الناس في ترقية أنماط الحياة , نستثمر نحن في المقدرة على تحقيقها</p>
+                        <h2 class="title">أحدث الاخبار</h2>
+                        <p class="info">بينما يستثمر الناس في ترقية أنماط الحياة , نستثمر نحن في المقدرة على تحقيقها</p>
                     </div>
                 </div>
             </div>

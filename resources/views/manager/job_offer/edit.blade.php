@@ -131,7 +131,7 @@
                                         <div class="row">
                                             <div class="col-xl-6">
                                                 <div class="form-group">
-                                                    <label>المسمى الوظيفي</label>
+                                                    <label>العنوان الوظيفي</label>
                                                     <select class="form-control select2L" title="اختر مسمى وظيفي"
                                                             name="position_id">
                                                         @foreach($positions as $position)
@@ -471,6 +471,23 @@
             type="text/javascript"></script>
     <script>
         var clickableSteps = false;
+        var subDegreeURL = '{{ route("manager.subDegreesByDegree", ":id") }}';
+        $('select[name="degree_id"]').change(function () {
+            var id = $(this).val();
+            getSubDegree(id);
+        });
+        function getSubDegree(id, selected = 0)
+        {
+            var url = subDegreeURL;
+            url = url.replace(':id', id );
+            $.ajax({
+                type: "get",
+                url: url,
+            }).done(function (data) {
+                $('select[name="sub_degrees[]"]').html(data.html);
+                $('select[name="sub_degrees[]"]').selectpicker('refresh');
+            });
+        }
 
         @isset($job_offer)
             clickableSteps = true;

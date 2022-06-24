@@ -22,7 +22,7 @@ class JobOffer extends Model implements HasMedia
     ];
 
     protected $cascadeDeletes = [
-        'languages', 'governorates', 'disabilities', 'qualifications', 'sub_degrees', 'ministries'
+        'languages', 'governorates', 'disabilities', 'qualifications', 'sub_degrees', 'ministries', 'users'
     ];
 
     public function position()
@@ -67,7 +67,17 @@ class JobOffer extends Model implements HasMedia
 
     public function users()
     {
-        return $this->belongsToMany(User::class,UserJobOffer::class);
+        return $this->belongsToMany(User::class,UserJobOffer::class)->withPivot(['status', 'created_at']);
+    }
+
+    public function getStatusAttribute($value)
+    {
+        switch ($this->pivot->status)
+        {
+            case 'pending': return 'قيد الإنتظار';
+            case 'approve': return 'مقبول';
+            case 'rejected': return 'مرفوض';
+        }
     }
 
     public function getSlugOptions() : SlugOptions

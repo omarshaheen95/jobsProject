@@ -59,8 +59,19 @@ class User extends Authenticatable
 
     public function jobOffers()
     {
-        return $this->belongsToMany(JobOffer::class, UserJobOffer::class);
+        return $this->belongsToMany(JobOffer::class, UserJobOffer::class)->withPivot(['created_at', 'status']);
     }
+
+    public function getStatusAttribute($value)
+    {
+        switch ($this->pivot->status)
+        {
+            case 'pending': return 'قيد الإنتظار';
+            case 'approve': return 'مقبول';
+            case 'rejected': return 'مرفوض';
+        }
+    }
+
 
     public function userExperiences()
     {

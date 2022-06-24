@@ -188,7 +188,7 @@ return [
         'company_id'                  => 'الشركة',
         'branch_id'                  => 'الفرع',
         'department_id'                  => 'القسم',
-        'position_id'                  => 'المسمى الوظيفي',
+        'position_id'                  => 'العنوان الوظيفي',
         'group_id'                  => 'المجموعة',
         'publish_status'                  => 'حالة النشر',
         'name.ar'                  => 'الاسم باللغة العربية',
