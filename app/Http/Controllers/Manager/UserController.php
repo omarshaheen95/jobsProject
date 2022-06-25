@@ -30,6 +30,18 @@ class UserController extends Controller
                 ->addColumn('status', function ($row){
                     return $row->status;
                 })
+                ->addColumn('uid', function ($row){
+                    return optional($row->userInfo)->uid ?? 'غير مسجل';
+                })
+                ->addColumn('gender', function ($row){
+                    return optional($row->userInfo)->gender ?? 'غير مسجل';
+                })
+                ->addColumn('governorate', function ($row){
+                    return optional(optional($row->userInfo)->governorate)->name ?? 'غير مسجل';
+                })
+                ->addColumn('mobile', function ($row){
+                    return optional($row->userInfo)->mobile ?? 'غير مسجل';
+                })
                 ->addColumn('actions', function ($row){
                     $show_url = route('manager.user.show', $row->id);
                     return view('manager.settings.actions_buttons', compact('row', 'show_url'));

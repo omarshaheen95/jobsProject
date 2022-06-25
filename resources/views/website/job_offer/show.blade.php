@@ -258,8 +258,8 @@
                             <img src="{{asset('front/img/order-2.png')}}" alt="">
                         </div>
                         <div class="content">
-                            <h2 class="title"> أنت الان علي وشك التقيديم علي وظيفة </h2>
-                            <p class="info"> بالضغط علي استمرار أنت تقر و تتعهد أن المعلومات المقدمة صحيحة </p>
+                            <h2 class="title"> أنت الان علي وشك التقديم علي وظيفة </h2>
+                            <p class="info"> بالضغط علي استمرار أنت تقر وتتعهد أن المعلومات المقدمة صحيحة </p>
                             <form action="{{route('applyJobOffer', $job_offer->id)}}" method="post">
                                 @csrf
                                 <button type="submit" class="btn btn-theme w-100"> استمرار </button>

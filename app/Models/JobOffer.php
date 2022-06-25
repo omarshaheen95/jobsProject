@@ -72,11 +72,16 @@ class JobOffer extends Model implements HasMedia
 
     public function getStatusAttribute($value)
     {
-        switch ($this->pivot->status)
+        if ($this->pivot)
         {
-            case 'pending': return 'قيد الإنتظار';
-            case 'approve': return 'مقبول';
-            case 'rejected': return 'مرفوض';
+            switch ($this->pivot->status)
+            {
+                case 'pending': return 'قيد الإنتظار';
+                case 'approve': return 'مقبول';
+                case 'rejected': return 'مرفوض';
+            }
+        }else{
+            return null;
         }
     }
 

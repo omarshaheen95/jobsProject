@@ -20,7 +20,7 @@
                     <div class="kt-widget kt-widget--user-profile-3">
                         <div class="kt-widget__top">
                             <div class="kt-widget__media kt-hidden-">
-                                <img src="{{ optional($user->userInfo)->getFirstMediaUrl('users') }}" alt="image">
+                                <img src="{{ optional(optional($user->userInfo))->getFirstMediaUrl('users') }}" alt="image">
                             </div>
                             <div class="kt-widget__content">
                                 <div class="kt-widget__head">
@@ -41,7 +41,7 @@
                                         <label href="#" class="mr-2">مسجل منذ
                                             : {{ $user->created_at->toDateTimeString() }}</label>
                                         <br>
-                                        <label href="#" class="mr-2">الجنس : {{ $user->userInfo->gender_name }}</label>
+                                        <label href="#" class="mr-2">الجنس : {{ optional($user->userInfo)->gender_name }}</label>
                                     </div>
                                 </div>
                             </div>
@@ -49,33 +49,33 @@
                             </div>
                             <div class="kt-widget__content">
                                 <div class="kt-widget__head">
-                                    <label><span>رقم الهوية</span>: {{ $user->userInfo->uid }}</label>
+                                    <label><span>رقم الهوية</span>: {{ optional($user->userInfo)->uid }}</label>
                                 </div>
                                 <div class="kt-widget__subhead">
-                                    <label><span>الاسم كاملا</span>: {{ $user->userInfo->full_name }}</label>
+                                    <label><span>الاسم كاملا</span>: {{ optional($user->userInfo)->full_name }}</label>
                                 </div>
                                 <div class="kt-widget__head">
-                                    <label><span>الموبايل</span>: {{ $user->userInfo->mobile }}</label>
+                                    <label><span>الموبايل</span>: {{ optional($user->userInfo)->mobile }}</label>
                                 </div>
                                 <div class="kt-widget__subhead">
-                                    <label><span>الهاتف</span>: {{ $user->userInfo->phone }}</label>
+                                    <label><span>الهاتف</span>: {{ optional($user->userInfo)->phone }}</label>
                                 </div>
                             </div>
                             <div class="kt-widget__content">
                                 <div class="kt-widget__head">
-                                    <label><span>مكان الميلاد</span>: {{ $user->userInfo->birthGovernorate->name }}
+                                    <label><span>مكان الميلاد</span>: {{ optional(optional($user->userInfo)->birthGovernorate)->name }}
                                     </label>
                                 </div>
                                 <div class="kt-widget__subhead">
-                                    <label><span>المحافظة الحالية</span>: {{ $user->userInfo->governorate->name }}
+                                    <label><span>المحافظة الحالية</span>: {{optional( optional($user->userInfo)->governorate)->name }}
                                     </label>
                                 </div>
                                 <div class="kt-widget__head">
-                                    <label><span>العنوان</span>: {{ $user->userInfo->address }}</label>
+                                    <label><span>العنوان</span>: {{ optional($user->userInfo)->address }}</label>
                                 </div>
                                 <div class="kt-widget__subhead">
-                                    <label><span>تاريخ الميلاد</span>: {{ $user->userInfo->dob }} - العمر
-                                        : {{\Carbon\Carbon::parse($user->userInfo->dob)->age}} سنة </label>
+                                    <label><span>تاريخ الميلاد</span>: {{ optional($user->userInfo)->dob }} - العمر
+                                        : {{\Carbon\Carbon::parse(optional($user->userInfo)->dob)->age}} سنة </label>
                                 </div>
                             </div>
                         </div>
@@ -83,39 +83,39 @@
                             <div class="kt-widget__item">
                                 <div class="kt-widget__details">
                                     <span class="kt-widget__title">الحالة الاجتماعية</span>
-                                    <span class="kt-widget__value">{{$user->userInfo->marital_status_name}}</span>
+                                    <span class="kt-widget__value">{{optional($user->userInfo)->marital_status_name}}</span>
                                 </div>
                             </div>
                             <div class="kt-widget__item">
                                 <div class="kt-widget__details">
                                     <span class="kt-widget__title">عدد الأبناء</span>
-                                    <span class="kt-widget__value">{{$user->userInfo->number_of_children}}</span>
+                                    <span class="kt-widget__value">{{optional($user->userInfo)->number_of_children}}</span>
                                 </div>
                             </div>
                             <div class="kt-widget__item">
                                 <div class="kt-widget__details">
                                     <span class="kt-widget__title">عدد الموظفين في العائلة</span>
-                                    <span class="kt-widget__value">{{$user->userInfo->number_of_employees}}</span>
+                                    <span class="kt-widget__value">{{optional($user->userInfo)->number_of_employees}}</span>
                                 </div>
                             </div>
                             <div class="kt-widget__item">
                                 <div class="kt-widget__details">
                                     <span class="kt-widget__title">من فئة الطلاب المبتعثين</span>
                                     <span
-                                        class="kt-widget__value">{{$user->userInfo->scholarship_student ? 'نعم':'لا'}}</span>
+                                        class="kt-widget__value">{{optional($user->userInfo)->scholarship_student ? 'نعم':'لا'}}</span>
                                 </div>
                             </div>
                             <div class="kt-widget__item">
                                 <div class="kt-widget__details">
                                     <span class="kt-widget__title">من فئة الطلاب 10 الأوائل</span>
                                     <span
-                                        class="kt-widget__value">{{$user->userInfo->scholarship_student ? 'نعم':'لا'}}</span>
+                                        class="kt-widget__value">{{optional($user->userInfo)->scholarship_student ? 'نعم':'لا'}}</span>
                                 </div>
                             </div>
                             <div class="kt-widget__item">
                                 <div class="kt-widget__details">
                                     <span class="kt-widget__title">يعمل في القطاع الخاص</span>
-                                    <span class="kt-widget__value">{{$user->userInfo->unemployed ? 'نعم':'لا'}}</span>
+                                    <span class="kt-widget__value">{{optional($user->userInfo)->unemployed ? 'نعم':'لا'}}</span>
                                 </div>
                             </div>
                         </div>
@@ -124,35 +124,35 @@
                                 <div class="kt-widget__details">
                                     <span class="kt-widget__title">يعمل في منظمات غير حكومية</span>
                                     <span
-                                        class="kt-widget__value">{{$user->userInfo->work_nonGovernmental_org ? 'نعم':'لا'}}</span>
+                                        class="kt-widget__value">{{optional($user->userInfo)->work_nonGovernmental_org ? 'نعم':'لا'}}</span>
                                 </div>
                             </div>
                             <div class="kt-widget__item">
                                 <div class="kt-widget__details">
                                     <span class="kt-widget__title">مسجل عاطل عن العمل في الوزارة</span>
                                     <span
-                                        class="kt-widget__value">{{$user->userInfo->registered_unemployed_ministry ? 'نعم':'لا'}}</span>
+                                        class="kt-widget__value">{{optional($user->userInfo)->registered_unemployed_ministry ? 'نعم':'لا'}}</span>
                                 </div>
                             </div>
                             <div class="kt-widget__item">
                                 <div class="kt-widget__details">
                                     <span class="kt-widget__title">من فئة ذوي الأسرى</span>
                                     <span
-                                        class="kt-widget__value">{{$user->userInfo->family_of_prisoners ? 'نعم':'لا'}}</span>
+                                        class="kt-widget__value">{{optional($user->userInfo)->family_of_prisoners ? 'نعم':'لا'}}</span>
                                 </div>
                             </div>
                             <div class="kt-widget__item">
                                 <div class="kt-widget__details">
                                     <span class="kt-widget__title">من فئة ذوي الجرحى</span>
                                     <span
-                                        class="kt-widget__value">{{$user->userInfo->injured_people ? 'نعم':'لا'}}</span>
+                                        class="kt-widget__value">{{optional($user->userInfo)->injured_people ? 'نعم':'لا'}}</span>
                                 </div>
                             </div>
                             <div class="kt-widget__item">
                                 <div class="kt-widget__details">
                                     <span class="kt-widget__title">من فئة ذوي الشهداء</span>
                                     <span
-                                        class="kt-widget__value">{{$user->userInfo->family_of_martyrs ? 'نعم':'لا'}}</span>
+                                        class="kt-widget__value">{{optional($user->userInfo)->family_of_martyrs ? 'نعم':'لا'}}</span>
                                 </div>
                             </div>
                         </div>
