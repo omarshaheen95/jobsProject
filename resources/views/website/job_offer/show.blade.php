@@ -248,7 +248,7 @@
                             <img src="{{asset('front/img/order-1.png')}}" alt="">
                         </div>
                         <div class="content">
-                            <h2 class="title"> للتقدم علي هذه الوظيفة يجب عليك اكمال الطلب و البيانات التالية </h2>
+                            <h2 class="title"> للتقدم على هذه الوظيفة يجب عليك اكمال الطلب و البيانات التالية </h2>
                             <a href="profile-quiz.html" class="btn btn-theme w-100"> استمرار </a>
                         </div>
                     </div>
@@ -258,8 +258,8 @@
                             <img src="{{asset('front/img/order-2.png')}}" alt="">
                         </div>
                         <div class="content">
-                            <h2 class="title"> أنت الان علي وشك التقديم علي وظيفة </h2>
-                            <p class="info"> بالضغط علي استمرار أنت تقر وتتعهد أن المعلومات المقدمة صحيحة </p>
+                            <h2 class="title"> أنت الان على وشك التقديم على وظيفة </h2>
+                            <p class="info"> بالضغط على استمرار أنت تقر وتتعهد أن المعلومات المقدمة صحيحة </p>
                             <form action="{{route('applyJobOffer', $job_offer->id)}}" method="post">
                                 @csrf
                                 <button type="submit" class="btn btn-theme w-100"> استمرار </button>
