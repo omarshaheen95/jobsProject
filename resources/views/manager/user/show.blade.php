@@ -20,7 +20,8 @@
                     <div class="kt-widget kt-widget--user-profile-3">
                         <div class="kt-widget__top">
                             <div class="kt-widget__media kt-hidden-">
-                                <img src="{{ optional(optional($user->userInfo))->getFirstMediaUrl('users') }}" alt="image">
+                                <img src="{{ optional(optional($user->userInfo))->getFirstMediaUrl('users') }}"
+                                     alt="image">
                             </div>
                             <div class="kt-widget__content">
                                 <div class="kt-widget__head">
@@ -41,7 +42,8 @@
                                         <label href="#" class="mr-2">مسجل منذ
                                             : {{ $user->created_at->toDateTimeString() }}</label>
                                         <br>
-                                        <label href="#" class="mr-2">الجنس : {{ optional($user->userInfo)->gender_name }}</label>
+                                        <label href="#" class="mr-2">الجنس
+                                            : {{ optional($user->userInfo)->gender_name }}</label>
                                     </div>
                                 </div>
                             </div>
@@ -83,19 +85,22 @@
                             <div class="kt-widget__item">
                                 <div class="kt-widget__details">
                                     <span class="kt-widget__title">الحالة الاجتماعية</span>
-                                    <span class="kt-widget__value">{{optional($user->userInfo)->marital_status_name}}</span>
+                                    <span
+                                        class="kt-widget__value">{{optional($user->userInfo)->marital_status_name}}</span>
                                 </div>
                             </div>
                             <div class="kt-widget__item">
                                 <div class="kt-widget__details">
                                     <span class="kt-widget__title">عدد الأبناء</span>
-                                    <span class="kt-widget__value">{{optional($user->userInfo)->number_of_children}}</span>
+                                    <span
+                                        class="kt-widget__value">{{optional($user->userInfo)->number_of_children}}</span>
                                 </div>
                             </div>
                             <div class="kt-widget__item">
                                 <div class="kt-widget__details">
                                     <span class="kt-widget__title">عدد الموظفين في العائلة</span>
-                                    <span class="kt-widget__value">{{optional($user->userInfo)->number_of_employees}}</span>
+                                    <span
+                                        class="kt-widget__value">{{optional($user->userInfo)->number_of_employees}}</span>
                                 </div>
                             </div>
                             <div class="kt-widget__item">
@@ -115,7 +120,8 @@
                             <div class="kt-widget__item">
                                 <div class="kt-widget__details">
                                     <span class="kt-widget__title">يعمل في القطاع الخاص</span>
-                                    <span class="kt-widget__value">{{optional($user->userInfo)->unemployed ? 'نعم':'لا'}}</span>
+                                    <span
+                                        class="kt-widget__value">{{optional($user->userInfo)->unemployed ? 'نعم':'لا'}}</span>
                                 </div>
                             </div>
                         </div>
@@ -196,14 +202,14 @@
                         <div class="tab-pane active" id="qualifications" role="tabpanel">
                             <table class="table text-center" id="qualifications-table">
                                 <thead>
-                                    <td>المؤهل</td>
-                                    <td>التخصص العام</td>
-                                    <td>التخصص الدقيق</td>
-                                    <td>المعهد/المدرسة/الجامعة</td>
-                                    <td>بلد التخرج</td>
-                                    <td>تاريخ التخرج</td>
-                                    <td>المعدل</td>
-                                    <td>التقدير</td>
+                                <td>المؤهل</td>
+                                <td>التخصص العام</td>
+                                <td>التخصص الدقيق</td>
+                                <td>المعهد/المدرسة/الجامعة</td>
+                                <td>بلد التخرج</td>
+                                <td>تاريخ التخرج</td>
+                                <td>المعدل</td>
+                                <td>التقدير</td>
                                 </thead>
                             </table>
                         </div>
@@ -257,16 +263,20 @@
                             </table>
                         </div>
                         <div class="tab-pane " id="job_applications" role="tabpanel">
-                            <table class="table text-center" id="job_applications-table">
+                            <table class="table text-center" id="userJobOffers-table">
                                 <thead>
-
+                                    <td>التعيين</td>
+                                    <td>حالة الطلب</td>
+                                    <td>تاريخ التقديم</td>
                                 </thead>
                             </table>
                         </div>
                         <div class="tab-pane " id="interviews" role="tabpanel">
-                            <table class="table text-center" id="interviews-table">
+                            <table class="table text-center" id="userInterviews-table">
                                 <thead>
-
+                                    <td>التعيين</td>
+                                    <td>مكان المقابلة</td>
+                                    <td>تاريخ المقابلة</td>
                                 </thead>
                             </table>
                         </div>
@@ -451,6 +461,60 @@
                     {data: 'disability.name', name: 'disability.name'},
                     {data: 'disability_rate', name: 'disability_rate'},
                     {data: 'enterprise_follow_up', name: 'enterprise_follow_up'},
+                ],
+            });
+        });
+        $(function () {
+            var url = '{{ route('manager.userJobOffers', ':id') }}';
+            url = url.replace(':id', userId);
+            $('#userJobOffers-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ordering: false,
+                searching: false,
+                dom: `<'row'<'col-sm-12'tr>>
+      <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
+
+                language: {
+                    url: "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Arabic.json"
+                },
+                ajax: {
+                    url: url,
+                    data: function (d) {
+                        d.search = $("#search").val();
+                    }
+                },
+                columns: [
+                    {data: 'job_offer', name: 'job_offer'},
+                    {data: 'status', name: 'status'},
+                    {data: 'created_at', name: 'created_at'},
+                ],
+            });
+        });
+        $(function () {
+            var url = '{{ route('manager.userInterviews', ':id') }}';
+            url = url.replace(':id', userId);
+            $('#userInterviews-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ordering: false,
+                searching: false,
+                dom: `<'row'<'col-sm-12'tr>>
+      <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
+
+                language: {
+                    url: "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Arabic.json"
+                },
+                ajax: {
+                    url: url,
+                    data: function (d) {
+                        d.search = $("#search").val();
+                    }
+                },
+                columns: [
+                    {data: 'job_offer', name: 'job_offer'},
+                    {data: 'interview_place', name: 'interview_place'},
+                    {data: 'interview_date', name: 'interview_date'},
                 ],
             });
         });

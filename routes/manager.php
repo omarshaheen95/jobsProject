@@ -68,6 +68,8 @@ Route::group(['namespace' => 'Manager'], function () {
     Route::get('user-experiences/{id}', [UserController::class, 'userExperiences'])->name('userExperiences');
     Route::get('user-languages/{id}', [UserController::class, 'userLanguages'])->name('userLanguages');
     Route::get('user-disabilities/{id}', [UserController::class, 'userDisabilities'])->name('userDisabilities');
+    Route::get('user-job-offers/{id}', [UserController::class, 'userJobOffers'])->name('userJobOffers');
+    Route::get('user-interviews/{id}', [UserController::class, 'userInterviews'])->name('userInterviews');
 
     //Page
     Route::get('page', 'PageController@index')->name('page.index');

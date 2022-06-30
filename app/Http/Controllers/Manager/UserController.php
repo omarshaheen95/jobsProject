@@ -4,14 +4,17 @@ namespace App\Http\Controllers\Manager;
 
 use App\Exports\UserExport;
 use App\Http\Controllers\Controller;
+use App\Models\Interview;
 use App\Models\User;
 use App\Models\UserCourse;
 use App\Models\UserDisability;
 use App\Models\UserExperience;
+use App\Models\UserJobOffer;
 use App\Models\UserLanguage;
 use App\Models\UserQualification;
 use App\Models\UserSkill;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -167,6 +170,50 @@ class UserController extends Controller
             })
             ->addColumn('disability_rate', function ($row){
                 return $row->disability_rate . '%';
+            })
+            ->addColumn('actions', function ($row){
+                return '';
+            })->make();
+    }
+
+    public function userJobOffers($id)
+    {
+        $rows = UserJobOffer::query()
+            ->has('jobOffer')
+            ->with(['jobOffer'])
+            ->where('user_id', $id)
+            ->latest();
+        return DataTables::make($rows)
+            ->escapeColumns([])
+            ->addColumn('created_at', function ($row){
+                return $row->created_at->toDateTimeString();
+            })
+            ->addColumn('job_offer', function ($row){
+                return optional($row->jobOffer)->name;
+            })
+            ->addColumn('status', function ($row){
+                return $row->status_name;
+            })
+            ->addColumn('actions', function ($row){
+                return '';
+            })->make();
+    }
+
+    public function userInterviews($id)
+    {
+        $rows = Interview::query()
+            ->with(['user_job_offer', 'user_job_offer.jobOffer'])
+            ->whereHas('user_job_offer', function(Builder $query) use ($id){
+                $query->where('user_id', $id);
+            })
+            ->latest();
+        return DataTables::make($rows)
+            ->escapeColumns([])
+            ->addColumn('created_at', function ($row){
+                return $row->created_at->toDateTimeString();
+            })
+            ->addColumn('job_offer', function ($row){
+                return $row->user_job_offer->jobOffer->name;
             })
             ->addColumn('actions', function ($row){
                 return '';
