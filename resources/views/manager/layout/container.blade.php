@@ -260,6 +260,13 @@
                                 <span class="kt-menu__link-text">اللغات</span>
                             </a>
                         </li>
+                        <li class="kt-menu__item  @if(Route::is('manager.external-link.*') ) kt-menu__item--active @endif"
+                            aria-haspopup="true">
+                            <a href="{{route('manager.external-link.index')}}" class="kt-menu__link ">
+                                <i class="kt-menu__link-icon flaticon2-placeholder"></i>
+                                <span class="kt-menu__link-text">الراوبط الخارجية</span>
+                            </a>
+                        </li>
                         <li class="kt-menu__item  @if(Route::is('manager.country.*') ) kt-menu__item--active @endif"
                             aria-haspopup="true">
                             <a href="{{route('manager.country.index')}}" class="kt-menu__link ">

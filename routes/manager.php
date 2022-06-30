@@ -49,6 +49,7 @@ Route::group(['namespace' => 'Manager'], function () {
         'country' => 'CountryController',
         'language' => 'LanguageController',
         'position' => 'PositionController',
+        'external-link' => 'ExternalLinkController',
         'news' => 'NewsController',
         'user' => 'UserController',
         'manager' => 'ManagerController',

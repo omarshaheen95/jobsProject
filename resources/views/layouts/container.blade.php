@@ -157,18 +157,11 @@
                 <div class="links">
                     <h3 class="footer-title"> روابط خارجية</h3>
                     <ul class="nav">
+                        @foreach($external_links as $external_link)
                         <li class="nav-item">
-                            <a href="index.html" class="nav-link">وزارة التربية والتعليم</a>
+                            <a href="{{$external_link->url_link}}" class="nav-link">{{$external_link->name}}</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="index.html" class="nav-link">وزارة التربية والتعليم</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="index.html" class="nav-link">وزارة التربية والتعليم</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="index.html" class="nav-link">وزارة التربية والتعليم</a>
-                        </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
