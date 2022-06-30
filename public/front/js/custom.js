@@ -184,10 +184,6 @@ $(".get-more-career").on("click", function () {
     var btn = $(this) ;
     btn.addClass("disabled");
     btn.find(".spinner-border").removeClass("d-none");
-    var positions_ids = [];
-    $('input[name="position[]"]:checked').each(function(i, e) {
-        positions_ids.push($(this).val());
-    });
     var degrees_ids = [];
     $('input[name="degree[]"]:checked').each(function(i, e) {
         degrees_ids.push($(this).val());
@@ -211,7 +207,6 @@ $(".get-more-career").on("click", function () {
             "ministry[]":ministries_ids,
             "qualification[]": qualifications_ids,
             "degree[]": degrees_ids,
-            "position[]": positions_ids,
         },
         success: function(res){
             var res = JSON.parse(res);

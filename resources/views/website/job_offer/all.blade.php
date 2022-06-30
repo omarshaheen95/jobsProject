@@ -130,28 +130,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingThree">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fillter-4" aria-expanded="false" aria-controls="fillter-4">
-                                    العنوان الوظيفي
-                                </button>
-                            </h2>
-                            <div id="fillter-4" class="accordion-collapse collapse ">
-                                <div class="accordion-body">
-                                    <div class="option-box">
-                                        @foreach($positions as $position)
-                                        <div class="form-check">
-                                            <input class="form-check-input" onchange="jobSearch()" type="checkbox" value="{{$position->id}}" name="position[]" id="option-4-{{$position->id}}">
-                                            <label class="form-check-label" for="option-4-{{$position->id}}">
-                                                <span> {{$position->name}} </span>
-                                                <span> ( {{$position->job_offers_count}} )</span>
-                                            </label>
-                                        </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

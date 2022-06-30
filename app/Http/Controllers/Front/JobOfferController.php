@@ -27,7 +27,10 @@ class JobOfferController extends Controller
         $job_offers = JobOffer::query()->with(['position', 'degree', 'media'])
 //            ->where('publish_at', '>=', now())
             ->when($name, function (Builder $query) use ($name) {
-                $query->where('name', 'like', "%$name%");
+                $query->where(function(Builder $query) use($name){
+                    $query->where('name', 'like', "%$name%")
+                        ->orWhere('tags', 'like', "%$name%");
+                });
             })
             ->when(count($ministries), function (Builder $query) use ($ministries) {
                 $query->whereHas('ministries', function (Builder $q) use ($ministries){
@@ -73,9 +76,6 @@ class JobOfferController extends Controller
             //$query->where('publish_at', '>=', now());
         }])->orderByDesc('job_offers_count')->get();
 
-        $positions = Position::query()->withCount(['job_offers' => function ($query) {
-            //$query->where('publish_at', '>=', now());
-        }])->orderByDesc('job_offers_count')->get();
 
 
 //        dd($job_offers);
@@ -100,6 +100,11 @@ class JobOfferController extends Controller
     {
         $user = Auth::guard('web')->user();
         $job_offer = JobOffer::query()->findOrFail($id);
+
+        if(!$user->userInfo)
+        {
+            return redirect()->back()->with('message', 'لا يمكن التقديم على الوظيفة حتى يتم اكمال الملف الشخصي')->with('m-class', 'error');
+        }
 
         if($user->jobOffers()->where('job_offer_id', $id)->first())
         {

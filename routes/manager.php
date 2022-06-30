@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Manager\JobOfferController;
 use App\Http\Controllers\Manager\UserController;
 
 Route::get('/home', function () {
@@ -56,6 +57,10 @@ Route::group(['namespace' => 'Manager'], function () {
         'qualification' => 'QualificationController',
     ]);
 
+    Route::get('job-offers-users/{id}', [JobOfferController::class, 'usersJobOffers'])->name('job_offer.users');
+    Route::get('job-offers-users/{id}/status', [JobOfferController::class, 'userJobOfferStatus'])->name('job_offer.status');
+    Route::post('job-offers-users/{id}/status', [JobOfferController::class, 'updateUserJobOfferStatus'])->name('job_offer.update_status');
+    Route::delete('job-offers-users/{id}', [JobOfferController::class, 'deleteUserJobOffer'])->name('job_offer.deleteUsers');
     Route::get('user-excel-export', [UserController::class, 'exportUserExcel'])->name('exportUserExcel');
     Route::get('user-qualifications/{id}', [UserController::class, 'userQualifications'])->name('userQualifications');
     Route::get('user-skills/{id}', [UserController::class, 'userSkills'])->name('userSkills');
