@@ -32,19 +32,19 @@
                             <a href="#main-menu" class="navbar-close" data-bs-toggle="collapse"> &times; </a>
                         </div>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item {{Route::is('/') ? 'active':''}}">
                         <a class="nav-link" href="/">الرئيسية <span class="visually-hidden">(current)</span></a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {{Route::is('news.*') ? 'active':''}}">
                         <a class="nav-link" href="{{route('news.all')}}">الاخبار</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {{Route::is('job_offers.*') ? 'active':''}}">
                         <a class="nav-link" href="{{route('job_offers.all')}}">أحدث الوظائف</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {{Route::is('page.*') ? 'active':''}}">
                         <a class="nav-link" href="{{route('page.show', 'about_us')}}">عن النظام</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {{Route::is('contact_us.*') ? 'active':''}}">
                         <a class="nav-link" href="{{route('contact_us.show')}}">تواصل معنا</a>
                     </li>
                 </ul>
@@ -66,7 +66,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="triggerId">
                         <a class="dropdown-item" href="{{route('profile.step','general')}}">الملف الشخصي</a>
-                        <a class="dropdown-item" href="#">تغيير كلمة السر</a>
+                        <a class="dropdown-item" href="{{route('password')}}">تغيير كلمة السر</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();

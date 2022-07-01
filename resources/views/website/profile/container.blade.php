@@ -21,7 +21,7 @@
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();" class="text-danger"> تسجيل خروج</a>
                         </div>
-                        <a href="config.html" class="btn-config">
+                        <a href="{{route('changePassword')}}" class="btn-config">
                             <i class="bi bi-gear"></i>
                         </a>
                         <a href="#profile-list" data-bs-toggle="collapse" class="btn-profile-list d-block d-xl-none">

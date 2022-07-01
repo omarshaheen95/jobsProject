@@ -39,7 +39,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('interviews')}}" class="nav-link">
+                                    <a href="{{route('interviews')}}" class="nav-link @if(Route::is('interviews') ) active @endif">
                                                 <span class="icon">
                                                     <i class="bi bi-briefcase"></i>
                                                 </span>
@@ -63,7 +63,7 @@
                     <div class="profile-body">
                         <div class="table-content form-step-box">
                             <div class="head">
-                                <h3 class="title"> أرشيف طلبات التوظيف </h3>
+                                <h3 class="title"> المقابلات </h3>
                             </div>
 
                             <div class="table-responsive">
@@ -71,20 +71,20 @@
                                     <thead>
                                     <tr>
                                         <th>العرض الوظيفي</th>
-                                        <th>تاريخ التقديم</th>
-                                        <th>حالة الطلب</th>
+                                        <th>تاريخ المقابلة</th>
+                                        <th>مكان المقابلة</th>
                                         <th>معاينة العرض</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($job_offers as $job_offer)
+                                    @foreach($interviews as $interview)
                                     <tr id="row_1">
-                                        <td> {{$job_offer->name}} </td>
-                                        <td> {{$job_offer->pivot->created_at}} </td>
+                                        <td> {{$interview->user_job_offer->jobOffer->name}} </td>
+                                        <td> {{$interview->interview_date}} </td>
                                         <td>
-                                            {{$job_offer->status}}
+                                            {{$interview->interview_place}}
                                         </td>
-                                        <td> <a href="{{route('job_offers.show', $job_offer->slug)}}">معاينة</a>  </td>
+                                        <td> <a href="{{route('job_offers.show', $interview->user_job_offer->jobOffer->slug)}}">معاينة</a>  </td>
                                     </tr>
                                     @endforeach
                                     </tbody>

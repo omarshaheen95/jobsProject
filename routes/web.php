@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\JobOfferController;
+use App\Http\Controllers\Front\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,8 +46,6 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Front'], function (){
 
     Route::get('profile-step/{step}', 'ProfileController@profile')->name('profile.step');
     Route::post('update-profile', 'ProfileController@updateProfile')->name('profile.update');
-    Route::get('interviews', 'ProfileController@home')->name('interviews');
-    Route::get('application_archive', 'ProfileController@home')->name('application_archive');
     //User Qualifications
     Route::post('user_qualification', 'ProfileController@userQualification')->name('user_qualification.store');
     Route::delete('user_qualification/{id}', 'ProfileController@userQualificationDelete')->name('user_qualification.delete');
@@ -68,4 +67,8 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Front'], function (){
 
     Route::post('apply-job-offer/{id}', [JobOfferController::class, 'applyJobOffer'])->name('applyJobOffer');
     Route::get('job-offers-archive', [JobOfferController::class, 'archiveJobOffers'])->name('archiveJobOffers');
+    Route::get('interviews', [JobOfferController::class, 'interviews'])->name('interviews');
+    Route::get('password', [ProfileController::class, 'changePassword'])->name('changePassword');
+    Route::post('password', [ProfileController::class, 'password'])->name('password');
+
 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\Degree;
+use App\Models\Interview;
 use App\Models\JobOffer;
 use App\Models\Ministry;
 use App\Models\Position;
@@ -127,5 +128,19 @@ class JobOfferController extends Controller
         $user = Auth::guard('web')->user();
         $job_offers = $user->jobOffers()->orderBy('user_job_offers.created_at', 'desc')->get();
         return view('website.profile.archive', compact('user', 'job_offers', 'title'));
+    }
+
+    public function interviews()
+    {
+        $title = 'مقابلاتي';
+        $user = Auth::guard('web')->user();
+        $interviews = Interview::query()
+            ->with(['user_job_offer', 'user_job_offer.jobOffer'])
+            ->whereHas('user_job_offer', function(Builder $query) use ($user){
+                $query->where('user_id', $user->id);
+            })
+            ->latest()
+            ->get();
+        return view('website.profile.interviews', compact('user', 'interviews', 'title'));
     }
 }

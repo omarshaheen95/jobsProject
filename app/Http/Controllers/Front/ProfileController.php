@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PasswordRequest;
 use App\Http\Requests\UserCourseRequest;
 use App\Http\Requests\UserDisabilityRequest;
 use App\Http\Requests\UserExperienceRequest;
@@ -23,8 +24,10 @@ use App\Models\UserExperience;
 use App\Models\UserLanguage;
 use App\Models\UserQualification;
 use App\Models\UserSkill;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -249,5 +252,27 @@ class ProfileController extends Controller
         $user = Auth::guard('web')->user();
         UserDisability::query()->where('user_id', $user->id)->where('id', $id)->delete();
         return $this->sendResponse(null, 'تم حذف الوضع الصحي بنجاح');
+    }
+
+    public function changePassword()
+    {
+        $title = 'تغيير كلمة المرور';
+        return view('website.profile.password', compact('title'));
+    }
+
+    public function password(PasswordRequest $request)
+    {
+        $user = Auth::guard('web')->user();
+        $request->validate([
+            'current_password' => 'required',
+            'password' => 'required|min:6|confirmed'
+        ]);
+        if(Hash::check($request->get('current_password'), $user->password)) {
+            $data['password'] = bcrypt($request->get('password'));
+            $user->update($data);
+        }else{
+            return $this->sendError( 'كلمة المرور الحالية خاطئة', 422);
+        }
+        return $this->sendResponse(null, 'تم تغيير كلمة المرور بنجاح');
     }
 }
