@@ -14,7 +14,7 @@ class GovernorateController extends Controller
     {
         if ($request->ajax())
         {
-            $rows = Governorate::query()->latest();
+            $rows = Governorate::query()->search($request)->latest();
             return DataTables::make($rows)
                 ->escapeColumns([])
                 ->addColumn('status', function ($row){

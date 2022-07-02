@@ -14,7 +14,7 @@ class LanguageController extends Controller
     {
         if ($request->ajax())
         {
-            $rows = Language::query()->latest();
+            $rows = Language::query()->search($request)->latest();
             return DataTables::make($rows)
                 ->escapeColumns([])
                 ->addColumn('status', function ($row){

@@ -14,7 +14,7 @@ class DisabilityController extends Controller
     {
         if ($request->ajax())
         {
-            $rows = Disability::query()->latest();
+            $rows = Disability::query()->search($request)->latest();
             return DataTables::make($rows)
                 ->escapeColumns([])
                 ->addColumn('status', function ($row){

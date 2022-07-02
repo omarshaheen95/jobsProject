@@ -29,6 +29,24 @@
                     </div>
                 </div>
                 <div class="kt-portlet__body">
+                    <form class="kt-form kt-form--fit kt-margin-b-15" action="" id="search_form" method="get">
+                        <div class="row ">
+                            <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile kt-margin-b-15">
+                                <label>الاسم :</label>
+                                <input type="text" name="name" id="name" class="form-control kt-input"
+                                       placeholder="الاسم ">
+                            </div>
+                            <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile kt-margin-b-15">
+                                <label>الإجراءات:</label>
+                                <br/>
+                                <button type="button" class="btn btn-danger btn-elevate btn-icon-sm" id="kt_search">
+                                    <i class="la la-search"></i>
+                                    بحث
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
                     <table class="table text-center" id="users-table">
                         <thead>
                         <th>الاسم</th>
@@ -93,7 +111,10 @@
                     ajax: {
                         url : '{{ route('manager.degree.index') }}',
                         data: function (d) {
-                            d.search = $("#search").val();
+                            var frm_data = $('#search_form').serializeArray();
+                            $.each(frm_data, function (key, val) {
+                                d[val.name] = val.value;
+                            });
                         }
                     },
                     columns: [
@@ -103,7 +124,8 @@
                     ],
                 });
             });
-            $('#search').keyup(function(){
+            $('#kt_search').click(function(e){
+                e.preventDefault();
                 $('#users-table').DataTable().draw(true);
             });
         });

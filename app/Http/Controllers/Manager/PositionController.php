@@ -14,7 +14,7 @@ class PositionController extends Controller
     {
         if ($request->ajax())
         {
-            $rows = Position::query()->latest();
+            $rows = Position::query()->search($request)->latest();
             return DataTables::make($rows)
                 ->escapeColumns([])
                 ->addColumn('status', function ($row){

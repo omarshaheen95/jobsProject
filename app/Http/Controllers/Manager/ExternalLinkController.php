@@ -14,7 +14,7 @@ class ExternalLinkController extends Controller
     {
         if ($request->ajax())
         {
-            $rows = ExternalLink::query()->latest();
+            $rows = ExternalLink::query()->search($request)->latest();
             return DataTables::make($rows)
                 ->escapeColumns([])
                 ->addColumn('status', function ($row){

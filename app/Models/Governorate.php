@@ -4,9 +4,11 @@ namespace App\Models;
 
 use App\Scopes\ActiveScope;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Http\Request;
 
 class Governorate extends Model
 {
@@ -37,5 +39,15 @@ class Governorate extends Model
     public function contact_us()
     {
         return $this->hasMany(ContactUs::class);
+    }
+
+    public function scopeSearch(Builder $query, Request $request)
+    {
+        return
+            $query
+                ->when($name = $request->get('name', false), function ($query) use ($name) {
+                    $query->where('name', 'like', '%' . $name . '%');
+                });
+
     }
 }

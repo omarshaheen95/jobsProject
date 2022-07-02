@@ -14,7 +14,7 @@ class NewsController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $search = $request->get('search', false);
+            $search = $request->get('title', false);
             $rows = News::query()
                 ->when($search, function (Builder $query) use ($search) {
                     $query->where('title', 'like', '%' . $search . '%');

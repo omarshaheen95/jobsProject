@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Manager;
 
+use App\Exports\JobOfferExport;
+use App\Exports\UserJobOfferExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Manager\InterviewRequest;
 use App\Http\Requests\Manager\JobOfferRequest;
+use App\Models\Appreciation;
 use App\Models\Degree;
 use App\Models\Disability;
 use App\Models\Governorate;
@@ -25,7 +28,7 @@ class JobOfferController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $rows = JobOffer::query()->with(['position', 'degree'])->latest();
+            $rows = JobOffer::query()->with(['position', 'degree'])->search($request)->latest();
             return DataTables::make($rows)
                 ->escapeColumns([])
                 ->addColumn('status', function ($row) {
@@ -39,7 +42,8 @@ class JobOfferController extends Controller
                 })->make();
         }
         $title = 'عرض الوظائف';
-        return view('manager.job_offer.index', compact('title'));
+        $positions = Position::query()->get();
+        return view('manager.job_offer.index', compact('title', 'positions'));
     }
 
     public function create()
@@ -124,7 +128,7 @@ class JobOfferController extends Controller
     {
         if ($request->ajax()) {
             $rows = UserJobOffer::query()->has('user')->where('job_offer_id', $id)
-                ->with(['user', 'user.userInfo', 'interview'])->latest();
+                ->with(['user', 'user.userInfo', 'interview'])->search($request)->latest();
             return DataTables::make($rows)
                 ->escapeColumns([])
                 ->addColumn('name', function ($row) {
@@ -164,7 +168,8 @@ class JobOfferController extends Controller
         }
         $title = 'عرض المتقدمين';
         $job_offer = JobOffer::query()->findOrFail($id);
-        return view('manager.job_offer.users', compact('title', 'job_offer'));
+        $governorates = Governorate::query()->get();
+        return view('manager.job_offer.users', compact('title', 'job_offer', 'governorates'));
     }
 
     public function deleteUserJobOffer($id)
@@ -198,6 +203,21 @@ class JobOfferController extends Controller
             optional($job_offer->interview)->delete();
         }
         return redirect()->route('manager.job_offer.users', $job_offer->id)->with('m-class', 'success')->with('message', 'تم الحفظ بنجاح');
+    }
+
+    public function exportUserJobOfferExcel(Request $request, $id)
+    {
+        $title = JobOffer::query()->findOrFail($id)->name;
+        $name = 'المتقدمين لتعيين - '.$title . '.xlsx';
+        return (new UserJobOfferExport($request, $id))
+            ->download($name);
+    }
+
+    public function exportJobOfferExcel(Request $request)
+    {
+        $name = 'التعيينات.xlsx';
+        return (new JobOfferExport($request))
+            ->download($name);
     }
 
 }

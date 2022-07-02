@@ -14,7 +14,7 @@ class QualificationController extends Controller
     {
         if ($request->ajax())
         {
-            $rows = Qualification::query()->latest();
+            $rows = Qualification::query()->search($request)->latest();
             return DataTables::make($rows)
                 ->escapeColumns([])
                 ->addColumn('status', function ($row){

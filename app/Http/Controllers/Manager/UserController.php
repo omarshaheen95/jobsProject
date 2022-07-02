@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Manager;
 
 use App\Exports\UserExport;
 use App\Http\Controllers\Controller;
+use App\Models\Governorate;
 use App\Models\Interview;
 use App\Models\User;
 use App\Models\UserCourse;
@@ -24,7 +25,7 @@ class UserController extends Controller
     {
         if ($request->ajax())
         {
-            $rows = User::query()->with(['userInfo', 'userInfo.governorate'])->latest();
+            $rows = User::query()->with(['userInfo', 'userInfo.governorate'])->search($request)->latest();
             return DataTables::make($rows)
                 ->escapeColumns([])
                 ->addColumn('created_at', function ($row){
@@ -37,7 +38,7 @@ class UserController extends Controller
                     return optional($row->userInfo)->uid ?? 'غير مسجل';
                 })
                 ->addColumn('gender', function ($row){
-                    return optional($row->userInfo)->gender ?? 'غير مسجل';
+                    return optional($row->userInfo)->gender_name ?? 'غير مسجل';
                 })
                 ->addColumn('governorate', function ($row){
                     return optional(optional($row->userInfo)->governorate)->name ?? 'غير مسجل';
@@ -48,10 +49,12 @@ class UserController extends Controller
                 ->addColumn('actions', function ($row){
                     $show_url = route('manager.user.show', $row->id);
                     return view('manager.settings.actions_buttons', compact('row', 'show_url'));
-                })->make();
+                })
+                ->make();
         }
         $title = 'عرض المستخدمين';
-        return view('manager.user.index', compact('title'));
+        $governorates = Governorate::query()->get();
+        return view('manager.user.index', compact('title', 'governorates'));
     }
 
     public function show($id)

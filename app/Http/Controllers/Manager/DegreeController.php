@@ -14,7 +14,7 @@ class DegreeController extends Controller
     {
         if ($request->ajax())
         {
-            $rows = Degree::query()->latest();
+            $rows = Degree::query()->search($request)->latest();
             return DataTables::make($rows)
                 ->escapeColumns([])
                 ->addColumn('status', function ($row){

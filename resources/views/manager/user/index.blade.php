@@ -25,6 +25,56 @@
                     </div>
                 </div>
                 <div class="kt-portlet__body">
+                    <form class="kt-form kt-form--fit kt-margin-b-15" action="" id="search_form" method="get">
+                        <div class="row ">
+                            <div class="col-lg-2 kt-margin-b-10-tablet-and-mobile kt-margin-b-15">
+                                <label>الاسم :</label>
+                                <input type="text" name="name" id="name" class="form-control kt-input"
+                                       placeholder="الاسم ">
+                            </div>
+                            <div class="col-lg-2 kt-margin-b-10-tablet-and-mobile kt-margin-b-15">
+                                <label>الموبايل :</label>
+                                <input type="text" name="mobile" id="mobile" class="form-control kt-input"
+                                       placeholder="الموبايل ">
+                            </div>
+                            <div class="col-lg-2 kt-margin-b-10-tablet-and-mobile kt-margin-b-15">
+                                <label>رقم الهوية :</label>
+                                <input type="text" name="uid" id="uid" class="form-control kt-input"
+                                       placeholder="رقم الهوية ">
+                            </div>
+                            <div class="col-lg-2 kt-margin-b-10-tablet-and-mobile kt-margin-b-15">
+                                <label>الجنس :</label>
+                                <select class="form-control select2L" name="gender" id="gender">
+                                    <option selected value="">الكل</option>
+                                    <option value="male">ذكر</option>
+                                    <option value="female">أنثى</option>
+
+                                </select>
+                            </div>
+                            <div class="col-lg-2 kt-margin-b-10-tablet-and-mobile kt-margin-b-15">
+                                <label>المحافظة :</label>
+                                <select class="form-control select2L" name="governorate_id" id="governorate_id">
+                                    <option selected value="">الكل</option>
+                                    @foreach($governorates as $governorate)
+                                        <option value="{{$governorate->id}}">{{$governorate->name}}
+                                    @endforeach
+
+                                </select>
+                            </div>
+                            <div class="col-lg-2 kt-margin-b-10-tablet-and-mobile kt-margin-b-15">
+                                <label>الإجراءات:</label>
+                                <br/>
+                                <button type="button" class="btn btn-danger btn-elevate btn-icon-sm" id="kt_search">
+                                    <i class="la la-search"></i>
+                                    بحث
+                                </button>
+                                <button type="submit" class="btn btn-danger btn-elevate btn-icon-sm" id="kt_excel">
+                                    <i class="la la-paper-plane"></i>
+                                    إكسل
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                     <table class="table text-center" id="users-table">
                         <thead>
                         <th>الاسم</th>
@@ -40,7 +90,8 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="deleteModel" tabindex="-1" role="dialog" aria-labelledby="deleteModel" aria-hidden="true" style="display: none;">
+    <div class="modal fade" id="deleteModel" tabindex="-1" role="dialog" aria-labelledby="deleteModel"
+         aria-hidden="true" style="display: none;">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -53,7 +104,7 @@
                     {{ csrf_field() }}
                     <div class="modal-body">
                         <h5>هل أنت متأكد من حذف السجل المحدد ؟</h5>
-                        <br />
+                        <br/>
                         <p>حذف السجل المحدد سيؤدي لحذف السجلات المرتبطة به .</p>
                     </div>
                     <div class="modal-footer">
@@ -71,18 +122,18 @@
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <!-- Bootstrap JavaScript -->
     <script>
-        $(document).ready(function(){
-            $(document).on('click','.deleteRecord',(function(){
+        $(document).ready(function () {
+            $(document).on('click', '.deleteRecord', (function () {
                 var id = $(this).data("id");
                 var url = '{{ route("manager.user.destroy", ":id") }}';
-                url = url.replace(':id', id );
-                $('#delete_form').attr('action',url);
+                url = url.replace(':id', id);
+                $('#delete_form').attr('action', url);
             }));
-            $(function() {
+            $(function () {
                 $('#users-table').DataTable({
                     processing: true,
                     serverSide: true,
-                    ordering:false,
+                    ordering: false,
                     searching: false,
                     dom: `<'row'<'col-sm-12'tr>>
       <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
@@ -91,9 +142,12 @@
                         url: "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Arabic.json"
                     },
                     ajax: {
-                        url : '{{ route('manager.user.index') }}',
+                        url: '{{ route('manager.user.index') }}',
                         data: function (d) {
-                            d.search = $("#search").val();
+                            var frm_data = $('#search_form').serializeArray();
+                            $.each(frm_data, function (key, val) {
+                                d[val.name] = val.value;
+                            });
                         }
                     },
                     columns: [
@@ -107,8 +161,17 @@
                     ],
                 });
             });
-            $('#search').keyup(function(){
+            $('#kt_search').click(function(e){
+                e.preventDefault();
                 $('#users-table').DataTable().draw(true);
+            });
+            $('#kt_excel').click(function(e){
+                e.preventDefault();
+                $("#search_form").attr("action",'{{route('manager.exportUserExcel')}}');
+                $('#search_form').submit();
+
+                $("#search_form").attr("method",'');
+                $("#search_form").attr("action",'');
             });
         });
     </script>

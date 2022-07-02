@@ -15,7 +15,7 @@ class SubDegreeController extends Controller
     {
         if ($request->ajax())
         {
-            $rows = SubDegree::query()->with(['degree'])->latest();
+            $rows = SubDegree::query()->with(['degree'])->search($request)->latest();
             return DataTables::make($rows)
                 ->escapeColumns([])
                 ->addColumn('status', function ($row){

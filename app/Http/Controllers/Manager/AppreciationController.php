@@ -14,7 +14,7 @@ class AppreciationController extends Controller
     {
         if ($request->ajax())
         {
-            $rows = Appreciation::query()->latest();
+            $rows = Appreciation::query()->search($request)->latest();
             return DataTables::make($rows)
                 ->escapeColumns([])
                 ->addColumn('status', function ($row){

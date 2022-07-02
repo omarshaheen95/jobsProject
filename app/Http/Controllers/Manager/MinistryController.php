@@ -15,11 +15,9 @@ class MinistryController extends Controller
     {
         if ($request->ajax())
         {
-            $search = $request->get('search', false);
+
             $rows = Ministry::query()
-                ->when($search, function(Builder $query) use($search){
-                    $query->where('name', 'like', '%'.$search.'%');
-                })
+                ->search($request)
                 ->latest();
             return DataTables::make($rows)
                 ->escapeColumns([])

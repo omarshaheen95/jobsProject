@@ -14,7 +14,7 @@ class CountryController extends Controller
     {
         if ($request->ajax())
         {
-            $rows = Country::query()->latest();
+            $rows = Country::query()->search($request)->latest();
             return DataTables::make($rows)
                 ->escapeColumns([])
                 ->addColumn('status', function ($row){

@@ -72,6 +72,10 @@ Route::group(['namespace' => 'Manager'], function () {
     Route::get('user-job-offers/{id}', [UserController::class, 'userJobOffers'])->name('userJobOffers');
     Route::get('user-interviews/{id}', [UserController::class, 'userInterviews'])->name('userInterviews');
 
+    Route::get('user-job-offer-excel-export/{id}', [JobOfferController::class, 'exportUserJobOfferExcel'])->name('exportUserJobOfferExcel');
+    Route::get('job-offer-excel-export', [JobOfferController::class, 'exportJobOfferExcel'])->name('exportJobOfferExcel');
+
+
     //Page
     Route::get('page', 'PageController@index')->name('page.index');
     Route::get('page/{id}', 'PageController@edit')->name('page.edit');

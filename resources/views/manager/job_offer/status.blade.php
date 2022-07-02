@@ -54,14 +54,14 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-xl-3 col-lg-3 col-form-label">تاريخ المقابلة المقابلة</label>
+                                    <label class="col-xl-3 col-lg-3 col-form-label">تاريخ المقابلة</label>
                                     <div class="col-lg-9 col-xl-6">
                                         <input class="form-control dateTime" name="interview_date" type="text"
                                                value="{{ isset($job_offer) ? optional($job_offer->interview)->interview_date : 1 }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-xl-3 col-lg-3 col-form-label">تاريخ المقابلة المقابلة</label>
+                                    <label class="col-xl-3 col-lg-3 col-form-label">ملاحظات</label>
                                     <div class="col-lg-9 col-xl-6">
                                         <textarea class="form-control" name="note"
                                                placeholder="ملاحظات">{{ isset($job_offer) ? $job_offer->note : 1 }}</textarea>

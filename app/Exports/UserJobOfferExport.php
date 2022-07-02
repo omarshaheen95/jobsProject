@@ -3,8 +3,8 @@
 namespace App\Exports;
 
 use App\Models\User;
+use App\Models\UserJobOffer;
 use Illuminate\Contracts\Support\Responsable;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
@@ -16,20 +16,26 @@ use Maatwebsite\Excel\Events\AfterSheet;
 use Maatwebsite\Excel\Sheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 
-class UserExport implements WithMapping,Responsable,WithHeadings,FromCollection,WithEvents,ShouldAutoSize
+class UserJobOfferExport implements WithMapping,Responsable,WithHeadings,FromCollection,WithEvents,ShouldAutoSize
 {
     use Exportable;
     public $req;
+    public $id;
     public $length;
 
-    public function __construct(Request $request)
+    public function __construct(Request $request, $id)
     {
         $this->req = $request;
+        $this->id = $id;
     }
 
     public function headings(): array
     {
         return [
+            'حالة الطلب',
+            'تاريخ تقديم الطلب',
+            'مكان المقابلة',
+            'تاريخ المقابلة',
             'رقم الهوية',
             'الإسم كاملا',
             'الموبايل',
@@ -54,43 +60,48 @@ class UserExport implements WithMapping,Responsable,WithHeadings,FromCollection,
         ];
     }
 
-    public function map($user): array
+    public function map($row): array
     {
         return [
-            $user->userInfo->uid,
-            $user->userInfo->full_name,
-            $user->userInfo->mobile,
-            $user->userInfo->phone,
-            $user->userInfo->gender_name,
-            $user->userInfo->dob,
-            \Carbon\Carbon::parse($user->userInfo->dob)->age,
-            $user->userInfo->marital_status_name,
-            $user->userInfo->number_of_children,
-            $user->userInfo->number_of_employees,
-            $user->userInfo->scholarship_student ? 'نعم':'لا',
-            $user->userInfo->top_ten_students ? 'نعم':'لا',
-            $user->userInfo->birthGovernorate->name,
-            $user->userInfo->governorate->name,
-            $user->userInfo->address,
-            $user->userInfo->unemployed ? 'نعم':'لا',
-            $user->userInfo->work_nonGovernmental_org ? 'نعم':'لا',
-            $user->userInfo->registered_unemployed_ministry ? 'نعم':'لا',
-            $user->userInfo->family_of_prisoners ? 'نعم':'لا',
-            $user->userInfo->injured_people ? 'نعم':'لا',
-            $user->userInfo->family_of_martyrs ? 'نعم':'لا',
+            $row->status_name,
+            $row->created_at->format('Y-m-d H:i'),
+            optional($row->interview)->interview_place,
+            optional($row->interview)->interview_date,
+            $row->user->userInfo->uid,
+            $row->user->userInfo->full_name,
+            $row->user->userInfo->mobile,
+            $row->user->userInfo->phone,
+            $row->user->userInfo->gender_name,
+            $row->user->userInfo->dob,
+            \Carbon\Carbon::parse($row->user->userInfo->dob)->age,
+            $row->user->userInfo->marital_status_name,
+            $row->user->userInfo->number_of_children,
+            $row->user->userInfo->number_of_employees,
+            $row->user->userInfo->scholarship_student ? 'نعم':'لا',
+            $row->user->userInfo->top_ten_students ? 'نعم':'لا',
+            $row->user->userInfo->birthGovernorate->name,
+            $row->user->userInfo->governorate->name,
+            $row->user->userInfo->address,
+            $row->user->userInfo->unemployed ? 'نعم':'لا',
+            $row->user->userInfo->work_nonGovernmental_org ? 'نعم':'لا',
+            $row->user->userInfo->registered_unemployed_ministry ? 'نعم':'لا',
+            $row->user->userInfo->family_of_prisoners ? 'نعم':'لا',
+            $row->user->userInfo->injured_people ? 'نعم':'لا',
+            $row->user->userInfo->family_of_martyrs ? 'نعم':'لا',
         ];
     }
 
     public function collection()
     {
-        $users = User::query()->with(['userInfo', 'userInfo.birthGovernorate', 'userInfo.governorate'])
+        $rows = UserJobOffer::query()->has('user')->where('job_offer_id', $this->id)
+            ->with(['user', 'user.userInfo', 'interview'])
             ->search($this->req)
             ->latest()
             ->get();
 
-        $this->length = $users->count() + 1;
+        $this->length = $rows->count() + 1;
 
-        return $users;
+        return $rows;
     }
 
     public function drawings()
@@ -105,10 +116,10 @@ class UserExport implements WithMapping,Responsable,WithHeadings,FromCollection,
         });
         return [
             AfterSheet::class => function (AfterSheet $event) {
-                $cellRange = 'A1:U1';
+                $cellRange = 'A1:Y1';
                 $event->sheet->getDelegate()->getStyle($cellRange)->getFont()->setBold('bold')->setSize(12);
                 $event->sheet->styleCells(
-                    "A1:U$this->length",
+                    "A1:Y$this->length",
                     [
                         'alignment' => [
                             'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
