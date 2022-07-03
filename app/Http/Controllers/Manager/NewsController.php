@@ -11,6 +11,11 @@ use Yajra\DataTables\DataTables;
 
 class NewsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:news management');
+    }
+
     public function index(Request $request)
     {
         if ($request->ajax()) {

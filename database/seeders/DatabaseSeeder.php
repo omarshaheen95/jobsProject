@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             ManagerTableSeeder::class,
             SettingTableSeeder::class,
             PageTableSeeder::class,
+            PermissionTableSeeder::class,
         ]);
     }
 }

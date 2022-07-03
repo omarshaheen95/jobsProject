@@ -49,7 +49,7 @@
                                     <div class="col-lg-9 col-xl-6">
                                         <select multiple name="roles[]" class="form-control">
                                             @foreach($roles as $role)
-                                                <option {{ in_array($role, $userRole) ? 'selected':'' }} value="{{ $role }}">{{ $role }}</option>
+                                                <option {{ in_array($role, $managerRole) ? 'selected':'' }} value="{{ $role }}">{{ $role }}</option>
                                             @endforeach
                                         </select>
                                     </div>

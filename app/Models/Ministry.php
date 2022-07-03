@@ -37,6 +37,13 @@ class Ministry extends Model
         return $this->belongsToMany(JobOffer::class, JobMinistry::class);
     }
 
+    public function scopeActive(Builder $query)
+    {
+        return
+            $query->where('active', 1);
+
+    }
+
     public function scopeSearch(Builder $query, Request $request)
     {
         return

@@ -10,6 +10,11 @@ use Yajra\DataTables\DataTables;
 
 class CountryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:countries management');
+    }
+
     public function index(Request $request)
     {
         if ($request->ajax())

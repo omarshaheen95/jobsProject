@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Scopes\ActiveScope;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -23,6 +24,13 @@ class University extends Model
     public function getStatusAttribute()
     {
         return $this->active ? 'فعالة':'غير فعالة';
+    }
+
+    public function scopeActive(Builder $query)
+    {
+        return
+            $query->where('active', 1);
+
     }
 
 

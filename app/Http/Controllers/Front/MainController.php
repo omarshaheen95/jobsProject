@@ -55,7 +55,7 @@ class MainController extends Controller
     public function contactUs(Request $request)
     {
         $title = 'اتصل بنا';
-        $governorates = Governorate::query()->get();
+        $governorates = Governorate::query()->active()->get();
         return view('website.contact_us', compact('title', 'governorates'));
     }
 
@@ -65,7 +65,7 @@ class MainController extends Controller
             'governorate_id' => 'required',
             'name' => 'required',
             'mobile' => 'required',
-            'email' => 'required|email|unique:contact_us,email',
+            'email' => 'required|email',
             'message' => 'required',
         ]);
         ContactUs::query()->create($data);
@@ -74,7 +74,7 @@ class MainController extends Controller
 
     public function subDegreesByDegree(Request $request, $id)
     {
-        $rows = SubDegree::query()->where('degree_id', $id)->get();
+        $rows = SubDegree::query()->where('degree_id', $id)->active()->get();
         $html = '<option selected disabled value="">اختر التخصص</option>';
         foreach ($rows as $row) {
             $html .= '<option value="' . $row->id . '">' . $row->name . '</option>';

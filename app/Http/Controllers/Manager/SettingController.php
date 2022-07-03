@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Artisan;
 
 class SettingController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:general settings management');
+    }
+
     public function viewSettings()
     {
         $title = 'الإعدادات العامة';

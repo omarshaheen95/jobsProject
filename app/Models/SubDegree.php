@@ -46,6 +46,13 @@ class SubDegree extends Model
         return $this->hasMany(JobSubDegree::class);
     }
 
+    public function scopeActive(Builder $query)
+    {
+        return
+            $query->where('active', 1);
+
+    }
+
     public function scopeSearch(Builder $query, Request $request)
     {
         return

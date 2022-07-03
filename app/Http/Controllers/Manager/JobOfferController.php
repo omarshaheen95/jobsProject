@@ -25,6 +25,11 @@ use Yajra\DataTables\DataTables;
 
 class JobOfferController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:jobs offers management');
+    }
+
     public function index(Request $request)
     {
         if ($request->ajax()) {

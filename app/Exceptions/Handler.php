@@ -102,7 +102,7 @@ class Handler extends ExceptionHandler
 
         if ($exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException)
         {
-            return redirect()->route('backend.home')->with('message', t('You have not permission for this page access.'))->with('m-class', 'error');
+            return redirect()->route('manager.home')->with('message', 'ليس لديك صلاحية للوصول للصفحة المطلوبة')->with('m-class', 'error');
         }
 
         return parent::render($request, $exception);

@@ -10,6 +10,11 @@ use Yajra\DataTables\DataTables;
 
 class DisabilityController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:disabilities management');
+    }
+
     public function index(Request $request)
     {
         if ($request->ajax())

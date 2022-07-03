@@ -43,28 +43,12 @@
                                         <br/></th>
                                     </thead>
                                     <tbody>
-                                    @foreach($permissions as $key => $row)
-                                        <tr>
-                                            <td colspan="6">
-                                                <input type="checkbox" id="{{str_replace(' ', '', $key)}}" data-group="{{str_replace(' ', '', $key)}}" name="permission[]"
-                                                       value="" onclick="toggleParent('{{str_replace(' ', '', $key)}}')"
-                                                       class="parent_{{str_replace(' ', '', $key)}}">
-                                                <label for="{{str_replace(' ', '', $key)}}">
-                                                    <strong class="ml-1">{{t($key)}}</strong>
-                                                </label>
-                                            </td>
-                                        </tr>
+                                    @foreach($permissions as $row)
                                         <tr class="">
-                                            @foreach($row as $r_key => $permission)
+                                            @foreach($row as $permission)
                                                 <td>
-
-                                                    <input type="checkbox" class="{{str_replace(' ', '', $key)}} permissions"
-                                                           name="permission[]" id="{{$r_key}}-{{str_replace(' ', '', $key)}}" data-group-id="{{str_replace(' ', '', $key)}}"
-                                                           @isset($rolePermissions) @if(in_array($permission->id, $rolePermissions)) checked
-                                                           @endif @endisset value="{{ $permission->id }}">
-                                                    <label for="{{$r_key}}-{{str_replace(' ', '', $key)}}"> {{ t($permission->name) }}
-                                                    </label>
-                                                </td>
+                                                    <input type="checkbox" name="permission[]" value="{{ $permission->id }}" class="name" {{ in_array($permission->id, $rolePermissions) ? 'checked':false }}>
+                                                    {{ t($permission->name) }}</td>
                                             @endforeach
                                         </tr>
                                     @endforeach
@@ -93,41 +77,12 @@
     <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
     {!! JsValidator::formRequest(\App\Http\Requests\Manager\RoleRequest::class, '#form_information') !!}
     <script type="text/javascript">
-
         function toggle(source) {
-            $(document).find('[name="permission[]"]').prop('checked', source.checked);
-            checkAll();
-        }
-
-        function toggleParent(source) {
-
-            $(document).find('[data-group-id=' + source + ']').prop('checked', $(".parent_" + source).is(':checked'));
-            checkAll();
-        }
-
-        function checkAll() {
-            if ($('.permissions:checked').length == $('.permissions').length) {
-                $('#allPermissions').prop('checked', true);
-            } else {
-                $('#allPermissions').prop('checked', false);
+            checkboxes = document.getElementsByName('permission[]');
+            for(var i=0, n=checkboxes.length;i<n;i++) {
+                checkboxes[i].checked = source.checked;
             }
         }
-
-
-        $(".permissions").change(function () {
-            let ele = $(this);
-            let dataGroup = $(this).attr('data-group-id');
-
-            if ($('.permissions[data-group-id="'+dataGroup+'"]:checked').length == $('.permissions[data-group-id="'+dataGroup+'"]').length) {
-                $(document).find('[data-group=' + dataGroup + ']').prop('checked', true);
-
-            } else {
-                $(document).find('[data-group=' + dataGroup + ']').prop('checked', false);
-
-            }
-            checkAll();
-        });
-        checkAll();
     </script>
 @endsection
 

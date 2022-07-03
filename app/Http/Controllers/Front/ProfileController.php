@@ -36,16 +36,16 @@ class ProfileController extends Controller
         $user = Auth::user();
         switch ($step) {
             case 'general':
-                $governorates = Governorate::query()->get();
+                $governorates = Governorate::query()->active()->get();
                 $profile_title = 'البيانات الشخصية';
                 return view('website.profile.step_1', compact('profile_title', 'step', 'governorates', 'user'));
             case 'qualifications':
                 $profile_title = 'الموهلات';
 
-                $countries = Country::query()->get();
-                $qualifications = Qualification::query()->get();
-                $degrees = Degree::query()->get();
-                $appreciations = Appreciation::query()->get();
+                $countries = Country::query()->active()->get();
+                $qualifications = Qualification::query()->active()->get();
+                $degrees = Degree::query()->active()->get();
+                $appreciations = Appreciation::query()->active()->get();
                 $user_qualifications = UserQualification::query()->where('user_id', Auth::guard('web')->id())
                     ->has('appreciation')
                     ->has('qualification')
@@ -79,14 +79,14 @@ class ProfileController extends Controller
                 $user_languages = UserLanguage::query()->with('language')
                     ->where('user_id', Auth::guard('web')->id())
                     ->get();
-                $languages = Language::query()->get();
+                $languages = Language::query()->active()->get();
                 return view('website.profile.step_6', compact('profile_title', 'step', 'user', 'user_languages', 'languages'));
             case 'disabilities':
                 $profile_title = 'الوضع الصحي';
                 $user_disabilities = UserDisability::query()->with('disability')
                     ->where('user_id', Auth::guard('web')->id())
                     ->get();
-                $disabilities = Disability::query()->get();
+                $disabilities = Disability::query()->active()->get();
                 return view('website.profile.step_7', compact('profile_title', 'step', 'user', 'user_disabilities', 'disabilities'));
             default:
                 $profile_title = '';

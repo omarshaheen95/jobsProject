@@ -46,6 +46,13 @@ class Qualification extends Model
         return $this->belongsToMany(JobOffer::class, JobQualification::class);
     }
 
+    public function scopeActive(Builder $query)
+    {
+        return
+            $query->where('active', 1);
+
+    }
+
     public function scopeSearch(Builder $query, Request $request)
     {
         return

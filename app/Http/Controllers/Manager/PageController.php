@@ -12,6 +12,11 @@ use Yajra\DataTables\DataTables;
 
 class PageController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:pages management');
+    }
+
     public function index(Request $request)
     {
         if (request()->ajax())

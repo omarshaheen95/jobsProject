@@ -10,6 +10,11 @@ use Yajra\DataTables\DataTables;
 
 class ExternalLinkController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:external links management');
+    }
+
     public function index(Request $request)
     {
         if ($request->ajax())

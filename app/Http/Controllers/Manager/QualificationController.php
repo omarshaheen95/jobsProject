@@ -10,6 +10,11 @@ use Yajra\DataTables\DataTables;
 
 class QualificationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:qualifications management');
+    }
+
     public function index(Request $request)
     {
         if ($request->ajax())

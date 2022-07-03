@@ -10,6 +10,11 @@ use Yajra\DataTables\DataTables;
 
 class AppreciationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:appreciations management');
+    }
+
     public function index(Request $request)
     {
         if ($request->ajax())

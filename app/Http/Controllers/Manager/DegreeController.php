@@ -10,6 +10,11 @@ use Yajra\DataTables\DataTables;
 
 class DegreeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:degrees management');
+    }
+
     public function index(Request $request)
     {
         if ($request->ajax())

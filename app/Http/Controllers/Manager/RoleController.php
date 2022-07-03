@@ -11,6 +11,11 @@ use Yajra\DataTables\DataTables;
 
 class RoleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:permissions management');
+    }
+
     public function index(Request $request)
     {
         if ($request->ajax())
@@ -33,8 +38,9 @@ class RoleController extends Controller
     public function create()
     {
         $title = 'إضافة دور';
-        $permissions = Permission::query()->get()->groupBy('group');
-        return view('manager.role.edit', compact('permissions', 'title'));
+        $permissions = Permission::query()->get()->chunk(4);
+        $rolePermissions = [];
+        return view('manager.role.edit', compact('permissions', 'title', 'rolePermissions'));
     }
 
     public function store(Request $request)
@@ -47,7 +53,7 @@ class RoleController extends Controller
         $role->syncPermissions($request->input('permission', []));
 
         return redirect()->route('manager.role.index')
-            ->with('message',t(t('Successfully Added')))->with('m-class', 'success');
+            ->with('message', 'تم الإضافة بنجاح')->with('m-class', 'success');
     }
 
     public function show($id)
@@ -61,8 +67,8 @@ class RoleController extends Controller
     public function edit($id)
     {
         $title = 'تعديل دور';
-        $role = Role::find($id);
-        $permissions = Permission::query()->get()->groupBy('group');
+        $role = Role::query()->find($id);
+        $permissions = Permission::query()->get()->chunk(4);;
         $rolePermissions = $role->permissions()->get()
             ->pluck('id')
             ->all();
@@ -86,13 +92,13 @@ class RoleController extends Controller
         $role->syncPermissions($request->input('permission', []));
 
         return redirect()->route('manager.role.index')
-            ->with('message',t(t('Successfully Updated')))->with('m-class', 'success');
+            ->with('message', 'تم التعديل بنجاح')->with('m-class', 'success');
     }
 
     public function destroy($id)
     {
         Role::query()->findOrFail($id)->delete();
         return redirect()->route('manager.role.index')
-            ->with('message', t('Successfully Deleted'))->with('m-class', 'success');
+            ->with('message', 'تم الحذف بنجاح')->with('m-class', 'success');
     }
 }

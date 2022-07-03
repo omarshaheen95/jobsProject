@@ -17,6 +17,12 @@ use Yajra\DataTables\DataTables;
 
 class ManagerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:managers management')
+        ->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+    }
+
     public function index(Request $request)
     {
         if (request()->ajax()) {

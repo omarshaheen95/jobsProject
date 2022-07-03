@@ -11,6 +11,11 @@ use Yajra\DataTables\DataTables;
 
 class SubDegreeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:sub degrees management');
+    }
+
     public function index(Request $request)
     {
         if ($request->ajax())

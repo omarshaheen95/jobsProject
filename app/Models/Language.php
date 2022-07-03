@@ -41,6 +41,13 @@ class Language extends Model
         return $this->hasMany(JobLanguage::class);
     }
 
+    public function scopeActive(Builder $query)
+    {
+        return
+            $query->where('active', 1);
+
+    }
+
     public function scopeSearch(Builder $query, Request $request)
     {
         return

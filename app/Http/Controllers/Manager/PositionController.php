@@ -10,6 +10,11 @@ use Yajra\DataTables\DataTables;
 
 class PositionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:positions management');
+    }
+
     public function index(Request $request)
     {
         if ($request->ajax())
