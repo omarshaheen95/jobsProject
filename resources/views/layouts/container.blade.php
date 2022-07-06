@@ -57,7 +57,7 @@
                 -->
                 @auth
                 <div class="dropdown">
-                    <a class="dropdown-toggle btn-user" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="dropdown-toggle btn-user" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="icon">
                                     <span class="text-uppercase">{{substr(Auth::user()->name, 0, 2)}}</span>
                                     <!-- <img src="front/img/user.png" alt=""> -->
