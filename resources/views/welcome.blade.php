@@ -7,17 +7,17 @@
             <h2 class="title"> <span>شـــارك</span> </h2>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a href="#!" target="_blank" rel="noopener noreferrer" class="nav-link">
+                    <a data-sharer="facebook" data-title="مجلس الخدمة الإتحادي" data-url="{{route('welcome')}}" rel="noopener noreferrer" class="nav-link">
                         <i class="fab fa-facebook-f"></i>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#!" target="_blank" rel="noopener noreferrer" class="nav-link">
+                    <a data-sharer="twitter" data-title="مجلس الخدمة الإتحادي" data-url="{{route('welcome')}}" rel="noopener noreferrer" class="nav-link">
                         <i class="fab fa-twitter"></i>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#!" target="_blank" rel="noopener noreferrer" class="nav-link">
+                    <a data-sharer="linkedin" data-title="مجلس الخدمة الإتحادي" data-url="{{route('welcome')}}" rel="noopener noreferrer" class="nav-link">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
                 </li>
@@ -123,4 +123,7 @@
         </div>
     </section>
     <!-- End Topics -->
+@endsection
+@section('script')
+    <script src="https://cdn.jsdelivr.net/npm/sharer.js@latest/sharer.min.js"></script>
 @endsection

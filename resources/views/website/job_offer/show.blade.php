@@ -209,23 +209,23 @@
                             <h4 class="title"> شارك الوظيفة </h4>
                             <ul class="nav nav-social-media">
                                 <li class="nav-item">
-                                    <a href="#!" target="_blank" rel="noopener noreferrer" class="nav-link">
+                                    <a data-sharer="facebook" data-title="{{$job_offer->title}}" data-url="{{route('job_offers.show', $job_offer->slug)}}" rel="noopener noreferrer" class="nav-link">
                                         <i class="fab fa-facebook-f"></i>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#!" target="_blank" rel="noopener noreferrer" class="nav-link">
+                                    <a data-sharer="twitter" data-title="{{$job_offer->title}}" data-url="{{route('job_offers.show', $job_offer->slug)}}" rel="noopener noreferrer" class="nav-link">
                                         <i class="fab fa-twitter"></i>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#!" target="_blank" rel="noopener noreferrer" class="nav-link">
+                                    <a data-sharer="linkedin" data-title="{{$job_offer->title}}" data-url="{{route('job_offers.show', $job_offer->slug)}}" rel="noopener noreferrer" class="nav-link">
                                         <i class="fab fa-linkedin-in"></i>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#!" target="_blank" rel="noopener noreferrer" class="nav-link">
-                                        <i class="fab fa-youtube"></i>
+                                    <a data-sharer="whatsapp" data-title="{{$job_offer->title}}" data-url="{{route('job_offers.show', $job_offer->slug)}}" rel="noopener noreferrer" class="nav-link">
+                                        <i class="fab fa-whatsapp"></i>
                                     </a>
                                 </li>
                             </ul>
@@ -273,4 +273,7 @@
         </div>
     </div>
 
+@endsection
+@section('script')
+    <script src="https://cdn.jsdelivr.net/npm/sharer.js@latest/sharer.min.js"></script>
 @endsection
