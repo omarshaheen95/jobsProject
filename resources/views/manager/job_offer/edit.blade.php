@@ -3,6 +3,17 @@
     <link href="{{asset('assets/css/demo1/pages/general/wizard/wizard-3.rtl.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{asset('assets/vendors/general/sweetalert2/dist/sweetalert2.rtl.css')}}" rel="stylesheet"
           type="text/css"/>
+    <style>
+        .glyphicon-arrow-right:before {
+            content: "\e091";
+        }
+        .glyphicon-arrow-left:before {
+            content: "\e092";
+        }
+    </style>
+    <!-- plugin -->
+
+    <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap-duallistbox.css')}}">
 @endsection
 @section('style')
     <link href="{{ asset('assets/vendors/general/summernote/dist/summernote.rtl.css') }}" rel="stylesheet"/>
@@ -416,6 +427,25 @@
                                             <input class="form-control" data-role="tagsinput" name="tags" type="text"
                                                    value="{{isset($job_offer) ? $job_offer->tags:old('tags')}}">
                                         </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-2 col-form-label text-right"></label>
+                                            <div class="col-lg-10">
+                                                <select id="dual-listbox" name="questions[]" class="dual-listbox"
+                                                        multiple="multiple"
+                                                        data-available-title="الأسئلة المتاحة"
+                                                        data-selected-title="الأسئلة المحددة"
+                                                        data-add="إضافة"
+                                                        data-remove="حذف"
+                                                        data-add-all="إضافة الكل"
+                                                        data-remove-all="حذف الكل"
+                                                        data-search-title="بحث">
+                                                    @foreach($questions as $question)
+                                                        <option
+                                                            value="{{$question->id}}" {{ isset($job_offer) && in_array($question->id, $job_offer->questions->pluck('id')->values()->all()) ? 'selected':'' }}>{{$question->question}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <!--end: Form Wizard Step 5-->
@@ -469,7 +499,17 @@
             type="text/javascript"></script>
     <script src="{{asset('assets/vendors/general/bootstrap-datepicker/dist/js/bootstrap-datepicker.js')}}"
             type="text/javascript"></script>
+    <script src="{{asset('js/jquery.bootstrap-duallistbox.js')}}"></script>
+
     <script>
+        $('select[class="dual-listbox"]').bootstrapDualListbox({
+
+        });
+        $("#demoform").submit(function() {
+            alert($('[name="duallistbox_demo1[]"]').val());
+            return false;
+        });
+
         var clickableSteps = false;
         var subDegreeURL = '{{ route("manager.subDegreesByDegree", ":id") }}';
         $('select[name="degree_id"]').change(function () {

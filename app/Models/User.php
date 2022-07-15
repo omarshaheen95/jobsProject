@@ -61,7 +61,11 @@ class User extends Authenticatable
 
     public function jobOffers()
     {
-        return $this->belongsToMany(JobOffer::class, UserJobOffer::class)->withPivot(['created_at', 'status']);
+        return $this->belongsToMany(JobOffer::class, UserJobOffer::class)
+            ->whereNull('job_offers.deleted_at')
+            ->whereNull('user_job_offers.deleted_at')
+            ->withPivot(['created_at', 'status', 'deleted_at'])
+            ->withTimestamps();
     }
 
     public function getStatusAttribute($value)

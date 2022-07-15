@@ -56,7 +56,11 @@ Route::group(['namespace' => 'Manager'], function () {
         'role' => 'RoleController',
         'job_offer' => 'JobOfferController',
         'qualification' => 'QualificationController',
+        'question' => 'QuestionController',
     ]);
+
+    Route::delete('delete_option/{id}', 'QuestionController@deleteOption')->name('question.delete_option');
+
 
     Route::get('job-offers-users/{id}', [JobOfferController::class, 'usersJobOffers'])->name('job_offer.users');
     Route::get('job-offers-users/{id}/status', [JobOfferController::class, 'userJobOfferStatus'])->name('job_offer.status');

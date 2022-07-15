@@ -27,7 +27,7 @@
                                     </li>
                                 </ul>
                                 @auth
-                                    @if($job_offer->users()->where('user_id', auth()->id())->first())
+                                    @if(auth()->user()->jobOffers()->where('job_offer_id', $job_offer->id)->first())
                                         <button disabled  class="btn btn-outline-theme btn-order">
                                             تم التقديم </button>
                                         @else
@@ -241,7 +241,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-body">
-                    @if($job_offer->quiz)
+                    @if($job_offer->questions_count)
                     <div class="modal-box">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         <div class="pic">
@@ -249,7 +249,7 @@
                         </div>
                         <div class="content">
                             <h2 class="title"> للتقدم على هذه الوظيفة يجب عليك اكمال الطلب و البيانات التالية </h2>
-                            <a href="profile-quiz.html" class="btn btn-theme w-100"> استمرار </a>
+                            <a href="{{route('job_offers.questions', $job_offer->slug)}}" class="btn btn-theme w-100"> استمرار </a>
                         </div>
                     </div>
                     @else

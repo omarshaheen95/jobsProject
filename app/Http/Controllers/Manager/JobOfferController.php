@@ -16,6 +16,7 @@ use App\Models\Language;
 use App\Models\Ministry;
 use App\Models\Position;
 use App\Models\Qualification;
+use App\Models\Question;
 use App\Models\SubDegree;
 use App\Models\User;
 use App\Models\UserJobOffer;
@@ -61,7 +62,9 @@ class JobOfferController extends Controller
         $languages = Language::query()->get();
         $disabilities = Disability::query()->get();
         $ministries = Ministry::query()->get();
-        return view('manager.job_offer.edit', compact('title', 'governorates', 'qualifications', 'positions', 'languages', 'degrees', 'disabilities', 'ministries'));
+        $questions = Question::query()->get();
+        return view('manager.job_offer.edit', compact('title', 'governorates', 'qualifications',
+            'positions', 'languages', 'degrees', 'disabilities', 'ministries', 'questions'));
     }
 
     public function store(JobOfferRequest $request)
@@ -77,6 +80,7 @@ class JobOfferController extends Controller
         $job_offer->qualifications()->sync($request->get('qualifications', []));
         $job_offer->sub_degrees()->sync($request->get('sub_degrees', []));
         $job_offer->ministries()->sync($request->get('ministries', []));
+        $job_offer->questions()->sync($request->get('questions', []));
 
         return $this->sendResponse(['route' => route('manager.job_offer.index')], 'تم الإضافة بنجاح');
 //        return $this->redirectWith(false, 'manager.job_offer.index', 'تم الإضافة بنجاح');
@@ -85,7 +89,7 @@ class JobOfferController extends Controller
     public function edit($id)
     {
         $title = 'تعديل عرض وظيفي';
-        $job_offer = JobOffer::query()->with(['languages', 'governorates', 'disabilities', 'qualifications', 'sub_degrees', 'ministries'])->findOrFail($id);
+        $job_offer = JobOffer::query()->with(['languages', 'governorates', 'disabilities', 'qualifications', 'sub_degrees', 'ministries', 'questions'])->findOrFail($id);
         $job_languages = $job_offer->languages->pluck('id')->values()->all();
         $job_qualifications = $job_offer->qualifications->pluck('id')->values()->all();
         $job_sub_degrees = $job_offer->sub_degrees->pluck('id')->values()->all();
@@ -100,9 +104,12 @@ class JobOfferController extends Controller
         $languages = Language::query()->get();
         $disabilities = Disability::query()->get();
         $ministries = Ministry::query()->get();
+        $questions = Question::query()->get();
+//        dd($job_offer->questions->pluck('id')->values()->all());
+
 
         return view('manager.job_offer.edit', compact('job_offer', 'title', 'governorates', 'qualifications', 'positions', 'languages', 'degrees', 'disabilities', 'ministries', 'sub_degrees',
-            'job_disabilities', 'job_governorates', 'job_languages', 'job_qualifications', 'job_sub_degrees', 'job_ministries'));
+            'job_disabilities', 'job_governorates', 'job_languages', 'job_qualifications', 'job_sub_degrees', 'job_ministries', 'questions'));
     }
 
     public function update(JobOfferRequest $request, $id)
@@ -118,6 +125,7 @@ class JobOfferController extends Controller
         $job_offer->qualifications()->sync($request->get('qualifications', []));
         $job_offer->sub_degrees()->sync($request->get('sub_degrees', []));
         $job_offer->ministries()->sync($request->get('ministries', []));
+        $job_offer->questions()->sync($request->get('questions', []));
         return $this->sendResponse(['route' => route('manager.job_offer.index')], 'تم التعديل بنجاح');
 //        return $this->redirectWith(false, 'manager.job_offer.index', 'تم التعديل بنجاح');
     }

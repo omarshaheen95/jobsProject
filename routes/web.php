@@ -66,6 +66,7 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Front'], function (){
     Route::delete('user_disability/{id}', 'ProfileController@userDisabilityDelete')->name('user_disability.delete');
 
     Route::post('apply-job-offer/{id}', [JobOfferController::class, 'applyJobOffer'])->name('applyJobOffer');
+    Route::get('job_offers/questions/{slug}', [JobOfferController::class, 'questionsJobOffers'])->name('job_offers.questions');
     Route::get('job-offers-archive', [JobOfferController::class, 'archiveJobOffers'])->name('archiveJobOffers');
     Route::get('interviews', [JobOfferController::class, 'interviews'])->name('interviews');
     Route::get('password', [ProfileController::class, 'changePassword'])->name('changePassword');

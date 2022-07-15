@@ -27,6 +27,7 @@
     </script>
 
     <!--end::Fonts -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
 
     <link href="{{asset('assets/vendors/general/bootstrap-select/dist/css/bootstrap-select.rtl.css')}}" rel="stylesheet"/>
     <!--begin::Global Theme Styles(used by all pages) -->
@@ -275,6 +276,15 @@
                             </a>
                         </li>
                         @endcan
+{{--                        @can('positions management')--}}
+                        <li class="kt-menu__item  @if(Route::is('manager.question.*') ) kt-menu__item--active @endif"
+                            aria-haspopup="true">
+                            <a href="{{route('manager.question.index')}}" class="kt-menu__link ">
+                                <i class="kt-menu__link-icon flaticon2-soft-icons-1"></i>
+                                <span class="kt-menu__link-text">الأسئلة</span>
+                            </a>
+                        </li>
+{{--                        @endcan--}}
                         @can('languages management')
                         <li class="kt-menu__item  @if(Route::is('manager.language.*') ) kt-menu__item--active @endif"
                             aria-haspopup="true">

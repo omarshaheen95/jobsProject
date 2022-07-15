@@ -89,11 +89,11 @@ class JobOfferController extends Controller
         $user = Auth::guard('web')->user();
 //        $user->jobOffers()->where('job_offer_id', $id)->first();
         $job_offer = JobOffer::query()
+            ->withCount('questions')
             ->with(['media', 'position', 'degree' ,'languages', 'governorates', 'disabilities', 'qualifications', 'sub_degrees', 'ministries'])
             ->where('slug', $slug)
             ->firstOrFail();
         $title = $job_offer->name;
-
         return view('website.job_offer.show', compact('title', 'job_offer',));
     }
 
@@ -142,5 +142,26 @@ class JobOfferController extends Controller
             ->latest()
             ->get();
         return view('website.profile.interviews', compact('user', 'interviews', 'title'));
+    }
+
+    public function questionsJobOffers($slug)
+    {
+        $user = Auth::guard('web')->user();
+//        $user->jobOffers()->where('job_offer_id', $id)->first();
+        $job_offer = JobOffer::query()
+            ->with(['questions', 'questions.options'])
+            ->with(['media', 'position', 'degree' ,'languages', 'governorates', 'disabilities', 'qualifications', 'sub_degrees', 'ministries'])
+            ->where('slug', $slug)
+            ->firstOrFail();
+        $title = $job_offer->name;
+        if($user->jobOffers()->where('job_offer_id', $job_offer->id)->first())
+        {
+            return redirect()->back()->with('message', 'تم التقديم على هذا الطلب مسبقا')->with('m-class', 'error');
+        }
+
+        return view('website.job_offer.questions', compact('job_offer', 'title'));
+
+
+
     }
 }

@@ -69,7 +69,11 @@ class JobOffer extends Model implements HasMedia
 
     public function users()
     {
-        return $this->belongsToMany(User::class, UserJobOffer::class)->withPivot(['status', 'created_at']);
+        return $this->belongsToMany(User::class, UserJobOffer::class)
+            ->whereNull('job_offers.deleted_at')
+            ->whereNull('user_job_offers.deleted_at')
+            ->withPivot(['status', 'created_at', 'deleted_at'])
+            ->withTimestamps();
     }
 
     public function getStatusAttribute($value)
@@ -150,6 +154,11 @@ class JobOffer extends Model implements HasMedia
                     $query->where('position_id', $position);
                 });
 
+    }
+
+    public function questions()
+    {
+        return $this->belongsToMany(Question::class, JobOfferQuestion::class);
     }
 
 
