@@ -5,7 +5,7 @@
 @section('content')
     @push('breadcrumb')
         <li class="breadcrumb-item">
-            المناصب الوظيفية
+            العناوين الوظيفية
         </li>
     @endpush
     <div class="row">
@@ -14,7 +14,7 @@
                 <div class="kt-portlet__head">
                     <div class="kt-portlet__head-label">
                         <h3 class="kt-portlet__head-title">
-                            المناصب الوظيفية
+                            العناوين الوظيفية
                         </h3>
                     </div>
                     <div class="kt-portlet__head-toolbar">
@@ -22,7 +22,7 @@
                             <div class="kt-portlet__head-actions">
                                 <a href="{{ route('manager.position.create') }}" class="btn btn-danger btn-elevate btn-icon-sm">
                                     <i class="la la-plus"></i>
-                                    إضافة منصب وظيفي
+                                    إضافة عنوان وظيفي
                                 </a>
                             </div>
                         </div>

@@ -13,9 +13,9 @@ class UserJobOffer extends Model
 {
     use SoftDeletes, CascadeSoftDeletes;
 
-    //status : pending, approve, rejected
+    //status : pending, approve, rejected, checked
     protected $fillable = [
-        'user_id', 'job_offer_id', 'status', 'manager_id', 'note'
+        'user_id', 'job_offer_id', 'status', 'manager_id', 'note', 'total_mark'
     ];
 
     protected $appends = [
@@ -36,6 +36,8 @@ class UserJobOffer extends Model
                 return 'مقبول';
             case 'rejected':
                 return 'مرفوض';
+            case 'checked':
+                return 'تم التدقیق';
             default:
                 return null;
         }

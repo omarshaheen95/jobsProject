@@ -199,7 +199,7 @@
                             aria-haspopup="true">
                             <a href="{{route('manager.job_offer.index')}}" class="kt-menu__link ">
                                 <i class="kt-menu__link-icon flaticon2-note"></i>
-                                <span class="kt-menu__link-text">التعيينات</span>
+                                <span class="kt-menu__link-text">العروض الوظیفیة</span>
                             </a>
                         </li>
                         @endcan
@@ -272,7 +272,7 @@
                             aria-haspopup="true">
                             <a href="{{route('manager.position.index')}}" class="kt-menu__link ">
                                 <i class="kt-menu__link-icon flaticon2-soft-icons-1"></i>
-                                <span class="kt-menu__link-text">المناصب الوظيفية</span>
+                                <span class="kt-menu__link-text">العناوين الوظيفية</span>
                             </a>
                         </li>
                         @endcan

@@ -10,7 +10,7 @@
 @section('content')
     @push('breadcrumb')
         <li class="breadcrumb-item">
-            المتقدمين للتعيين
+            المتقدمين للعرض
         </li>
     @endpush
     <div class="row">
@@ -19,7 +19,7 @@
                 <div class="kt-portlet__head">
                     <div class="kt-portlet__head-label">
                         <h3 class="kt-portlet__head-title">
-                            المتقدمين للتعيين
+                            المتقدمين للعرض الوظيفي
                         </h3>
                     </div>
                     <div class="kt-portlet__head-toolbar">

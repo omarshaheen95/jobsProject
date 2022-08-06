@@ -78,6 +78,8 @@ class User extends Authenticatable
                     return 'مقبول';
                 case 'rejected':
                     return 'مرفوض';
+                case 'checked':
+                    return 'تم التدقیق';
             }
         } else {
             return null;

@@ -5,7 +5,7 @@
 @section('content')
     @push('breadcrumb')
         <li class="breadcrumb-item">
-            <a href="{{ route('manager.job_offer.index') }}">التعيينات</a>
+            <a href="{{ route('manager.job_offer.index') }}">العروض الوظیفیة</a>
         </li>
         <li class="breadcrumb-item">
             {{ isset($title) ? $title:'' }}
@@ -30,7 +30,7 @@
                         <div class="kt-section kt-section--first">
                             <div class="kt-section__body">
                                 <div class="form-group row">
-                                    <label class="col-xl-3 col-lg-3 col-form-label">اسم التعيين</label>
+                                    <label class="col-xl-3 col-lg-3 col-form-label">اسم العرض الوظيفي</label>
                                     <div class="col-lg-9 col-xl-6">
                                         <input class="form-control" type="text" disabled
                                                value="{{ isset($job_offer) ? $job_offer->jobOffer->name : old("name") }}">
@@ -41,6 +41,7 @@
                                     <div class="col-lg-9 col-xl-6">
                                         <select class="form-control" name="status">
                                             <option value="pending" {{isset($job_offer) && $job_offer->status == 'pending' ? 'selected':''}}>قيد الانتظار</option>
+                                            <option value="checked" {{isset($job_offer) && $job_offer->status == 'checked' ? 'selected':''}}>تم التدقیق</option>
                                             <option value="approve" {{isset($job_offer) && $job_offer->status == 'approve' ? 'selected':''}}>مقبول</option>
                                             <option value="rejected" {{isset($job_offer) && $job_offer->status == 'rejected' ? 'selected':''}}>مرفوض</option>
                                         </select>

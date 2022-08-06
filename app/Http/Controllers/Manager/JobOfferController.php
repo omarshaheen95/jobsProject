@@ -174,9 +174,17 @@ class JobOfferController extends Controller
                 })
                 ->addColumn('actions', function ($row) {
                     $show_icon = 'la-users';
+                    $test_icon = 'la-list';
                     $show_url = route('manager.user.show', $row->user_id);
                     $edit_url = route('manager.job_offer.status', $row->id);
-                    return view('manager.settings.actions_buttons', compact('row', 'show_url', 'edit_url'));
+                    $test_url = route('manager.job_offer.status', $row->id);
+                    if (!is_null($row->total_mark))
+                    {
+                        return view('manager.settings.actions_buttons', compact('row', 'show_url', 'edit_url', 'test_icon', 'test_url'));
+                    }else{
+                        return view('manager.settings.actions_buttons', compact('row', 'show_url', 'edit_url'));
+                    }
+
                 })->make();
         }
         $title = 'عرض المتقدمين';
@@ -221,14 +229,14 @@ class JobOfferController extends Controller
     public function exportUserJobOfferExcel(Request $request, $id)
     {
         $title = JobOffer::query()->findOrFail($id)->name;
-        $name = 'المتقدمين لتعيين - '.$title . '.xlsx';
+        $name = 'المتقدمين لعرض  - '.$title . '.xlsx';
         return (new UserJobOfferExport($request, $id))
             ->download($name);
     }
 
     public function exportJobOfferExcel(Request $request)
     {
-        $name = 'التعيينات.xlsx';
+        $name = 'العروض الوظیفیة.xlsx';
         return (new JobOfferExport($request))
             ->download($name);
     }

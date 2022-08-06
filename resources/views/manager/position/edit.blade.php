@@ -2,7 +2,7 @@
 @section('content')
     @push('breadcrumb')
         <li class="breadcrumb-item">
-            <a href="{{ route('manager.position.index') }}">المناصب الوظيفية</a>
+            <a href="{{ route('manager.position.index') }}">العناوين الوظيفية</a>
         </li>
         <li class="breadcrumb-item">
             {{ isset($title) ? $title:'' }}
@@ -27,28 +27,28 @@
                         <div class="kt-section kt-section--first">
                             <div class="kt-section__body">
                                 <div class="form-group row">
-                                    <label class="col-xl-3 col-lg-3 col-form-label">اسم المنصب الوظيفي</label>
+                                    <label class="col-xl-3 col-lg-3 col-form-label">اسم العنوان الوظيفي</label>
                                     <div class="col-lg-9 col-xl-6">
                                         <input class="form-control" name="name" type="text"
                                                value="{{ isset($position) ? $position->name : old("name") }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-xl-3 col-lg-3 col-form-label">درجة المنصب الوظيفي</label>
+                                    <label class="col-xl-3 col-lg-3 col-form-label">درجة العنوان الوظيفي</label>
                                     <div class="col-lg-9 col-xl-6">
                                         <input class="form-control" name="job_grade" type="text"
                                                value="{{ isset($position) ? $position->job_grade : old("job_grade") }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-xl-3 col-lg-3 col-form-label">ترتيب المنصب الوظيفي</label>
+                                    <label class="col-xl-3 col-lg-3 col-form-label">ترتيب العنوان الوظيفي</label>
                                     <div class="col-lg-9 col-xl-6">
                                         <input class="form-control" name="ordered" type="number"
                                                value="{{ isset($position) ? $position->ordered : 1 }}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-xl-3 col-lg-3 col-form-label">تفعيل المنصب الوظيفي</label>
+                                    <label class="col-xl-3 col-lg-3 col-form-label">تفعيل العنوان الوظيفي</label>
                                     <div class="col-lg-9 col-xl-6">
                                         <span class="kt-switch">
                                             <label>

@@ -17,7 +17,7 @@ class CreateUserJobOffersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('job_offer_id');
-            $table->enum('status', ['pending', 'approve', 'rejected']);
+            $table->enum('status', ['pending', 'approve', 'rejected', 'checked']);
 
             $table->unsignedBigInteger('manager_id')->nullable();
             $table->text('note')->nullable();

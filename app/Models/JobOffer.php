@@ -86,6 +86,8 @@ class JobOffer extends Model implements HasMedia
                     return 'مقبول';
                 case 'rejected':
                     return 'مرفوض';
+                case 'checked':
+                    return 'تم التدقیق';
             }
         } else {
             return null;

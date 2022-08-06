@@ -265,7 +265,7 @@
                         <div class="tab-pane " id="job_applications" role="tabpanel">
                             <table class="table text-center" id="userJobOffers-table">
                                 <thead>
-                                    <td>التعيين</td>
+                                    <td>الالعرض الوظيفي</td>
                                     <td>حالة الطلب</td>
                                     <td>تاريخ التقديم</td>
                                 </thead>
@@ -274,7 +274,7 @@
                         <div class="tab-pane " id="interviews" role="tabpanel">
                             <table class="table text-center" id="userInterviews-table">
                                 <thead>
-                                    <td>التعيين</td>
+                                    <td>الالعرض الوظيفي</td>
                                     <td>مكان المقابلة</td>
                                     <td>تاريخ المقابلة</td>
                                 </thead>

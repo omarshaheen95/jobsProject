@@ -30,13 +30,13 @@ class PositionController extends Controller
                     return view('manager.settings.actions_buttons', compact('row', 'edit_url'));
                 })->make();
         }
-        $title = 'عرض المناصب الوظيفية';
+        $title = 'عرض العناوين الوظيفية';
         return view('manager.position.index', compact('title'));
     }
 
     public function create()
     {
-        $title = 'إضافة منصب وظيفي';
+        $title = 'إضافة عنوان وظيفي';
         return view('manager.position.edit', compact('title'));
     }
 
@@ -50,7 +50,7 @@ class PositionController extends Controller
 
     public function edit($id)
     {
-        $title = 'تعديل المنصب الوظيفي';
+        $title = 'تعديل العنوان الوظيفي';
         $position = Position::query()->findOrFail($id);
         return view('manager.position.edit', compact('position', 'title'));
     }
