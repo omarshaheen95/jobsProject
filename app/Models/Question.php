@@ -52,4 +52,28 @@ class Question extends Model
     {
         return $this->hasMany(QuestionOption::class);
     }
+
+    public function textResult($job_offer_id)
+    {
+        $result = UserJobOfferQuestion::query()->where('question_id', $this->id)
+            ->where('user_job_offer_id', $job_offer_id)->first();
+        if ($result)
+        {
+            return $result->answer;
+        }else{
+            return false;
+        }
+    }
+
+    public function fileResult($job_offer_id)
+    {
+        $result = UserJobOfferQuestionFile::query()->where('question_id', $this->id)
+            ->where('user_job_offer_id', $job_offer_id)->first();
+        if ($result)
+        {
+            return $result->file_url;
+        }else{
+            return 'لم يتم تقديم إجابة';
+        }
+    }
 }

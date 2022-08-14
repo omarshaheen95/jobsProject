@@ -22,4 +22,9 @@ class UserJobOfferQuestionFile extends Model
     {
         return $this->belongsTo(Question::class);
     }
+
+    public function getFileUrlAttribute()
+    {
+        return $this->file ? asset($this->file):null;
+    }
 }

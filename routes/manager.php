@@ -3,30 +3,15 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Manager\JobOfferController;
 use App\Http\Controllers\Manager\UserController;
+use App\Http\Controllers\Manager\SettingController;
 
-Route::get('/home', function () {
-    $users[] = Auth::user();
-    $users[] = Auth::guard()->user();
-    $users[] = Auth::guard('manager')->user();
-
-    //dd($users);
-
-    return view('manager.home');
-})->name('home');
 
 Route::get('subDegreesByDegree/{id}', 'Front\MainController@subDegreesByDegree')->name('subDegreesByDegree');
 
 
 Route::group(['namespace' => 'Manager'], function () {
-    Route::get('/home', function () {
-        $users[] = Auth::user();
-        $users[] = Auth::guard()->user();
-        $users[] = Auth::guard('manager')->user();
+    Route::get('/home', [SettingController::class, 'home'])->name('home');
 
-        //dd($users);
-
-        return view('manager.home');
-    })->name('home');
     //Settings
     Route::get('settings', 'SettingController@viewSettings')->name('settings.show');
     Route::post('settings', 'SettingController@settings')->name('settings.update');
@@ -64,6 +49,7 @@ Route::group(['namespace' => 'Manager'], function () {
 
     Route::get('job-offers-users/{id}', [JobOfferController::class, 'usersJobOffers'])->name('job_offer.users');
     Route::get('job-offers-users/{id}/status', [JobOfferController::class, 'userJobOfferStatus'])->name('job_offer.status');
+    Route::get('job-offers-users/{id}/test', [JobOfferController::class, 'userJobOfferTest'])->name('job_offer.test');
     Route::post('job-offers-users/{id}/status', [JobOfferController::class, 'updateUserJobOfferStatus'])->name('job_offer.update_status');
     Route::delete('job-offers-users/{id}', [JobOfferController::class, 'deleteUserJobOffer'])->name('job_offer.deleteUsers');
     Route::get('user-excel-export', [UserController::class, 'exportUserExcel'])->name('exportUserExcel');

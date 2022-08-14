@@ -73,3 +73,10 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Front'], function (){
     Route::post('password', [ProfileController::class, 'password'])->name('password');
 
 });
+Route::get('view', function (){
+    \Illuminate\Support\Facades\Artisan::call('view:clear');
+});
+Route::get('cache', function (){
+    \Illuminate\Support\Facades\Artisan::call('cache:clear');
+    \Illuminate\Support\Facades\Artisan::call('config:cache');
+});

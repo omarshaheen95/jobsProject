@@ -3,16 +3,44 @@
 namespace App\Http\Controllers\Manager;
 
 use App\Http\Controllers\Controller;
+use App\Models\JobOffer;
+use App\Models\News;
 use App\Models\Setting;
+use App\Models\User;
+use App\Models\UserJobOffer;
 use Illuminate\Contracts\Cache\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 
 class SettingController extends Controller
 {
     public function __construct()
     {
         $this->middleware('permission:general settings management');
+    }
+
+    public function home()
+    {
+        $news = News::query()->count();
+        $users = User::query()->count();
+        $job_offers = JobOffer::query()->count();
+        $users_job_offers = UserJobOffer::query()->count();
+
+        $users_date = User::query()->groupBy('date')->orderBy('date', 'DESC')->whereMonth('created_at', now())
+            ->whereYear('created_at', now())
+            ->get(array(
+                DB::raw('Date(created_at) as date'),
+                DB::raw('COUNT(*) as counts')
+            ));
+        $users_job_offers_chart = UserJobOffer::query()->groupBy('date')->orderBy('date', 'DESC')->whereMonth('created_at', now())
+            ->whereYear('created_at', now())
+            ->get(array(
+                DB::raw('Date(created_at) as date'),
+                DB::raw('COUNT(*) as counts')
+            ));
+
+        return view('manager.home', compact('news', 'users', 'job_offers', 'users_job_offers', 'users_date', 'users_job_offers_chart'));
     }
 
     public function viewSettings()

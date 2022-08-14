@@ -57,6 +57,7 @@ class UserJobOfferExport implements WithMapping,Responsable,WithHeadings,FromCol
             'من فئة ذوي الأسرى',
             'من فئة ذوي الجرحى',
             'من فئة ذوي الشهداء',
+            'درجة التقديم',
         ];
     }
 
@@ -88,6 +89,7 @@ class UserJobOfferExport implements WithMapping,Responsable,WithHeadings,FromCol
             $row->user->userInfo->family_of_prisoners ? 'نعم':'لا',
             $row->user->userInfo->injured_people ? 'نعم':'لا',
             $row->user->userInfo->family_of_martyrs ? 'نعم':'لا',
+            $row->total_mark,
         ];
     }
 
@@ -116,10 +118,10 @@ class UserJobOfferExport implements WithMapping,Responsable,WithHeadings,FromCol
         });
         return [
             AfterSheet::class => function (AfterSheet $event) {
-                $cellRange = 'A1:Y1';
+                $cellRange = 'A1:Z1';
                 $event->sheet->getDelegate()->getStyle($cellRange)->getFont()->setBold('bold')->setSize(12);
                 $event->sheet->styleCells(
-                    "A1:Y$this->length",
+                    "A1:Z$this->length",
                     [
                         'alignment' => [
                             'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,

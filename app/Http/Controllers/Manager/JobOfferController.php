@@ -177,7 +177,7 @@ class JobOfferController extends Controller
                     $test_icon = 'la-list';
                     $show_url = route('manager.user.show', $row->user_id);
                     $edit_url = route('manager.job_offer.status', $row->id);
-                    $test_url = route('manager.job_offer.status', $row->id);
+                    $test_url = route('manager.job_offer.test', $row->id);
                     if (!is_null($row->total_mark))
                     {
                         return view('manager.settings.actions_buttons', compact('row', 'show_url', 'edit_url', 'test_icon', 'test_url'));
@@ -205,6 +205,13 @@ class JobOfferController extends Controller
         $job_offer = UserJobOffer::query()->with(['jobOffer', 'interview'])->findOrFail($id);
         $title = 'حالة الطلب';
         return view('manager.job_offer.status', compact('job_offer', 'title'));
+    }
+
+    public function userJobOfferTest($id)
+    {
+        $job_offer = UserJobOffer::query()->with(['jobOffer', 'jobOffer.questions'])->findOrFail($id);
+        $title = 'نتيجة بيانات تقديم الطلب';
+        return view('manager.job_offer.test', compact('job_offer', 'title'));
     }
 
     public function updateUserJobOfferStatus(InterviewRequest $request, $id)
