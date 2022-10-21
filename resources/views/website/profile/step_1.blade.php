@@ -93,8 +93,8 @@
                         <option value="" disabled selected> اختر الحالة الاجتماعية</option>
                         <option value="1" {{optional($user->userInfo)->marital_status == 1 ? 'selected':''}}> أعزب / انسة </option>
                         <option value="2" {{optional($user->userInfo)->marital_status == 2 ? 'selected':''}}>  متزوج / متزوجة </option>
-                        <option value="3" {{optional($user->userInfo)->marital_status == 3 ? 'selected':''}}>  أرمل / ارملة </option>
-                        <option value="4" {{optional($user->userInfo)->marital_status == 4 ? 'selected':''}}>  مطلق / مطلقة </option>
+                        <option value="3" {{optional($user->userInfo)->marital_status == 3 ? 'selected':''}}>  مطلق / مطلقة </option>
+                        <option value="4" {{optional($user->userInfo)->marital_status == 4 ? 'selected':''}}>  أرمل / ارملة </option>
                     </select>
                     <div class="invalid-feedback"></div>
                 </div>

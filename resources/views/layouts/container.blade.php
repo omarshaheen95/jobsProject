@@ -109,23 +109,18 @@
                     </a>
                     <ul class="nav nav-social-media">
                         <li class="nav-item">
-                            <a href="#!" target="_blank" rel="noopener noreferrer" class="nav-link">
+                            <a data-sharer="facebook" data-title="مجلس الخدمة الإتحادي" data-url="{{route('welcome')}}" rel="noopener noreferrer" target="_blank" class="nav-link">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#!" target="_blank" rel="noopener noreferrer" class="nav-link">
+                            <a data-sharer="twitter" data-title="مجلس الخدمة الإتحادي" data-url="{{route('welcome')}}" rel="noopener noreferrer" target="_blank" class="nav-link">
                                 <i class="fab fa-twitter"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#!" target="_blank" rel="noopener noreferrer" class="nav-link">
+                            <a data-sharer="linkedin" data-title="مجلس الخدمة الإتحادي" data-url="{{route('welcome')}}" rel="noopener noreferrer" target="_blank" class="nav-link">
                                 <i class="fab fa-linkedin-in"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#!" target="_blank" rel="noopener noreferrer" class="nav-link">
-                                <i class="fab fa-youtube"></i>
                             </a>
                         </li>
                     </ul>

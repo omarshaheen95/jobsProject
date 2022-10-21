@@ -12,6 +12,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class UserInfo extends Model implements HasMedia
 {
     use SoftDeletes, InteractsWithMedia;
+    //marital_status 1 Single / 2 Married / 3 Divorced / 4 Widowed
     protected $fillable = [
         'user_id', 'uid', 'full_name', 'mobile', 'phone', 'gender', 'dob', 'marital_status', 'number_of_children', 'number_of_employees',
         'scholarship_student', 'top_ten_students', 'birth_governorate_id', 'governorate_id', 'address', 'unemployed', 'work_nonGovernmental_org',

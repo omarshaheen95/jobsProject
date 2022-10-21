@@ -230,7 +230,7 @@ class JobOfferController extends Controller
         }else{
             optional($job_offer->interview)->delete();
         }
-        return redirect()->route('manager.job_offer.users', $job_offer->id)->with('m-class', 'success')->with('message', 'تم الحفظ بنجاح');
+        return redirect()->route('manager.job_offer.users', $job_offer->job_offer_id)->with('m-class', 'success')->with('message', 'تم الحفظ بنجاح');
     }
 
     public function exportUserJobOfferExcel(Request $request, $id)

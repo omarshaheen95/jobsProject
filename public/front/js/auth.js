@@ -156,7 +156,9 @@ $(document).on('submit', '#forget-form', function (e) {
     })
         .done(function (data) {
             console.log(data);
-            showToastify("تم تسجيل  بنجاح", 'success');
+            showToastify("تم إرسال البريد الإلكتورني بنجاح", 'success');
+            btn.removeClass("disabled");
+            btn.find(".spinner-border").addClass("d-none");
             // window.location.replace('/');
         })
         .fail(function (data) {

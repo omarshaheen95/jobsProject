@@ -98,11 +98,13 @@ class ProfileController extends Controller
     {
         $data = $request->validated();
         $user = Auth::guard('web')->user();
+//        dd($data);
 
-        $userInfo = $user->userInfo()->updateOrCreate($data);
+        $userInfo = $user->userInfo()->updateOrCreate(['user_id' => $user->id],$data)->save();
         if ($request->hasFile('avatar')) {
             $userInfo->addMediaFromRequest('avatar')->toMediaCollection('users');
         }
+
         return $this->sendResponse(null, 'تم تحديث تسجيل البيانات بنجاح');
     }
 
