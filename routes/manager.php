@@ -28,7 +28,7 @@ Route::group(['namespace' => 'Manager'], function () {
         'degree' => 'DegreeController',
         'sub_degree' => 'SubDegreeController',
         'disability' => 'DisabilityController',
-//        'ministry' => 'MinistryController',
+        'ministry' => 'MinistryController',
         'university' => 'UniversityController',
         'appreciation' => 'AppreciationController',
         'country' => 'CountryController',
@@ -42,10 +42,10 @@ Route::group(['namespace' => 'Manager'], function () {
         'job_offer' => 'JobOfferController',
         'qualification' => 'QualificationController',
         'question' => 'QuestionController',
-        'grade' => 'Lottery\GradeController',
-        'applicant' => 'Lottery\ApplicantController',
-        'ministry' => 'Lottery\LotteryMinistryController',
-        'department' => 'Lottery\LotteryDepartmentController',
+//        'grade' => 'Lottery\GradeController',
+//        'applicant' => 'Lottery\ApplicantController',
+//        'ministry' => 'Lottery\LotteryMinistryController',
+//        'department' => 'Lottery\LotteryDepartmentController',
     ]);
 
 
@@ -86,46 +86,46 @@ Route::group(['namespace' => 'Manager'], function () {
     Route::get('ministriesByDepartment', 'SettingController@ministriesByDepartment')->name('ministriesByDepartment');
 
 
-
-    //governor
-    Route::get('governor-grades', [\App\Http\Controllers\Manager\Lottery\GradeController::class, 'governorGrades'])->name('grade.governor');
-    Route::get('governor-grades-approve', [\App\Http\Controllers\Manager\Lottery\GradeController::class, 'governorGradesApprove'])->name('grade.governor.approve');
-    Route::get('governor-lottery', [\App\Http\Controllers\Manager\Lottery\GradeController::class, 'gradesGovernorLottery'])->name('grade.governor.lottery');
-
-    //discrimination
-    Route::get('discrimination-grades', [\App\Http\Controllers\Manager\Lottery\GradeController::class, 'gradesDiscrimination'])->name('grade.discrimination');
-    Route::get('discrimination-lottery', [\App\Http\Controllers\Manager\Lottery\GradeController::class, 'gradesDiscriminationLottery'])->name('grade.discrimination.lottery');
-
-    //top
-    Route::get('top-grades', [\App\Http\Controllers\Manager\Lottery\GradeController::class, 'gradesTop'])->name('grade.top');
-    Route::get('top-lottery', [\App\Http\Controllers\Manager\Lottery\GradeController::class, 'gradesTopLottery'])->name('grade.top.lottery');
-
-    //general
-    Route::get('general-grades', [\App\Http\Controllers\Manager\Lottery\GradeController::class, 'gradesGeneral'])->name('grade.general');
-    Route::get('general-lottery', [\App\Http\Controllers\Manager\Lottery\GradeController::class, 'gradesGeneralLottery'])->name('grade.general.lottery');
-
-
-    Route::post('grade-import', [\App\Http\Controllers\Manager\Lottery\GradeController::class, 'gradeImport'])->name('grade.import');
-    Route::get('grade-export', [\App\Http\Controllers\Manager\Lottery\GradeController::class, 'gradeExport'])->name('grade.export');
-    Route::get('grade-discrimination-export', [\App\Http\Controllers\Manager\Lottery\GradeController::class, 'gradeDiscriminationExport'])->name('grade.discrimination.export');
-    Route::get('grade-top-export', [\App\Http\Controllers\Manager\Lottery\GradeController::class, 'gradeTopExport'])->name('grade.top.export');
-    Route::get('grade-general-export', [\App\Http\Controllers\Manager\Lottery\GradeController::class, 'gradeGeneralExport'])->name('grade.general.export');
-    Route::get('grade-governor-export', [\App\Http\Controllers\Manager\Lottery\GradeController::class, 'gradeGovernorExport'])->name('grade.governor.export');
-
-    Route::post('applicant-import', [\App\Http\Controllers\Manager\Lottery\ApplicantController::class, 'applicantImport'])->name('applicant.import');
-    Route::get('applicant-export', [\App\Http\Controllers\Manager\Lottery\ApplicantController::class, 'applicantExport'])->name('applicant.export');
-
-
-    //Lottery
-    Route::get('lottery', [\App\Http\Controllers\Manager\Lottery\LotteryController::class, 'index'])->name('lottery.index');
-    Route::post('lottery/update-ministry-applicants', [\App\Http\Controllers\Manager\Lottery\LotteryController::class, 'updateMinistryApplicants'])->name('lottery.update-ministry-applicants');
-    Route::post('lottery/update-discrimination-ministry', [\App\Http\Controllers\Manager\Lottery\LotteryController::class, 'updateDiscriminationMinistry'])->name('lottery.update-discrimination-ministry');
-    Route::post('lottery/update-top-ministry', [\App\Http\Controllers\Manager\Lottery\LotteryController::class, 'updateTopMinistry'])->name('lottery.update-top-ministry');
-    Route::post('lottery/update-governor', [\App\Http\Controllers\Manager\Lottery\LotteryController::class, 'updateGovernor'])->name('lottery.update-governor');
-    Route::get('history-lottery', [\App\Http\Controllers\Manager\Lottery\LotteryController::class, 'lotteriesHistory'])->name('lottery.history');
-    Route::delete('lottery-delete/{id}', [\App\Http\Controllers\Manager\Lottery\LotteryController::class, 'lotteryDelete'])->name('lottery.delete');
-    Route::get('lottery-export', [\App\Http\Controllers\Manager\Lottery\LotteryController::class, 'lotteryExport'])->name('lottery.export');
-
+//
+//    //governor
+//    Route::get('governor-grades', [\App\Http\Controllers\Manager\Lottery\GradeController::class, 'governorGrades'])->name('grade.governor');
+//    Route::get('governor-grades-approve', [\App\Http\Controllers\Manager\Lottery\GradeController::class, 'governorGradesApprove'])->name('grade.governor.approve');
+//    Route::get('governor-lottery', [\App\Http\Controllers\Manager\Lottery\GradeController::class, 'gradesGovernorLottery'])->name('grade.governor.lottery');
+//
+//    //discrimination
+//    Route::get('discrimination-grades', [\App\Http\Controllers\Manager\Lottery\GradeController::class, 'gradesDiscrimination'])->name('grade.discrimination');
+//    Route::get('discrimination-lottery', [\App\Http\Controllers\Manager\Lottery\GradeController::class, 'gradesDiscriminationLottery'])->name('grade.discrimination.lottery');
+//
+//    //top
+//    Route::get('top-grades', [\App\Http\Controllers\Manager\Lottery\GradeController::class, 'gradesTop'])->name('grade.top');
+//    Route::get('top-lottery', [\App\Http\Controllers\Manager\Lottery\GradeController::class, 'gradesTopLottery'])->name('grade.top.lottery');
+//
+//    //general
+//    Route::get('general-grades', [\App\Http\Controllers\Manager\Lottery\GradeController::class, 'gradesGeneral'])->name('grade.general');
+//    Route::get('general-lottery', [\App\Http\Controllers\Manager\Lottery\GradeController::class, 'gradesGeneralLottery'])->name('grade.general.lottery');
+//
+//
+//    Route::post('grade-import', [\App\Http\Controllers\Manager\Lottery\GradeController::class, 'gradeImport'])->name('grade.import');
+//    Route::get('grade-export', [\App\Http\Controllers\Manager\Lottery\GradeController::class, 'gradeExport'])->name('grade.export');
+//    Route::get('grade-discrimination-export', [\App\Http\Controllers\Manager\Lottery\GradeController::class, 'gradeDiscriminationExport'])->name('grade.discrimination.export');
+//    Route::get('grade-top-export', [\App\Http\Controllers\Manager\Lottery\GradeController::class, 'gradeTopExport'])->name('grade.top.export');
+//    Route::get('grade-general-export', [\App\Http\Controllers\Manager\Lottery\GradeController::class, 'gradeGeneralExport'])->name('grade.general.export');
+//    Route::get('grade-governor-export', [\App\Http\Controllers\Manager\Lottery\GradeController::class, 'gradeGovernorExport'])->name('grade.governor.export');
+//
+//    Route::post('applicant-import', [\App\Http\Controllers\Manager\Lottery\ApplicantController::class, 'applicantImport'])->name('applicant.import');
+//    Route::get('applicant-export', [\App\Http\Controllers\Manager\Lottery\ApplicantController::class, 'applicantExport'])->name('applicant.export');
+//
+//
+//    //Lottery
+//    Route::get('lottery', [\App\Http\Controllers\Manager\Lottery\LotteryController::class, 'index'])->name('lottery.index');
+//    Route::post('lottery/update-ministry-applicants', [\App\Http\Controllers\Manager\Lottery\LotteryController::class, 'updateMinistryApplicants'])->name('lottery.update-ministry-applicants');
+//    Route::post('lottery/update-discrimination-ministry', [\App\Http\Controllers\Manager\Lottery\LotteryController::class, 'updateDiscriminationMinistry'])->name('lottery.update-discrimination-ministry');
+//    Route::post('lottery/update-top-ministry', [\App\Http\Controllers\Manager\Lottery\LotteryController::class, 'updateTopMinistry'])->name('lottery.update-top-ministry');
+//    Route::post('lottery/update-governor', [\App\Http\Controllers\Manager\Lottery\LotteryController::class, 'updateGovernor'])->name('lottery.update-governor');
+//    Route::get('history-lottery', [\App\Http\Controllers\Manager\Lottery\LotteryController::class, 'lotteriesHistory'])->name('lottery.history');
+//    Route::delete('lottery-delete/{id}', [\App\Http\Controllers\Manager\Lottery\LotteryController::class, 'lotteryDelete'])->name('lottery.delete');
+//    Route::get('lottery-export', [\App\Http\Controllers\Manager\Lottery\LotteryController::class, 'lotteryExport'])->name('lottery.export');
+//
 
 
 

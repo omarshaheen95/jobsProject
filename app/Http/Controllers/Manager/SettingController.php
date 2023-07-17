@@ -28,62 +28,62 @@ class SettingController extends Controller
         $this->middleware('permission:general settings management')->only(['viewSettings', 'settings']);
     }
 
-//    public function home()
-//    {
-//        $news = News::query()->count();
-//        $users = User::query()->count();
-//        $job_offers = JobOffer::query()->count();
-//        $users_job_offers = UserJobOffer::query()->count();
-//
-//        $users_date = User::query()->groupBy('date')->orderBy('date', 'DESC')->whereMonth('created_at', now())
-//            ->whereYear('created_at', now())
-//            ->get(array(
-//                DB::raw('Date(created_at) as date'),
-//                DB::raw('COUNT(*) as counts')
-//            ));
-//        $users_job_offers_chart = UserJobOffer::query()->groupBy('date')->orderBy('date', 'DESC')->whereMonth('created_at', now())
-//            ->whereYear('created_at', now())
-//            ->get(array(
-//                DB::raw('Date(created_at) as date'),
-//                DB::raw('COUNT(*) as counts')
-//            ));
-//
-//        return view('manager.home', compact('news', 'users', 'job_offers', 'users_job_offers', 'users_date', 'users_job_offers_chart'));
-//    }
     public function home()
     {
-        $data['applicants'] = Applicant::query()->count();
-        $data['applicants_available'] = Applicant::query()->whereNull('lottery_ministry_id')->count();
-        $data['applicants_used'] = Applicant::query()->whereNotNull('lottery_ministry_id')->count();
-        $data['applicants_top'] = Applicant::query()
-            ->whereRelation('lottery_degree', 'name', 'like', '%بكالوريوس%')
-            ->where('sequencing', 1)->count();
+        $news = News::query()->count();
+        $users = User::query()->count();
+        $job_offers = JobOffer::query()->count();
+        $users_job_offers = UserJobOffer::query()->count();
 
-        $data['applicants_need'] = Grade::query()->sum('total_required');
+        $users_date = User::query()->groupBy('date')->orderBy('date', 'DESC')->whereMonth('created_at', now())
+            ->whereYear('created_at', now())
+            ->get(array(
+                DB::raw('Date(created_at) as date'),
+                DB::raw('COUNT(*) as counts')
+            ));
+        $users_job_offers_chart = UserJobOffer::query()->groupBy('date')->orderBy('date', 'DESC')->whereMonth('created_at', now())
+            ->whereYear('created_at', now())
+            ->get(array(
+                DB::raw('Date(created_at) as date'),
+                DB::raw('COUNT(*) as counts')
+            ));
 
-        $data['grades'] = Grade::query()
-            ->select(['lottery_department_id', 'lottery_ministry_id', 'grade_required'])
-            ->groupBy(['lottery_department_id', 'lottery_ministry_id', 'grade_required'])
-            ->get()->count();
-
-        $data['total_grades_discrimination'] = Grade::query()
-            ->whereRelation('lottery_ministry', 'discrimination', 1)
-            ->select(['lottery_department_id', 'lottery_ministry_id', 'grade_required', DB::raw('SUM( total_required ) AS sum_total_required')])
-            ->groupBy(['lottery_department_id', 'lottery_ministry_id', 'grade_required'])
-            ->get()->sum('sum_total_required');
-        $data['total_grades_general'] = Grade::query()
-            ->whereRelation('lottery_ministry', 'discrimination', 0)
-            ->select(['lottery_department_id', 'lottery_ministry_id', 'grade_required', DB::raw('SUM( total_required ) AS sum_total_required')])
-            ->groupBy(['lottery_department_id', 'lottery_ministry_id', 'grade_required'])
-            ->get()->sum('sum_total_required');
-
-        $data['departments'] = LotteryDepartment::query()->where('governor', 0)->count();
-        $data['governor_departments'] = LotteryDepartment::query()->where('governor', 1)->count();
-        $data['ministries'] = LotteryMinistry::query()->count();
-        $data['ministries_discrimination'] = LotteryMinistry::query()->where('discrimination', 1)->count();
-
-        return view('manager.home_lottery', compact('data'));
+        return view('manager.home', compact('news', 'users', 'job_offers', 'users_job_offers', 'users_date', 'users_job_offers_chart'));
     }
+//    public function home()
+//    {
+//        $data['applicants'] = Applicant::query()->count();
+//        $data['applicants_available'] = Applicant::query()->whereNull('lottery_ministry_id')->count();
+//        $data['applicants_used'] = Applicant::query()->whereNotNull('lottery_ministry_id')->count();
+//        $data['applicants_top'] = Applicant::query()
+//            ->whereRelation('lottery_degree', 'name', 'like', '%بكالوريوس%')
+//            ->where('sequencing', 1)->count();
+//
+//        $data['applicants_need'] = Grade::query()->sum('total_required');
+//
+//        $data['grades'] = Grade::query()
+//            ->select(['lottery_department_id', 'lottery_ministry_id', 'grade_required'])
+//            ->groupBy(['lottery_department_id', 'lottery_ministry_id', 'grade_required'])
+//            ->get()->count();
+//
+//        $data['total_grades_discrimination'] = Grade::query()
+//            ->whereRelation('lottery_ministry', 'discrimination', 1)
+//            ->select(['lottery_department_id', 'lottery_ministry_id', 'grade_required', DB::raw('SUM( total_required ) AS sum_total_required')])
+//            ->groupBy(['lottery_department_id', 'lottery_ministry_id', 'grade_required'])
+//            ->get()->sum('sum_total_required');
+//        $data['total_grades_general'] = Grade::query()
+//            ->whereRelation('lottery_ministry', 'discrimination', 0)
+//            ->select(['lottery_department_id', 'lottery_ministry_id', 'grade_required', DB::raw('SUM( total_required ) AS sum_total_required')])
+//            ->groupBy(['lottery_department_id', 'lottery_ministry_id', 'grade_required'])
+//            ->get()->sum('sum_total_required');
+//
+//        $data['departments'] = LotteryDepartment::query()->where('governor', 0)->count();
+//        $data['governor_departments'] = LotteryDepartment::query()->where('governor', 1)->count();
+//        $data['ministries'] = LotteryMinistry::query()->count();
+//        $data['ministries_discrimination'] = LotteryMinistry::query()->where('discrimination', 1)->count();
+//
+//        return view('manager.home_lottery', compact('data'));
+//    }
 
     public function viewSettings()
     {
