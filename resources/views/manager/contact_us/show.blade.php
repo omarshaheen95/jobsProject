@@ -1,8 +1,3 @@
-{{--
-Dev Omar Shaheen
-Devomar095@gmail.com
-WhatsApp +972592554320
- --}}
 @extends('manager.layout.container')
 @section('style')
 

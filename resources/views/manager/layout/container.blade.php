@@ -1,7 +1,3 @@
-{{--Dev Omar Shaheen
-    Devomar095@gmail.com
-    WhatsApp +972592554320
-    --}}
     <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
@@ -88,7 +84,7 @@
 
 <!-- begin::Body -->
 <body
-    class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--fixed kt-subheader--enabled kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading">
+    class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--fixed kt-subheader--enabled kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading {{isset($expand) ? 'kt-aside--minimize':''}}">
 
 <!-- begin:: Page -->
 
@@ -176,15 +172,100 @@
                                 <span class="kt-menu__link-text">الرئيسية</span>
                             </a>
                         </li>
-                        @can('users management')
-                        <li class="kt-menu__item  @if(Route::is('manager.user.*') ) kt-menu__item--active @endif"
+                        @can('grades management')
+                        <li class="kt-menu__item  @if(Route::is('manager.grade.index') ) kt-menu__item--active @endif"
                             aria-haspopup="true">
-                            <a href="{{route('manager.user.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-user-outline-symbol"></i>
-                                <span class="kt-menu__link-text">المستخدمين</span>
+                            <a href="{{route('manager.grade.index')}}" class="kt-menu__link ">
+                                <i class="kt-menu__link-icon flaticon2-indent-dots"></i>
+                                <span class="kt-menu__link-text">سجل الدرجات المستحدثة</span>
                             </a>
                         </li>
                         @endcan
+                        @can('applicants management')
+                        <li class="kt-menu__item  @if(Route::is('manager.applicant.*') ) kt-menu__item--active @endif"
+                            aria-haspopup="true">
+                            <a href="{{route('manager.applicant.index')}}" class="kt-menu__link ">
+                                <i class="kt-menu__link-icon flaticon2-group"></i>
+                                <span class="kt-menu__link-text">المتقدمين</span>
+                            </a>
+                        </li>
+                        @endcan
+                        @if(config('settings.RUN-LOTTERY') == 1)
+                        @can('lotteries management')
+                        <li class="kt-menu__item  @if(Route::is('manager.lottery.index') ) kt-menu__item--active @endif"
+                            aria-haspopup="true">
+                            <a href="{{route('manager.lottery.index')}}" class="kt-menu__link ">
+                                <i class="kt-menu__link-icon flaticon2-user-outline-symbol"></i>
+                                <span class="kt-menu__link-text">القرعة</span>
+                            </a>
+                        </li>
+                        @endcan
+                        @endif
+                        @can('discrimination lotteries management')
+                        <li class="kt-menu__item  @if(Route::is('manager.grade.discrimination') ) kt-menu__item--active @endif"
+                            aria-haspopup="true">
+                            <a href="{{route('manager.grade.discrimination')}}" class="kt-menu__link ">
+                                <i class="kt-menu__link-icon flaticon2-list-3"></i>
+                                <span class="kt-menu__link-text">الدرجات المستحدثة (الاستثناءات)</span>
+                            </a>
+                        </li>
+                        @endcan
+                        @can('top lotteries management')
+                        <li class="kt-menu__item  @if(Route::is('manager.grade.top') ) kt-menu__item--active @endif"
+                            aria-haspopup="true">
+                            <a href="{{route('manager.grade.top')}}" class="kt-menu__link ">
+                                <i class="kt-menu__link-icon flaticon2-list-3"></i>
+                                <span class="kt-menu__link-text">الدرجات المستحدثة (الأوائل)</span>
+                            </a>
+                        </li>
+                        @endcan
+                        @can('governor lotteries management')
+                        <li class="kt-menu__item  @if(Route::is('manager.grade.governor') ) kt-menu__item--active @endif"
+                            aria-haspopup="true">
+                            <a href="{{route('manager.grade.governor')}}" class="kt-menu__link ">
+                                <i class="kt-menu__link-icon flaticon2-writing"></i>
+                                <span class="kt-menu__link-text">الأقسام الحاكمة</span>
+                            </a>
+                        </li>
+                        @endcan
+                        @can('grades management')
+                        <li class="kt-menu__item  @if(Route::is('manager.grade.general') ) kt-menu__item--active @endif"
+                            aria-haspopup="true">
+                            <a href="{{route('manager.grade.general')}}" class="kt-menu__link ">
+                                <i class="kt-menu__link-icon flaticon2-list-3"></i>
+                                <span class="kt-menu__link-text">الدرجات المستحدثة (العامة)</span>
+                            </a>
+                        </li>
+                        @endcan
+                        @can('lotteries ministries management')
+                        <li class="kt-menu__item  @if(Route::is('manager.ministry.*') ) kt-menu__item--active @endif"
+                            aria-haspopup="true">
+                            <a href="{{route('manager.ministry.index')}}" class="kt-menu__link ">
+                                <i class="kt-menu__link-icon flaticon2-writing"></i>
+                                <span class="kt-menu__link-text">الجهات / الوزارات</span>
+                            </a>
+                        </li>
+                        @endcan
+                        @can('lotteries histories management')
+                        <li class="kt-menu__item  @if(Route::is('manager.lottery.history') ) kt-menu__item--active @endif"
+                            aria-haspopup="true">
+                            <a href="{{route('manager.lottery.history')}}" class="kt-menu__link ">
+                                <i class="kt-menu__link-icon flaticon2-writing"></i>
+                                <span class="kt-menu__link-text">سجلات القرعة</span>
+                            </a>
+                        </li>
+                        @endcan
+
+{{--                        @endcan--}}
+{{--                        @can('users management')--}}
+{{--                        <li class="kt-menu__item  @if(Route::is('manager.user.*') ) kt-menu__item--active @endif"--}}
+{{--                            aria-haspopup="true">--}}
+{{--                            <a href="{{route('manager.user.index')}}" class="kt-menu__link ">--}}
+{{--                                <i class="kt-menu__link-icon flaticon2-user-outline-symbol"></i>--}}
+{{--                                <span class="kt-menu__link-text">المستخدمين</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        @endcan--}}
                         @can('news management')
                         <li class="kt-menu__item  @if(Route::is('manager.news.*') ) kt-menu__item--active @endif"
                             aria-haspopup="true">
@@ -194,124 +275,124 @@
                             </a>
                         </li>
                         @endcan
-                        @can('jobs offers management')
-                        <li class="kt-menu__item  @if(Route::is('manager.job_offer.*') ) kt-menu__item--active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('manager.job_offer.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-note"></i>
-                                <span class="kt-menu__link-text">العروض الوظیفیة</span>
-                            </a>
-                        </li>
-                        @endcan
-                        @can('governorates management')
-
-                        <li class="kt-menu__item  @if(Route::is('manager.governorate.*') ) kt-menu__item--active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('manager.governorate.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-pin"></i>
-                                <span class="kt-menu__link-text">المحافظات</span>
-                            </a>
-                        </li>
-                        @endcan
-                        @can('degrees management')
-                        <li class="kt-menu__item  @if(Route::is('manager.degree.*') ) kt-menu__item--active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('manager.degree.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-files-and-folders"></i>
-                                <span class="kt-menu__link-text">التخصصات</span>
-                            </a>
-                        </li>
-                        @endcan
-                        @can('sub degrees management')
-                        <li class="kt-menu__item  @if(Route::is('manager.sub_degree.*') ) kt-menu__item--active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('manager.sub_degree.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-files-and-folders"></i>
-                                <span class="kt-menu__link-text">التخصصات الدقيقة</span>
-                            </a>
-                        </li>
-                        @endcan
-                        @can('qualifications management')
-                        <li class="kt-menu__item  @if(Route::is('manager.qualification.*') ) kt-menu__item--active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('manager.qualification.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-writing"></i>
-                                <span class="kt-menu__link-text">المؤهلات</span>
-                            </a>
-                        </li>
-                        @endcan
-                        @can('appreciations management')
-                        <li class="kt-menu__item  @if(Route::is('manager.appreciation.*') ) kt-menu__item--active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('manager.appreciation.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-dashboard"></i>
-                                <span class="kt-menu__link-text">التقديرات</span>
-                            </a>
-                        </li>
-                        @endcan
-                        @can('disabilities management')
-                        <li class="kt-menu__item  @if(Route::is('manager.disability.*') ) kt-menu__item--active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('manager.disability.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-group"></i>
-                                <span class="kt-menu__link-text">الاعاقات</span>
-                            </a>
-                        </li>
-                        @endcan
-                        @can('ministries management')
-                        <li class="kt-menu__item  @if(Route::is('manager.ministry.*') ) kt-menu__item--active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('manager.ministry.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-architecture-and-city"></i>
-                                <span class="kt-menu__link-text">الوزارات</span>
-                            </a>
-                        </li>
-                        @endcan
-                        @can('positions management')
-                        <li class="kt-menu__item  @if(Route::is('manager.position.*') ) kt-menu__item--active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('manager.position.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-soft-icons-1"></i>
-                                <span class="kt-menu__link-text">العناوين الوظيفية</span>
-                            </a>
-                        </li>
-                        @endcan
-{{--                        @can('positions management')--}}
-                        <li class="kt-menu__item  @if(Route::is('manager.question.*') ) kt-menu__item--active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('manager.question.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-soft-icons-1"></i>
-                                <span class="kt-menu__link-text">الأسئلة</span>
-                            </a>
-                        </li>
+{{--                        @can('jobs offers management')--}}
+{{--                        <li class="kt-menu__item  @if(Route::is('manager.job_offer.*') ) kt-menu__item--active @endif"--}}
+{{--                            aria-haspopup="true">--}}
+{{--                            <a href="{{route('manager.job_offer.index')}}" class="kt-menu__link ">--}}
+{{--                                <i class="kt-menu__link-icon flaticon2-note"></i>--}}
+{{--                                <span class="kt-menu__link-text">العروض الوظیفیة</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
 {{--                        @endcan--}}
-                        @can('languages management')
-                        <li class="kt-menu__item  @if(Route::is('manager.language.*') ) kt-menu__item--active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('manager.language.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-chat-1"></i>
-                                <span class="kt-menu__link-text">اللغات</span>
-                            </a>
-                        </li>
-                        @endcan
-                        @can('external links management')
-                        <li class="kt-menu__item  @if(Route::is('manager.external-link.*') ) kt-menu__item--active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('manager.external-link.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-placeholder"></i>
-                                <span class="kt-menu__link-text">الراوبط الخارجية</span>
-                            </a>
-                        </li>
-                        @endcan
-                        @can('countries management')
-                        <li class="kt-menu__item  @if(Route::is('manager.country.*') ) kt-menu__item--active @endif"
-                            aria-haspopup="true">
-                            <a href="{{route('manager.country.index')}}" class="kt-menu__link ">
-                                <i class="kt-menu__link-icon flaticon2-placeholder"></i>
-                                <span class="kt-menu__link-text">الدول</span>
-                            </a>
-                        </li>
-                        @endcan
+{{--                        @can('governorates management')--}}
+
+{{--                        <li class="kt-menu__item  @if(Route::is('manager.governorate.*') ) kt-menu__item--active @endif"--}}
+{{--                            aria-haspopup="true">--}}
+{{--                            <a href="{{route('manager.governorate.index')}}" class="kt-menu__link ">--}}
+{{--                                <i class="kt-menu__link-icon flaticon2-pin"></i>--}}
+{{--                                <span class="kt-menu__link-text">المحافظات</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        @endcan--}}
+{{--                        @can('degrees management')--}}
+{{--                        <li class="kt-menu__item  @if(Route::is('manager.degree.*') ) kt-menu__item--active @endif"--}}
+{{--                            aria-haspopup="true">--}}
+{{--                            <a href="{{route('manager.degree.index')}}" class="kt-menu__link ">--}}
+{{--                                <i class="kt-menu__link-icon flaticon2-files-and-folders"></i>--}}
+{{--                                <span class="kt-menu__link-text">التخصصات</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        @endcan--}}
+{{--                        @can('sub degrees management')--}}
+{{--                        <li class="kt-menu__item  @if(Route::is('manager.sub_degree.*') ) kt-menu__item--active @endif"--}}
+{{--                            aria-haspopup="true">--}}
+{{--                            <a href="{{route('manager.sub_degree.index')}}" class="kt-menu__link ">--}}
+{{--                                <i class="kt-menu__link-icon flaticon2-files-and-folders"></i>--}}
+{{--                                <span class="kt-menu__link-text">التخصصات الدقيقة</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        @endcan--}}
+{{--                        @can('qualifications management')--}}
+{{--                        <li class="kt-menu__item  @if(Route::is('manager.qualification.*') ) kt-menu__item--active @endif"--}}
+{{--                            aria-haspopup="true">--}}
+{{--                            <a href="{{route('manager.qualification.index')}}" class="kt-menu__link ">--}}
+{{--                                <i class="kt-menu__link-icon flaticon2-writing"></i>--}}
+{{--                                <span class="kt-menu__link-text">المؤهلات</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        @endcan--}}
+{{--                        @can('appreciations management')--}}
+{{--                        <li class="kt-menu__item  @if(Route::is('manager.appreciation.*') ) kt-menu__item--active @endif"--}}
+{{--                            aria-haspopup="true">--}}
+{{--                            <a href="{{route('manager.appreciation.index')}}" class="kt-menu__link ">--}}
+{{--                                <i class="kt-menu__link-icon flaticon2-dashboard"></i>--}}
+{{--                                <span class="kt-menu__link-text">التقديرات</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        @endcan--}}
+{{--                        @can('disabilities management')--}}
+{{--                        <li class="kt-menu__item  @if(Route::is('manager.disability.*') ) kt-menu__item--active @endif"--}}
+{{--                            aria-haspopup="true">--}}
+{{--                            <a href="{{route('manager.disability.index')}}" class="kt-menu__link ">--}}
+{{--                                <i class="kt-menu__link-icon flaticon2-group"></i>--}}
+{{--                                <span class="kt-menu__link-text">الاعاقات</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        @endcan--}}
+{{--                        @can('ministries management')--}}
+{{--                        <li class="kt-menu__item  @if(Route::is('manager.ministry.*') ) kt-menu__item--active @endif"--}}
+{{--                            aria-haspopup="true">--}}
+{{--                            <a href="{{route('manager.ministry.index')}}" class="kt-menu__link ">--}}
+{{--                                <i class="kt-menu__link-icon flaticon2-architecture-and-city"></i>--}}
+{{--                                <span class="kt-menu__link-text">الوزارات</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        @endcan--}}
+{{--                        @can('positions management')--}}
+{{--                        <li class="kt-menu__item  @if(Route::is('manager.position.*') ) kt-menu__item--active @endif"--}}
+{{--                            aria-haspopup="true">--}}
+{{--                            <a href="{{route('manager.position.index')}}" class="kt-menu__link ">--}}
+{{--                                <i class="kt-menu__link-icon flaticon2-soft-icons-1"></i>--}}
+{{--                                <span class="kt-menu__link-text">العناوين الوظيفية</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        @endcan--}}
+{{--                        @can('positions management')--}}
+{{--                        <li class="kt-menu__item  @if(Route::is('manager.question.*') ) kt-menu__item--active @endif"--}}
+{{--                            aria-haspopup="true">--}}
+{{--                            <a href="{{route('manager.question.index')}}" class="kt-menu__link ">--}}
+{{--                                <i class="kt-menu__link-icon flaticon2-soft-icons-1"></i>--}}
+{{--                                <span class="kt-menu__link-text">الأسئلة</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        @endcan--}}
+{{--                        @can('languages management')--}}
+{{--                        <li class="kt-menu__item  @if(Route::is('manager.language.*') ) kt-menu__item--active @endif"--}}
+{{--                            aria-haspopup="true">--}}
+{{--                            <a href="{{route('manager.language.index')}}" class="kt-menu__link ">--}}
+{{--                                <i class="kt-menu__link-icon flaticon2-chat-1"></i>--}}
+{{--                                <span class="kt-menu__link-text">اللغات</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        @endcan--}}
+{{--                        @can('external links management')--}}
+{{--                        <li class="kt-menu__item  @if(Route::is('manager.external-link.*') ) kt-menu__item--active @endif"--}}
+{{--                            aria-haspopup="true">--}}
+{{--                            <a href="{{route('manager.external-link.index')}}" class="kt-menu__link ">--}}
+{{--                                <i class="kt-menu__link-icon flaticon2-placeholder"></i>--}}
+{{--                                <span class="kt-menu__link-text">الراوبط الخارجية</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        @endcan--}}
+{{--                        @can('countries management')--}}
+{{--                        <li class="kt-menu__item  @if(Route::is('manager.country.*') ) kt-menu__item--active @endif"--}}
+{{--                            aria-haspopup="true">--}}
+{{--                            <a href="{{route('manager.country.index')}}" class="kt-menu__link ">--}}
+{{--                                <i class="kt-menu__link-icon flaticon2-placeholder"></i>--}}
+{{--                                <span class="kt-menu__link-text">الدول</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        @endcan--}}
 
 
 
@@ -369,22 +450,22 @@
                                 </a>
                             </li>
                             @endcan
-{{--                            @can('managers management')--}}
+                            @can('managers management')
                             <li class="kt-menu__item  @if(Route::is('manager.manager.*') ) kt-menu__item--active @endif"
                                 aria-haspopup="true">
                                 <a href="{{route('manager.manager.index')}}" class="kt-menu__link ">
                                     <span class="kt-menu__link-text">المسؤولین</span>
                                 </a>
                             </li>
-{{--                            @endcan--}}
-{{--                            @can('permissions management')--}}
+                            @endcan
+                            @can('permissions management')
                             <li class="kt-menu__item  @if(Route::is('manager.role.*') ) kt-menu__item--active @endif"
                                 aria-haspopup="true">
                                 <a href="{{route('manager.role.index')}}" class="kt-menu__link ">
                                     <span class="kt-menu__link-text">الصلاحيات</span>
                                 </a>
                             </li>
-{{--                            @endcan--}}
+                            @endcan
                         </ul>
 
                     </div>
@@ -582,8 +663,33 @@
 <!--begin::Page Scripts(used by this page) -->
 
 <!--end::Page Scripts -->
-@yield('script')
 <script type="text/javascript">
+    var departmentURL = '{{ route("manager.departmentByGrade", ":id") }}';
+    var generalDepartmentURL = '{{ route("manager.generalDepartmentByGrade", ":id") }}';
+    function getDepartments(id, selected = 0)
+    {
+        var url = departmentURL;
+        url = url.replace(':id', id );
+        $.ajax({
+            type: "get",
+            url: url,
+        }).done(function (data) {
+            $('select[name="department"]').html(data.html);
+            $('select[name="department"]').selectpicker('refresh');
+        });
+    }
+    function getGeneralDepartments(id, selected = 0)
+    {
+        var url = generalDepartmentURL;
+        url = url.replace(':id', id );
+        $.ajax({
+            type: "get",
+            url: url,
+        }).done(function (data) {
+            $('select[name="department"]').html(data.html);
+            $('select[name="department"]').selectpicker('refresh');
+        });
+    }
     function showToastify(text_msg, status, route = null){
         var color = "#203359";
         if(status == "success"){
@@ -653,6 +759,8 @@
     });
 
 </script>
+@yield('script')
+
 
 </body>
 

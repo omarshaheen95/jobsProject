@@ -15,24 +15,27 @@
                         <h3 class="kt-portlet__head-title">الاعدادات العامة</h3>
                     </div>
                 </div>
-                <form enctype="multipart/form-data" id="form_information" class="kt-form kt-form--label-right" action="{{ route('manager.settings.update') }}" method="post">
+                <form enctype="multipart/form-data" id="form_information" class="kt-form kt-form--label-right"
+                      action="{{ route('manager.settings.update') }}" method="post">
                     {{ csrf_field() }}
                     <div class="kt-portlet__body">
                         <div class="kt-section kt-section--first">
                             <div class="kt-section__body">
                                 @foreach($settings as $setting)
                                     @if($setting->type == 'text')
-                                <div class="form-group row">
-                                    <label class="col-xl-3 col-lg-3 col-form-label">{{$setting->name}}</label>
-                                    <div class="col-lg-9 col-xl-6">
-                                        <input class="form-control" name="settings[{{$setting->key}}]" type="text" value="{{$setting->value}}">
-                                    </div>
-                                </div>
+                                        <div class="form-group row">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">{{$setting->name}}</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                <input class="form-control" name="settings[{{$setting->key}}]"
+                                                       type="text" value="{{$setting->value}}">
+                                            </div>
+                                        </div>
                                     @elseif($setting->type == 'textarea')
                                         <div class="form-group row">
                                             <label class="col-xl-3 col-lg-3 col-form-label">{{$setting->name}}</label>
                                             <div class="col-lg-9 col-xl-6">
-                                                <textarea class="form-control" name="settings[{{$setting->key}}]">{{$setting->value}}</textarea>
+                                                <textarea class="form-control"
+                                                          name="settings[{{$setting->key}}]">{{$setting->value}}</textarea>
                                             </div>
                                         </div>
                                     @elseif($setting->type == 'bool')
@@ -41,12 +44,14 @@
                                             <div class="col-lg-9 col-xl-6  col-form-label">
                                                 <div class="radio-inline">
                                                     <label class="radio radio-primary">
-                                                        <input type="radio" value="1" name="settings[{{$setting->key}}]" @if($setting->value) checked @endif />
+                                                        <input type="radio" value="1" name="settings[{{$setting->key}}]"
+                                                               @if($setting->value) checked @endif />
                                                         <span></span>
                                                         تفعيل
                                                     </label>
                                                     <label class="radio radio-primary">
-                                                        <input type="radio" value="0" name="settings[{{$setting->key}}]" @if($setting->value != 1) checked @endif/>
+                                                        <input type="radio" value="0" name="settings[{{$setting->key}}]"
+                                                               @if($setting->value != 1) checked @endif/>
                                                         <span></span>
                                                         تعطيل
                                                     </label>
@@ -55,6 +60,18 @@
                                         </div>
                                     @endif
                                 @endforeach
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label">
+                                        اعتماد الأقسام الحاكمة
+                                    </label>
+                                    <div class="col-lg-9 col-xl-6">
+                                        <a href="{{ route('manager.grade.governor.approve') }}"
+                                           class="btn btn-danger btn-elevate btn-icon-sm">
+                                            <i class="la la-check"></i>
+                                            اعتماد
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

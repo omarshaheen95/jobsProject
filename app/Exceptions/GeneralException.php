@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Dev Omar Shaheen
- * Date: 5/1/2019
- * Time: 12:12 AM
- */
 
 namespace App\Exceptions;
 use Exception;

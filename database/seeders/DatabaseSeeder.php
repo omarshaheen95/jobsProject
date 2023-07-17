@@ -15,10 +15,15 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
-            ManagerTableSeeder::class,
+
             SettingTableSeeder::class,
             PageTableSeeder::class,
             PermissionTableSeeder::class,
+
+            ManagerTableSeeder::class,
+
+            Lottery\LotteryDegreeSeeder::class,
+            Lottery\LotteryGovernorateSeeder::class,
         ]);
     }
 }

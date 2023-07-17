@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Manager;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 class ManagerTableSeeder extends Seeder
 {
@@ -14,7 +15,7 @@ class ManagerTableSeeder extends Seeder
      */
     public function run()
     {
-        Manager::query()->firstOrCreate([
+        $manager = Manager::query()->firstOrCreate([
            'email' => 'admin@gmail.com',
         ],[
             'name' => 'Admin',
@@ -22,5 +23,12 @@ class ManagerTableSeeder extends Seeder
             'password' => bcrypt(123456),
             'active' => 1,
         ]);
+
+        $role = Role::query()->where('name', 'مدير عام')->first();
+
+        if ($role) {
+            $manager->assignRole($role->id);
+        }
+
     }
 }

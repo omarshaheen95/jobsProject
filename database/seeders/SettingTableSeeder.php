@@ -24,6 +24,7 @@ class SettingTableSeeder extends Seeder
             ['name' => 'Linked in', 'key' => 'LINKEDIN', 'value' => null, 'type' => 'text'],
             ['name' => 'Youtube', 'key' => 'YOUTUBE', 'value' => null, 'type' => 'text'],
             ['name' => 'Introduction', 'key' => 'INTRODUCTION', 'value' => null, 'type' => 'textarea'],
+            ['name' => 'بدء القرعة', 'key' => 'RUN-LOTTERY', 'value' => 0, 'type' => 'bool'],
         ];
 
         foreach($settings as $setting)

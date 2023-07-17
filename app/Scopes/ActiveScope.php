@@ -1,9 +1,4 @@
 <?php
-/*
-Dev Omar Shaheen
-Devomar095@gmail.com
-WhatsApp +972592554320
-*/
 
 namespace App\Scopes;
 

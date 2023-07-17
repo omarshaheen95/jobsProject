@@ -80,3 +80,9 @@ Route::get('cache', function (){
     \Illuminate\Support\Facades\Artisan::call('cache:clear');
     \Illuminate\Support\Facades\Artisan::call('config:cache');
 });
+Route::get('queue', function (){
+    \Illuminate\Support\Facades\Artisan::call('queue:work');
+});
+Route::get('migrate', function (){
+    \Illuminate\Support\Facades\Artisan::call('migrate');
+});
