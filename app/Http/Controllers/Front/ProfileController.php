@@ -102,7 +102,7 @@ class ProfileController extends Controller
 
         $userInfo = $user->userInfo()->updateOrCreate(['user_id' => $user->id],$data)->save();
         if ($request->hasFile('avatar')) {
-            $userInfo->addMediaFromRequest('avatar')->toMediaCollection('users');
+            $user->userInfo->addMediaFromRequest('avatar')->toMediaCollection('users');
         }
 
         return $this->sendResponse(null, 'تم تحديث تسجيل البيانات بنجاح');

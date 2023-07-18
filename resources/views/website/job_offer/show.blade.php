@@ -27,17 +27,20 @@
                                     </li>
                                 </ul>
                                 @auth
-                                    @if(auth()->user()->jobOffers()->where('job_offer_id', $job_offer->id)->first())
-                                        <button disabled  class="btn btn-outline-theme btn-order">
-                                            تم التقديم </button>
-                                        @else
-                                        <a href="#career-modal" data-bs-toggle="modal" class="btn btn-outline-theme btn-order">
-                                            طلب تقديم </a>
-                                        @endif
-
+                                    @if(auth()->user()->jobOffers()->where('job_offer_id', $job_offer->id)->first() || !auth()->user()->userInfo)
+                                        <button disabled class="btn btn-outline-theme btn-order">
+                                            تم التقديم
+                                        </button>
                                     @else
+                                        <a href="#career-modal" data-bs-toggle="modal"
+                                           class="btn btn-outline-theme btn-order">
+                                            طلب تقديم </a>
+                                    @endif
+
+                                @else
                                     <a href="{{route('login')}}" class="btn btn-outline-theme btn-order">
-                                        طلب تقديم </a>
+                                        طلب تقديم
+                                    </a>
                                 @endauth
 
                             </div>
@@ -209,22 +212,30 @@
                             <h4 class="title"> شارك الوظيفة </h4>
                             <ul class="nav nav-social-media">
                                 <li class="nav-item">
-                                    <a data-sharer="facebook" data-title="{{$job_offer->title}}" data-url="{{route('job_offers.show', $job_offer->slug)}}" rel="noopener noreferrer" class="nav-link">
+                                    <a data-sharer="facebook" data-title="{{$job_offer->title}}"
+                                       data-url="{{route('job_offers.show', $job_offer->slug)}}"
+                                       rel="noopener noreferrer" class="nav-link">
                                         <i class="fab fa-facebook-f"></i>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a data-sharer="twitter" data-title="{{$job_offer->title}}" data-url="{{route('job_offers.show', $job_offer->slug)}}" rel="noopener noreferrer" class="nav-link">
+                                    <a data-sharer="twitter" data-title="{{$job_offer->title}}"
+                                       data-url="{{route('job_offers.show', $job_offer->slug)}}"
+                                       rel="noopener noreferrer" class="nav-link">
                                         <i class="fab fa-twitter"></i>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a data-sharer="linkedin" data-title="{{$job_offer->title}}" data-url="{{route('job_offers.show', $job_offer->slug)}}" rel="noopener noreferrer" class="nav-link">
+                                    <a data-sharer="linkedin" data-title="{{$job_offer->title}}"
+                                       data-url="{{route('job_offers.show', $job_offer->slug)}}"
+                                       rel="noopener noreferrer" class="nav-link">
                                         <i class="fab fa-linkedin-in"></i>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a data-sharer="whatsapp" data-title="{{$job_offer->title}}" data-url="{{route('job_offers.show', $job_offer->slug)}}" rel="noopener noreferrer" class="nav-link">
+                                    <a data-sharer="whatsapp" data-title="{{$job_offer->title}}"
+                                       data-url="{{route('job_offers.show', $job_offer->slug)}}"
+                                       rel="noopener noreferrer" class="nav-link">
                                         <i class="fab fa-whatsapp"></i>
                                     </a>
                                 </li>
@@ -237,36 +248,38 @@
     </section>
     <!-- End Topics -->
     <!-- career-modal -->
-    <div class="modal fade" id="career-modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal fade" id="career-modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-body">
                     @if($job_offer->questions_count)
-                    <div class="modal-box">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        <div class="pic">
-                            <img src="{{asset('front/img/order-1.png')}}" alt="">
+                        <div class="modal-box">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <div class="pic">
+                                <img src="{{asset('front/img/order-1.png')}}" alt="">
+                            </div>
+                            <div class="content">
+                                <h2 class="title"> للتقدم على هذه الوظيفة يجب عليك اكمال الطلب و البيانات التالية </h2>
+                                <a href="{{route('job_offers.questions', $job_offer->slug)}}"
+                                   class="btn btn-theme w-100"> استمرار </a>
+                            </div>
                         </div>
-                        <div class="content">
-                            <h2 class="title"> للتقدم على هذه الوظيفة يجب عليك اكمال الطلب و البيانات التالية </h2>
-                            <a href="{{route('job_offers.questions', $job_offer->slug)}}" class="btn btn-theme w-100"> استمرار </a>
-                        </div>
-                    </div>
                     @else
-                    <div class="modal-box">
-                        <div class="pic">
-                            <img src="{{asset('front/img/order-2.png')}}" alt="">
-                        </div>
-                        <div class="content">
-                            <h2 class="title"> أنت الان على وشك التقديم على وظيفة </h2>
-                            <p class="info"> بالضغط على استمرار أنت تقر وتتعهد أن المعلومات المقدمة صحيحة </p>
-                            <form action="{{route('applyJobOffer', $job_offer->id)}}" method="post">
-                                @csrf
-                                <button type="submit" class="btn btn-theme w-100"> استمرار </button>
-                            </form>
+                        <div class="modal-box">
+                            <div class="pic">
+                                <img src="{{asset('front/img/order-2.png')}}" alt="">
+                            </div>
+                            <div class="content">
+                                <h2 class="title"> أنت الان على وشك التقديم على وظيفة </h2>
+                                <p class="info"> بالضغط على استمرار أنت تقر وتتعهد أن المعلومات المقدمة صحيحة </p>
+                                <form action="{{route('applyJobOffer', $job_offer->id)}}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn btn-theme w-100"> استمرار</button>
+                                </form>
 
+                            </div>
                         </div>
-                    </div>
                     @endif
                 </div>
             </div>

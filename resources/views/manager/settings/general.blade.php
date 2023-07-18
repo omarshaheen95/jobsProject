@@ -60,18 +60,18 @@
                                         </div>
                                     @endif
                                 @endforeach
-                                <div class="form-group row">
-                                    <label class="col-xl-3 col-lg-3 col-form-label">
-                                        اعتماد الأقسام الحاكمة
-                                    </label>
-                                    <div class="col-lg-9 col-xl-6">
-                                        <a href="{{ route('manager.grade.governor.approve') }}"
-                                           class="btn btn-danger btn-elevate btn-icon-sm">
-                                            <i class="la la-check"></i>
-                                            اعتماد
-                                        </a>
-                                    </div>
-                                </div>
+{{--                                <div class="form-group row">--}}
+{{--                                    <label class="col-xl-3 col-lg-3 col-form-label">--}}
+{{--                                        اعتماد الأقسام الحاكمة--}}
+{{--                                    </label>--}}
+{{--                                    <div class="col-lg-9 col-xl-6">--}}
+{{--                                        <a href="{{ route('manager.grade.governor.approve') }}"--}}
+{{--                                           class="btn btn-danger btn-elevate btn-icon-sm">--}}
+{{--                                            <i class="la la-check"></i>--}}
+{{--                                            اعتماد--}}
+{{--                                        </a>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                             </div>
                         </div>
                     </div>
