@@ -193,7 +193,7 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="form-group">
-                        <label for="family_of_prisoners" class="form-label"> هل أنت من ذوي الأسرى ؟</label>
+                        <label for="family_of_prisoners" class="form-label"> هل أنت من ذوي السجٌاء السياسيين ؟</label>
                         <select id="family_of_prisoners" name="family_of_prisoners" class="form-control form-select" required>
                             <option value="" disabled selected> اختر إجابة</option>
                             <option value="1" {{optional($user->userInfo)->family_of_prisoners == 1 ? 'selected':''}}> نعم </option>

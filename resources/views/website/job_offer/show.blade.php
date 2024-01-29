@@ -26,8 +26,13 @@
                                             : {{$job_offer->position->name}}</a>
                                     </li>
                                 </ul>
+
                                 @auth
-                                    @if(auth()->user()->jobOffers()->where('job_offer_id', $job_offer->id)->first() || !auth()->user()->userInfo)
+                                    @if(!auth()->user()->userInfo)
+                                        <button disabled class="btn btn-outline-theme btn-order">
+                                            الملف الشخصي غير مكتمل
+                                        </button>
+                                    @elseif(auth()->user()->jobOffers()->where('job_offer_id', $job_offer->id)->first())
                                         <button disabled class="btn btn-outline-theme btn-order">
                                             تم التقديم
                                         </button>
@@ -171,7 +176,7 @@
                                 </th>
                             </tr>
                             <tr>
-                                <td>فئة ذوي الأسرى</td>
+                                <td>فئة ذوي السجٌاء السياسيين</td>
                                 <th>
                                     @if($job_offer->family_of_prisoners == 1)
                                         نعم

@@ -192,7 +192,7 @@ return [
         'tags' => 'كلمات مفتاحية',
         'functional_terms' => 'الشروط الوظيفية',
         'functional_tasks' => 'المهام الوظيفية',
-        'family_of_prisoners' => 'ذوي الأسرى',
+        'family_of_prisoners' => 'ذوي السجٌاء السياسيين',
         'injured_people' => 'ذوي الجرحي',
         'family_of_martyrs' => 'ذوي الشهداء',
         'governorates' => 'المحافظات',

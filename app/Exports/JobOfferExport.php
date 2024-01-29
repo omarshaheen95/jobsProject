@@ -36,7 +36,7 @@ class JobOfferExport implements WithMapping,Responsable,WithHeadings,FromCollect
             'العنوان الوظيفي',
             'التخصص',
             'الجنس',
-            'ذوي الاسرى',
+            'ذوي السجٌاء السياسيين ؟',
             'ذوي الجرحى',
             'ذوي الشهداء',
             'بداية التقديم',

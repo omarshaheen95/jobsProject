@@ -142,7 +142,7 @@
                             </div>
                             <div class="kt-widget__item">
                                 <div class="kt-widget__details">
-                                    <span class="kt-widget__title">من فئة ذوي الأسرى</span>
+                                    <span class="kt-widget__title">من فئة ذوي السجٌاء السياسيين</span>
                                     <span
                                         class="kt-widget__value">{{optional($user->userInfo)->family_of_prisoners ? 'نعم':'لا'}}</span>
                                 </div>

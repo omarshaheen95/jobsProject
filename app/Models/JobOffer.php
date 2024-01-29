@@ -108,7 +108,7 @@ class JobOffer extends Model implements HasMedia
     {
         switch ($this->family_of_prisoners)
         {
-            case 1: return 'ذوي الأسرى';
+            case 1: return 'ذوي السجٌاء السياسيين';
             case 2: return 'العاديين';
             default: return 'الكل';
         }

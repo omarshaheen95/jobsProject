@@ -164,9 +164,9 @@
         <div class="copyright">
             <img src="{{asset('front/img/copyright-logo.png')}}" class="me-3" alt="">
             <span>
-                        جميع الحقوق محفوظة لدي
+                        جميع الحقوق محفوظة لدى
                         <a href="/"> مجلس الخدمة العامة الأتحادي</a>
-                        2022
+                        {{date('Y')}}
                     </span>
         </div>
     </div>

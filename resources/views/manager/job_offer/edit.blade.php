@@ -182,7 +182,7 @@
                                             </div>
                                             <div class="col-xl-6">
                                                 <div class="form-group">
-                                                    <label>ذوي الأسرى</label>
+                                                    <label>ذوي السجٌاء السياسيين</label>
                                                     <div class="kt-radio-inline">
                                                         <label class="kt-radio kt-radio--success">
                                                             <input type="radio"
@@ -195,7 +195,7 @@
                                                             <input type="radio"
                                                                    {{isset($job_offer) && $job_offer->family_of_prisoners == '1' ? 'checked':''}} value="1"
                                                                    name="family_of_prisoners">
-                                                            ذوي الأسرى
+                                                            ذوي السجٌاء السياسيين
                                                             <span></span>
                                                         </label>
                                                         <label class="kt-radio kt-radio--success">
